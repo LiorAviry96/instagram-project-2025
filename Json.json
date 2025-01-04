@@ -1,0 +1,68 @@
+const "post" = {
+    "_id": "s101",
+    "txt": "Best trip ever",
+    "imgUrl": "http://some-img", 
+    "by": {
+      "_id": "u101",
+      "fullname": "Ulash Ulashi",
+      "imgUrl": "http://some-img"
+    },
+    "comments": [
+      {
+        "id": "c1001",
+        "by": {
+          "_id": "u105",
+          "fullname": "Bob",
+          "imgUrl": "http://some-img"
+        },
+        "txt": "good one!",
+      },
+      {
+        "id": "c1002",
+        "by": {
+          "_id": "u106",
+          "fullname": "Dob",
+          "imgUrl": "http://some-img"
+        },
+        "txt": "not good!",
+      }
+    ],
+    "likedBy": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://some-img"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://some-img"
+      }
+    ],
+   
+  }
+  
+  
+  const user = {
+    "_id": "u101",
+    "username": "Muko",
+    "password": "mukmuk",
+    "fullname": "Muki Muka",
+    "imgUrl": "http://some-img",
+    "following": [
+      {
+        "_id": "u106",
+        "fullname": "Dob",
+        "imgUrl": "http://some-img"
+      }
+    ],
+    "followers": [
+      {
+        "_id": "u105",
+        "fullname": "Bob",
+        "imgUrl": "http://some-img"
+      }
+    ],
+    "savedPostIds": ["s104", "s111", "s123"] // can also use mini-stories
+  }
+  
