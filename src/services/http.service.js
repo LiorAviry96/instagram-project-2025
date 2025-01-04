@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import Axios from 'axios'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
