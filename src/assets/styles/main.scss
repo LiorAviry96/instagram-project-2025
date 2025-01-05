@@ -1,0 +1,15 @@
+//pages
+@import "pages/NavBar";
+@import "pages/FeedIndex";
+
+//cmps
+@import "cmps/PostPreview";
+
+
+// Basics
+@import "basics/helpers";
+@import "basics/layout";
+@import "basics/base";
+@import "basics/forms";
+
+@import "RootCmp";

@@ -63,6 +63,5 @@ const "post" = {
         "imgUrl": "http://some-img"
       }
     ],
-    "savedPostIds": ["s104", "s111", "s123"] // can also use mini-stories
   }
   

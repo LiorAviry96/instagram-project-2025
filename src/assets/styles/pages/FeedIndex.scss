@@ -1,0 +1,20 @@
+  /* Feed content on the right side */
+  .feed {
+    margin-left: 250px; /* Same as the navbar width */
+    padding: 20px;
+    width: calc(100% - 250px); /* Adjust to take full width excluding navbar */
+    width: 70%;
+    overflow-y: auto;
+  }
+
+  button {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #007bb5;
+  }

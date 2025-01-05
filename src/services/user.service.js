@@ -1,5 +1,5 @@
-import { storageService } from '../async-storage.service'
-
+import { storageService } from './async-storage.service'
+import { makeId, makeLorem, saveToStorage } from './util.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 export const userService = {
@@ -13,6 +13,8 @@ export const userService = {
     getLoggedinUser,
     saveLoggedinUser,
 }
+
+_createUsers()
 
 async function getUsers() {
     const users = await storageService.query('user')
@@ -79,7 +81,7 @@ function saveLoggedinUser(user) {
 
 // To quickly create an admin user, uncomment the next line
 // _createUser()
-async function _createUser() {
+/*async function _createUser() {
     const user = {
         username: 'admin',
         password: 'admin',
@@ -90,4 +92,24 @@ async function _createUser() {
 
     const newUser = await storageService.post('user', user)
     console.log('newUser: ', newUser)
+}*/
+
+function _createUsers() {
+    const users = []
+    const names = ['Muko', 'Dob', 'Bob', 'Alice', 'Jane', 'John', 'Chris', 'Sam', 'Taylor', 'Jamie']
+    for (let i = 0; i < 10; i++) {
+        const user = {
+            _id: makeId(),
+            username: names[i] || makeLorem(1),
+            password: 'password' + i,
+            fullname: makeLorem(2),
+            imgUrl: `https://robohash.org/${i}`,
+            following: [],
+            followers: [],
+        }
+        users.push(user)
+    }
+    console.log('users', users)
+    saveToStorage('user', users)
+    return users
 }
