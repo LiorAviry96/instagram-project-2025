@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 export function PostPreview({ post }) {
-  const [likes, setLikes] = useState(post.likes || 0);
+  const [likes, setLikes] = useState(post.likedBy?.length || 0);
 
   const handleLike = () => {
     setLikes(likes + 1);
@@ -16,7 +16,6 @@ export function PostPreview({ post }) {
       ) : (
         <p>No image available</p>
       )}
-      <p>{post.caption || "No caption provided"}</p>
       <button onClick={handleLike}>❤️ {likes} Likes</button>
       <div>
         <h4>Comments:</h4>

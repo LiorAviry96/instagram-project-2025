@@ -24,7 +24,7 @@ export function RootCmp() {
             <main className="feed">
                 <Routes> 
                 <Route path="/" element={<FeedIndex />} />
-                    <Route path="/:userid" element={<Profile />} />
+                    <Route path="/user/:userId" element={<Profile />} />
                     <Route path="login" element={<LoginSignup />}>
                         <Route index element={<Login />} />
                         <Route path="signup" element={<SignUp />} />

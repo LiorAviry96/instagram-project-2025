@@ -7,7 +7,7 @@ import { userService } from '../services/user.service'
 
 export function Login() {
 
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '', imgUrl: '' })
+    const [credentials, setCredentials] = useState({ username: '', password: ''})
     const [users, setUsers] = useState([])
     const navigate = useNavigate()
 
@@ -55,7 +55,7 @@ export function Login() {
                 <button type="submit">Login</button>
             </form>
             <p>
-                Don't have an account? <button onClick={() => navigate("/signup")}>Sign Up</button>
+                Don't have an account? <button onClick={() => navigate("signup")}>Sign Up</button>
             </p>
         </div>
     );

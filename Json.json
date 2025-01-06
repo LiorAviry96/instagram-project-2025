@@ -63,5 +63,10 @@ const "post" = {
         "imgUrl": "http://some-img"
       }
     ],
+    "images": [
+        "http://image-url-1",
+        "http://image-url-2",
+        "http://image-url-3"
+    ]
   }
   

@@ -47,7 +47,7 @@ async function update({ _id, score }) {
 async function login(userCred) {
     const users = await storageService.query('user')
     const user = users.find(user => user.username === userCred.username)
-
+    console.log('user service', user)
     if (user) return saveLoggedinUser(user)
 }
 
@@ -68,12 +68,16 @@ function getLoggedinUser() {
 }
 
 function saveLoggedinUser(user) {
+    if (!user || !user._id) {
+        throw new Error("Invalid user object provided.");
+    }
 	user = { 
         _id: user._id, 
         fullname: user.fullname, 
         imgUrl: user.imgUrl, 
-        score: user.score, 
-        isAdmin: user.isAdmin 
+        following: user.following || [],
+        followers: user.followers || [],
+        images: user.images || [],   
     }
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 	return user
@@ -104,8 +108,41 @@ function _createUsers() {
             password: 'password' + i,
             fullname: makeLorem(2),
             imgUrl: `https://robohash.org/${i}`,
-            following: [],
-            followers: [],
+            following: [
+                {
+                    _id: "u122",
+                    fullname: "Dob",
+                    imgUrl: "https://robohash.org/2"
+                  },
+                  {
+                    _id: "u138",
+                    fullname: "Dan",
+                    imgUrl: "https://robohash.org/3"
+                  },
+                  {
+                    _id: "u409",
+                    fullname: "Ben",
+                    imgUrl: "https://robohash.org/4"
+                  }
+            ],
+            followers: [
+                {
+                    _id: "u196",
+                    fullname: "Dor",
+                    imgUrl: "https://robohash.org/8"
+                  },
+                  {
+                    _id: "u119",
+                    fullname: "Or",
+                    imgUrl: "https://robohash.org/9"
+                  },
+                  {
+                    _id: "u129",
+                    fullname: "Shon",
+                    imgUrl: "https://robohash.org/7"
+                  }
+            ],
+            images: [],
         }
         users.push(user)
     }

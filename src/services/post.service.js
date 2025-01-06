@@ -19,16 +19,25 @@ window.cs = postService
 _createPosts()
 
 async function query(filterBy = { txt: '' }) {
-    let posts = await storageService.query(STORAGE_KEY)
-    const { txt } = filterBy
+    let posts = await storageService.query(STORAGE_KEY);
+    const { txt } = filterBy;
 
     if (txt) {
-        const regex = new RegExp(txt, 'i')
-        posts = posts.filter(post => regex.test(post.txt))
+        const regex = new RegExp(txt, 'i');
+        posts = posts.filter(post => regex.test(post.txt));
     }
 
-    return posts.map(({ _id, txt, imgUrl, owner }) => ({ _id, txt, imgUrl, owner }))
+    // Return all fields of the posts
+    return posts.map(({ _id, txt, imgUrl, owner, comments, likedBy }) => ({
+        _id,
+        txt,
+        imgUrl,
+        owner,
+        comments,
+        likedBy
+    }));
 }
+
 
 function getById(postId) {
     return storageService.get(STORAGE_KEY, postId)
@@ -120,7 +129,23 @@ function _createPosts() {
                     txt: makeLorem(5),
                 },
             ],
-            likedBy: [],
+            likedBy: [
+                {
+                    _id: "u196",
+                    fullname: "Dor",
+                    imgUrl: "https://robohash.org/8"
+                  },
+                  {
+                    _id: "u119",
+                    fullname: "Or",
+                    imgUrl: "https://robohash.org/9"
+                  },
+                  {
+                    _id: "u129",
+                    fullname: "Shon",
+                    imgUrl: "https://robohash.org/7"
+                  }
+            ],
         }
         posts.push(post)
     }
