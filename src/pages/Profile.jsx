@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useParams } from 'react-router-dom'
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { loadUser } from "../store/actions/user.actions";
 
 export function Profile() {
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     const watchedUser = useSelector((state) => state.userModule.watchedUser);
     const { userId } = useParams()
     useEffect(() => {
