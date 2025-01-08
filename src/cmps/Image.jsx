@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-export function Image({ imgUrl }) {
+export function Image({ image }) {
 
     return (
 
             <div className="gallery-item">
-                <img src={imgUrl} alt={`User post ${1}`} />
+                <img src={image} alt={`User post ${1}`} />
                 
             </div>
 

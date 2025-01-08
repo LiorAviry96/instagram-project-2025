@@ -91,7 +91,7 @@ function getEmptyPost(txt = '', imgUrl = '') {
 }
 
 async function _createPosts() {
-
+    
     const posts = [
         {
             _id: makeId(),

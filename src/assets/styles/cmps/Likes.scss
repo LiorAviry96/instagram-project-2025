@@ -1,5 +1,5 @@
 button {
-    background-color: transparent;
+    background-color: transparent !important;
     color: black; /* Instagram-like red for likes */
     border: none;
     font-size: 16px; /* Slightly larger font for visibility */
@@ -27,4 +27,18 @@ button {
   button .heart-icon {
     font-size: 18px; /* Adjust icon size */
   }
-  
+
+  .likes,
+.comments {
+  color: black;
+  font-family: "Atma", serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.heart-icon{
+  color: black;
+  font-size: 1.4rem !important; 
+}
+.heart-icon:hover{
+  color: rgb(137, 134, 134)
+}

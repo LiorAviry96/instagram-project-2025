@@ -26,11 +26,10 @@ export function Search() {
       setSearchResults(results);
     }
   }, [searchTerm, following]);
-
+  console.log('searchResults',searchResults)
   return (
     <div className="search-component">
     
-   (
         <div className="search-dropdown">
           <input
             type="text"
@@ -43,14 +42,13 @@ export function Search() {
             {searchResults.map((user) => (
               <li key={user._id} className="search-item">
                 <Link to={`/user/${user._id}`}>
-                  <img src={user.imgUrl} alt={user.fullname} className="user-avatar" />
+                  <img src={`/src/assets/images/${user.imgUrl}.jpeg`} alt={user.fullname} className="user-avatar" />
                   <span>{user.fullname}</span>
                 </Link>
               </li>
             ))}
           </ul>
         </div>
-      )
     </div>
   );
 }
