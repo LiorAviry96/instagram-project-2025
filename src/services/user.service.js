@@ -1,5 +1,5 @@
 import { storageService } from './async-storage.service'
-import { makeId, makeLorem, saveToStorage } from './util.service'
+import { makeId, saveToStorage } from './util.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 export const userService = {
@@ -32,17 +32,17 @@ function remove(userId) {
     return storageService.remove('user', userId)
 }
 
-async function update({ _id, score }) {
-    const user = await storageService.get('user', _id)
-    user.score = score
-    await storageService.put('user', user)
+async function update(updatedUser) {
+    const user = await storageService.get("user", updatedUser._id);
+    Object.assign(user, updatedUser); // Merge the updated fields into the user object
+    await storageService.put("user", user);
 
-	// When admin updates other user's details, do not update loggedinUser
-    const loggedinUser = getLoggedinUser()
-    if (loggedinUser._id === user._id) saveLoggedinUser(user)
+    const loggedInUser = getLoggedinUser();
+    if (loggedInUser._id === user._id) saveLoggedinUser(user);
 
-    return user
+    return user;
 }
+
 
 async function login(userCred) {
     const users = await storageService.query('user')
@@ -83,69 +83,128 @@ function saveLoggedinUser(user) {
 	return user
 }
 
-// To quickly create an admin user, uncomment the next line
-// _createUser()
-/*async function _createUser() {
-    const user = {
-        username: 'admin',
-        password: 'admin',
-        fullname: 'Mustafa Adminsky',
-        imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
-        score: 10000,
-    }
 
-    const newUser = await storageService.post('user', user)
-    console.log('newUser: ', newUser)
-}*/
-
-function _createUsers() {
-    const users = []
-    const names = ['Muko', 'Dob', 'Bob', 'Alice', 'Jane', 'John', 'Chris', 'Sam', 'Taylor', 'Jamie']
-    for (let i = 0; i < 10; i++) {
-        const user = {
+async function _createUsers() {
+    const users = [
+        {
             _id: makeId(),
-            username: names[i] || makeLorem(1),
-            password: 'password' + i,
-            fullname: makeLorem(2),
-            imgUrl: `https://robohash.org/${i}`,
+            username: 'Muko',
+            password: '12345', // Random 9-digit password
+            fullname: 'John Doe',
+            imgUrl: "image1", // Assuming the image exists in the assets folder
             following: [
                 {
                     _id: "u122",
-                    fullname: "Dob",
-                    imgUrl: "https://robohash.org/2"
-                  },
-                  {
+                    fullname: "Alice",
+                    imgUrl: "image2",
+                },
+                {
                     _id: "u138",
-                    fullname: "Dan",
-                    imgUrl: "https://robohash.org/3"
-                  },
-                  {
-                    _id: "u409",
-                    fullname: "Ben",
-                    imgUrl: "https://robohash.org/4"
-                  }
+                    fullname: "Bob",
+                    imgUrl: "image3",
+                },
+                
             ],
             followers: [
                 {
                     _id: "u196",
-                    fullname: "Dor",
-                    imgUrl: "https://robohash.org/8"
-                  },
-                  {
-                    _id: "u119",
-                    fullname: "Or",
-                    imgUrl: "https://robohash.org/9"
-                  },
-                  {
-                    _id: "u129",
-                    fullname: "Shon",
-                    imgUrl: "https://robohash.org/7"
-                  }
+                    fullname: "Dorothy",
+                    imgUrl: "image1",                },
+               
             ],
             images: [],
-        }
-        users.push(user)
-    }
+        },
+        {
+            _id: makeId(),
+            username: 'Dob',
+            password: '12345',
+            fullname: 'Alice Johnson',
+            imgUrl: "image3",
+            following: [
+                {
+                    _id: "u122",
+                    fullname: "Muko",
+                    imgUrl: "image2",                },
+                {
+                    _id: "u138",
+                    fullname: "Dan",
+                    imgUrl: "image1",
+                },
+  
+            ],
+            followers: [
+              
+            ],
+            images: [],
+        },
+        {
+            _id: makeId(),
+            username: 'Bob',
+            password: '12345',
+            fullname: 'Robert Brown',
+            imgUrl: "image1",
+            following: [
+                {
+                    _id: "u122",
+                    fullname: "Chris",
+                    imgUrl: "image1",                },
+                {
+                    _id: "u138",
+                    fullname: "Sam",
+                    imgUrl: "image3",                },
+                {
+                    _id: "u409",
+                    fullname: "Taylor",
+                    imgUrl: "image1",                }
+            ],
+            followers: [
+                {
+                    _id: "u196",
+                    fullname: "Janet",
+                    imgUrl: "image1",                },
+             
+            ],
+            images: [],
+        },
+        {
+            _id: makeId(),
+            username: 'Alice',
+            password: '12345',
+            fullname: 'Alice White',
+            imgUrl: "image3",
+            following: [
+                {
+                    _id: "u122",
+                    fullname: "Taylor",
+                    imgUrl: "image1",                },
+                {
+                    _id: "u138",
+                    fullname: "Jamie",
+                    imgUrl: "image2",                },
+                {
+                    _id: "u409",
+                    fullname: "John",
+                    imgUrl: "image3",                }
+            ],
+            followers: [
+                {
+                    _id: "u196",
+                    fullname: "Sara",
+                    imgUrl: "image1",                },
+                {
+                    _id: "u119",
+                    fullname: "Lucas",
+                    imgUrl: "image2",                },
+                {
+                    _id: "u129",
+                    fullname: "Chris",
+                    imgUrl: "image3",                }
+            ],
+            images: [],
+        },
+        // Add more users here following the same pattern...
+    ]
+
     console.log('users', users)
     saveToStorage('user', users)
     return users

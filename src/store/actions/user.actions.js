@@ -27,17 +27,19 @@ export async function removeUser(userId) {
     }
 }
 
-export function login(credentials) {
-    console.log('credentials', credentials)
-    return userService.login(credentials)
-        .then((user) => {
-            console.log('user login:', user)
-            store.dispatch({ type: SET_USER, user })
+export async function login(credentials) {
+    try {
+        const user = await userService.login(credentials)
+        store.dispatch({
+            type: SET_USER,
+            user
         })
-        .catch((err) => {
-            console.log('user actions -> Cannot login', err)
-            throw err
-        })
+        socketService.login(user._id)
+        return user
+    } catch (err) {
+        console.log('Cannot login', err)
+        throw err
+    }
 }
 
 export async function signup(credentials) {
@@ -79,3 +81,23 @@ export async function loadUser(userId) {
         console.log('Cannot load user', err)
     }
 }
+
+export async function updateUserImage(imgUrl) {
+    if (!imgUrl) throw new Error('Image URL is required for update');
+    try {
+        const loggedInUser = userService.getLoggedinUser();
+        if (!loggedInUser) throw new Error('No logged-in user');
+
+        const updatedUser = {
+            ...loggedInUser,
+            images: [...(loggedInUser.images || []), imgUrl],
+        };
+
+        await userService.update(updatedUser);
+        store.dispatch({ type: SET_USER, user: updatedUser });
+    } catch (err) {
+        console.error('Error updating user image:', err);
+        throw err;
+    }
+}
+

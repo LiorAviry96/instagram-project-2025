@@ -1,6 +1,6 @@
 import { storageService } from './async-storage.service'
 import { userService } from './user.service'
-import { makeId, saveToStorage,makeLorem, loadFromStorage, getRandomIntInclusive } from './util.service'
+import { makeId, saveToStorage } from './util.service'
 
 const STORAGE_KEY = 'post'
 
@@ -28,13 +28,14 @@ async function query(filterBy = { txt: '' }) {
     }
 
     // Return all fields of the posts
-    return posts.map(({ _id, txt, imgUrl, owner, comments, likedBy }) => ({
+    return posts.map(({ _id, txt, imgUrl, owner, comments, likedBy, createdAt }) => ({
         _id,
         txt,
         imgUrl,
         owner,
         comments,
-        likedBy
+        likedBy,
+        createdAt,
     }));
 }
 
@@ -65,7 +66,8 @@ async function save(post) {
             imgUrl: post.imgUrl || '',
             by: userService.getLoggedinUser(),
             comments: [],
-            likedBy: []
+            likedBy: [],
+            createdAt: post.createdAt
         }
         savedPost = await storageService.post(STORAGE_KEY, postToSave)
     }
@@ -84,73 +86,130 @@ function getEmptyPost(txt = '', imgUrl = '') {
     return {
         txt,
         imgUrl,
-        owner: null, // Will be set when saving
-        msgs: []
+        owner: null, 
     }
 }
 
-/*function _createPosts() {
-    let posts = loadFromStorage(STORAGE_KEY)
-    if (!posts || !posts.length) {
-        posts = [
-            _createPost('Post 1', '../assets/images/image1.jpeg'),
-            _createPost('Post 2', '../assets/images/image1.jpeg'),
-            _createPost('Post 3', '../assets/images/image1.jpeg'),
-            _createPost('Post 4', '../assets/images/image1.jpeg')
-        ]
-        saveToStorage(STORAGE_KEY, posts)
-    }
-}*/
+async function _createPosts() {
 
-function _createPosts() {
-    const posts = []
-    const captions = ['Amazing trip!', 'Best day ever!', 'Nature is so beautiful', 'Check out my new post!', 'Feeling inspired']
-    const users = loadFromStorage('user')// Ensure users exist
-
-    for (let i = 0; i < 20; i++) {
-        const randomUser = users[getRandomIntInclusive(0, users.length - 1)]
-        const post = {
+    const posts = [
+        {
             _id: makeId(),
-            txt: captions[getRandomIntInclusive(0, captions.length - 1)],
-            imgUrl: `https://picsum.photos/200/300?random=${i}`,
-            by: {
-                _id: randomUser._id,
-                fullname: randomUser.fullname,
-                imgUrl: randomUser.imgUrl,
+            txt: 'Amazing trip!',
+            imgUrl: "postImage1",
+            owner: {
+                _id: "u122",
+                fullname: "Alice",
+                imgUrl: "image1",
             },
             comments: [
                 {
                     id: makeId(),
                     by: {
-                        _id: users[getRandomIntInclusive(0, users.length - 1)]._id,
-                        fullname: makeLorem(2),
-                        imgUrl: `https://robohash.org/${i + 1}`,
+                        _id: "u196",
+                        fullname: "Dorothy",
+                        imgUrl: "image1",
                     },
-                    txt: makeLorem(5),
+                    txt: "Wow, looks amazing!",
                 },
             ],
             likedBy: [
                 {
                     _id: "u196",
-                    fullname: "Dor",
-                    imgUrl: "https://robohash.org/8"
-                  },
-                  {
+                    fullname: "Dorothy",
+                    imgUrl: "image2",
+                },
+                {
                     _id: "u119",
-                    fullname: "Or",
-                    imgUrl: "https://robohash.org/9"
-                  },
-                  {
-                    _id: "u129",
-                    fullname: "Shon",
-                    imgUrl: "https://robohash.org/7"
-                  }
+                    fullname: "Orlando",
+                    imgUrl: "image3",
+                },
             ],
-        }
-        posts.push(post)
-    }
-    console.log('posts', posts)
-    saveToStorage('post', posts)
-    return posts
+            createdAt : "13/01/2025",
+
+        },
+        {
+            _id: makeId(),
+            txt: 'Best day ever!',
+            imgUrl: "postImage2",
+            owner: {
+                _id: "u138",
+                fullname: "Bob",
+                imgUrl: "image2",
+            },
+            comments: [
+                {
+                    id: makeId(),
+                    by: {
+                        _id: "u409",
+                        fullname: "Chris",
+                        imgUrl: "image1",
+                    },
+                    txt: "Love it!",
+                },
+            ],
+            likedBy: [
+                {
+                    _id: "u122",
+                    fullname: "Alice",
+                    imgUrl: "image2",
+                },
+                {
+                    _id: "u129",
+                    fullname: "Shon Smith",
+                    imgUrl: "image3",
+                },
+            ],
+            createdAt : "12/01/2025",
+
+        },
+        {
+            _id: makeId(),
+            txt: 'Nature is so beautiful',
+            imgUrl: "postImage3",
+            owner: {
+                _id: "u409",
+                fullname: "Chris",
+                imgUrl: "image3",
+            },
+            comments: [
+                {
+                    id: makeId(),
+                    by: {
+                        _id: "u122",
+                        fullname: "Chris",
+                        imgUrl: "image1",
+                    },
+                    txt: "I completely agree!",
+                },
+                {
+                    id: makeId(),
+                    by: {
+                        _id: "u238",
+                        fullname: "Bob",
+                        imgUrl: "image2",
+                    },
+                    txt: "I completely agree!",
+                },
+            ],
+            likedBy: [
+                {
+                    _id: "u196",
+                    fullname: "Dorothy",
+                    imgUrl: "image3",
+                },
+               
+             
+            ],
+            createdAt : "12/12/2024",
+
+        },
+        // Add more posts here following the same pattern...
+    ];
+
+    console.log('posts', posts);
+    saveToStorage(STORAGE_KEY, posts);
+    return posts;
 }
+
 

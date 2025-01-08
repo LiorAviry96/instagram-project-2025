@@ -1,0 +1,62 @@
+.upload-preview {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    max-width: 100%;
+    width: 300px; // Restrict the width to avoid it stretching too far on large screens
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+
+    display: flex;
+    flex-direction: column; // Stack the children (label, img, and button) vertically
+    align-items: center; // Center the children horizontally
+
+    // Adjust image styling
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 15px; // Add some space below the image
+    }
+
+    label {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px 0;
+        cursor: pointer;
+        color: #007bff;
+        transition: color 0.3s ease;
+        
+        &:hover {
+            color: #0056b3; // Change color on hover
+        }
+    }
+
+    input[type="file"] {
+        display: none; // Hide the file input
+    }
+}
+
+.uploadSubmit {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px; // Add some space between the button and other elements
+    align-items: center;
+    &:hover {
+        background-color: #0056b3; // Darker shade on hover
+    }
+
+    &:focus {
+        outline: none; // Remove default focus outline
+    }
+}

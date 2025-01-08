@@ -5,7 +5,6 @@ import { userService } from "../services/user.service"; // Adjust the path as ne
 export function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [following, setFollowing] = useState([]);
 
   useEffect(() => {
@@ -30,11 +29,8 @@ export function Search() {
 
   return (
     <div className="search-component">
-      <button className="search-btn" onClick={() => setDropdownOpen(!isDropdownOpen)}>
-        <i className="fas fa-search"></i> Search
-      </button>
-
-      {isDropdownOpen && (
+    
+   (
         <div className="search-dropdown">
           <input
             type="text"
@@ -54,7 +50,7 @@ export function Search() {
             ))}
           </ul>
         </div>
-      )}
+      )
     </div>
   );
 }

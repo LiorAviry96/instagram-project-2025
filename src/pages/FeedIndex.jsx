@@ -20,7 +20,6 @@ export function FeedIndex() {
     },[filterBy])
     return (
         <div className="feed">
-          <h1>Instagram Homepage</h1>
           <PostList posts={posts} />
         </div>
       );

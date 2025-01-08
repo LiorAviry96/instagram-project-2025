@@ -4,11 +4,14 @@
 @import "pages/Login";
 @import "pages/SignUp";
 @import "pages/Profile";
+@import "pages/Search";
 
 //cmps
 @import "cmps/PostPreview";
-@import "cmps/Search";
-
+@import "cmps/Likes";
+@import "cmps/Image";
+@import "cmps/Comments";
+@import "cmps/UploadImage";
 
 // Basics
 @import "basics/helpers";
