@@ -1,5 +1,5 @@
 import { storageService } from './async-storage.service'
-import { makeId, saveToStorage } from './util.service'
+import { saveToStorage } from './util.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 export const userService = {
@@ -33,13 +33,14 @@ function remove(userId) {
 }
 
 async function update(updatedUser) {
+    console.log('updatedUser in user service', updatedUser)
     const user = await storageService.get("user", updatedUser._id);
     Object.assign(user, updatedUser); // Merge the updated fields into the user object
     await storageService.put("user", user);
 
     const loggedInUser = getLoggedinUser();
     if (loggedInUser._id === user._id) saveLoggedinUser(user);
-
+    console.log('user done user service', user)
     return user;
 }
 
@@ -47,7 +48,6 @@ async function update(updatedUser) {
 async function login(userCred) {
     const users = await storageService.query('user')
     const user = users.find(user => user.username === userCred.username)
-    console.log('user service', user)
     if (user) return saveLoggedinUser(user)
 }
 
@@ -87,123 +87,107 @@ function saveLoggedinUser(user) {
 async function _createUsers() {
     const users = [
         {
-            _id: makeId(),
+            _id: "u122",
             username: 'Muko',
-            password: '12345', // Random 9-digit password
+            password: '12345',
             fullname: 'John Doe',
-            imgUrl: "image1", // Assuming the image exists in the assets folder
+            imgUrl: "user1",
+            following: [
+                {
+                    _id: "u138",
+                    fullname: "Bob",
+                    imgUrl: "image3",
+                },
+            ],
+            followers: [
+                {
+                    _id: "u196",
+                    fullname: "Dorothy",
+                    imgUrl: "image1",
+                },
+            ],
+            images: [],
+        },
+        {
+            _id: "u138",
+            username: 'Bob',
+            password: '12345',
+            fullname: 'Robert Brown',
+            imgUrl: "user2",
             following: [
                 {
                     _id: "u122",
-                    fullname: "Alice",
-                    imgUrl: "image2",
+                    fullname: "Muko",
+                    imgUrl: "image1",
+                },
+            ],
+            followers: [
+                {
+                    _id: "u196",
+                    fullname: "Dorothy",
+                    imgUrl: "image1",
+                },
+            ],
+            images: [],
+        },
+        {
+            _id: "u196",
+            username: 'Dorothy',
+            password: '12345',
+            fullname: 'Dorothy Smith',
+            imgUrl: "user3",
+            following: [],
+            followers: [
+                {
+                    _id: "u122",
+                    fullname: "Muko",
+                    imgUrl: "user1",
                 },
                 {
                     _id: "u138",
                     fullname: "Bob",
                     imgUrl: "image3",
                 },
-                
-            ],
-            followers: [
-                {
-                    _id: "u196",
-                    fullname: "Dorothy",
-                    imgUrl: "image1",                },
-               
             ],
             images: [],
         },
         {
-            _id: makeId(),
-            username: 'Dob',
+            _id: "u409",
+            username: 'Chris',
             password: '12345',
-            fullname: 'Alice Johnson',
-            imgUrl: "image3",
-            following: [
+            fullname: 'Chris Taylor',
+            imgUrl: "user4",
+            following: [],
+            followers: [
                 {
                     _id: "u122",
                     fullname: "Muko",
-                    imgUrl: "image2",                },
-                {
-                    _id: "u138",
-                    fullname: "Dan",
-                    imgUrl: "image1",
+                    imgUrl: "user1",
                 },
-  
-            ],
-            followers: [
-              
             ],
             images: [],
         },
         {
-            _id: makeId(),
-            username: 'Bob',
+            _id: "u129",
+            username: 'Shon',
             password: '12345',
-            fullname: 'Robert Brown',
-            imgUrl: "image1",
-            following: [
-                {
-                    _id: "u122",
-                    fullname: "Chris",
-                    imgUrl: "image1",                },
-                {
-                    _id: "u138",
-                    fullname: "Sam",
-                    imgUrl: "image3",                },
-                {
-                    _id: "u409",
-                    fullname: "Taylor",
-                    imgUrl: "image1",                }
-            ],
-            followers: [
-                {
-                    _id: "u196",
-                    fullname: "Janet",
-                    imgUrl: "image1",                },
-             
-            ],
+            fullname: 'Shon Smith',
+            imgUrl: "user5",
+            following: [],
+            followers: [],
             images: [],
         },
         {
-            _id: makeId(),
-            username: 'Alice',
+            _id: "u119",
+            username: 'Orlando',
             password: '12345',
-            fullname: 'Alice White',
-            imgUrl: "image3",
-            following: [
-                {
-                    _id: "u122",
-                    fullname: "Taylor",
-                    imgUrl: "image1",                },
-                {
-                    _id: "u138",
-                    fullname: "Jamie",
-                    imgUrl: "image2",                },
-                {
-                    _id: "u409",
-                    fullname: "John",
-                    imgUrl: "image3",                }
-            ],
-            followers: [
-                {
-                    _id: "u196",
-                    fullname: "Sara",
-                    imgUrl: "image1",                },
-                {
-                    _id: "u119",
-                    fullname: "Lucas",
-                    imgUrl: "image2",                },
-                {
-                    _id: "u129",
-                    fullname: "Chris",
-                    imgUrl: "image3",                }
-            ],
+            fullname: 'Orlando Bloom',
+            imgUrl: "user6",
+            following: [],
+            followers: [],
             images: [],
         },
-        // Add more users here following the same pattern...
-    ]
+    ];
 
     console.log('users', users)
     saveToStorage('user', users)

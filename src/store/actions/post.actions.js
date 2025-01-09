@@ -2,9 +2,10 @@ import { store }from '../store'
 import { postService } from '../../services/post.service'
 import { SET_POST, SET_POSTS } from '../reducer/posts.reducer'
 
-export async function loadPosts(filterBy) {
+export async function loadPosts() {
     try {
-        const posts = await postService.query(filterBy)
+        const posts = await postService.query()
+        console.log(posts)
         store.dispatch(getCmdSetPosts(posts))
     } catch (err) {
         console.log('Cannot load cars', err)
@@ -23,6 +24,7 @@ export async function loadPost(postId) {
 }
 
 function getCmdSetPosts(posts) {
+
     return {
         type: SET_POSTS,
         posts

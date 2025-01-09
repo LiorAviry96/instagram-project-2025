@@ -26,7 +26,6 @@ export function Search() {
       setSearchResults(results);
     }
   }, [searchTerm, following]);
-  console.log('searchResults',searchResults)
   return (
     <div className="search-component">
     

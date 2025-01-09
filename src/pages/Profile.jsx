@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import { loadUser } from "../store/actions/user.actions";
-import { Image } from "../cmps/Image";
+import { ImageDetails } from "../cmps/ImageDetails";
 
 export function Profile() {
     //const dispatch = useDispatch();
@@ -12,10 +12,8 @@ export function Profile() {
         loadUser(userId); // Load profile data when component mounts
     }, [userId]);
 
-    
+    console.log(watchedUser);
     if (!watchedUser) return <div>Loading...</div>;
-    console.log('watchedUser',watchedUser)
-    console.log('watchedUser.imgUrl',watchedUser.imgUrl)
 
     return (
         <div className="profile-page">
@@ -41,11 +39,12 @@ export function Profile() {
                 </div>
             </header>
             <section className="profile-gallery">
-                {watchedUser.images?.map((imgUrl, idx) => (
-                    <div key={idx} className="gallery-item">
-                        <Image imgUrl={imgUrl[idx]} alt={`User post ${idx + 1}`}/>
-                    </div>
-                ))}
+            {watchedUser.images?.map((imgUrl, idx) => (
+                <div key={idx} className="gallery-item">
+                    <ImageDetails image={imgUrl} alt={`User post ${idx + 1}`}  />
+                </div>
+            ))}
+
             </section>
         </div>
     );

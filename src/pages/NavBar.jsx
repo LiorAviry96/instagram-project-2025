@@ -5,7 +5,6 @@ import { showSuccessMsg } from '../services/event-bus.service';
 import { useNavigate } from 'react-router'
 import { logout } from '../store/actions/user.actions';
 export function NavBar() {
-    //console.log('navbar test')
     const navigate = useNavigate()
 
     const user = useSelector((storeState) => storeState.userModule.user);

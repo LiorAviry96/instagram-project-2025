@@ -8,16 +8,13 @@ import { postService } from "../services/post.service";
 
 export function FeedIndex() {
 
-    const [ filterBy, setFilterBy ] = useState(postService.getDefaultFilter())
 
     const posts = useSelector(storeState => storeState.postModule.posts)
     const user = useSelector(storeState => storeState.userModule.user)
-    console.log('user', user)
-
     console.log('posts', posts)
     useEffect(() =>{
-        loadPosts(filterBy)
-    },[filterBy])
+        loadPosts()
+    },[])
     return (
         <div className="feed">
           <PostList posts={posts} />

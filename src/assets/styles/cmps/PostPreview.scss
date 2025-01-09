@@ -1,24 +1,45 @@
 /* Post preview styling */
 .post-preview {
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-    padding: 10px;
-  }
-  
-  .post-preview img {
-    width: 100%;
-    height: auto;
-  }
-ul{
-  list-style: none;
-  
-}
-.ownerPost{
-  font-weight: 500;
-  font-size: 1.3rem;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 
-.imagePost{
+.post-preview img {
   width: 100%;
   height: auto;
+}
+
+/* Styling for the user profile image */
+.userProfileImg {
+  width: 50px; /* Adjusted size of the profile image */
+  height: 50px; /* Same as width to maintain a circle */
+  object-fit: cover;
+  border-radius: 50%; /* Ensures circular shape */
+  margin-right: 15px; /* Adjusts the space between image and text */
+}
+
+/* Styling for the post header (user and time) */
+.post-header {
+  display: flex;
+  align-items: center; /* Ensures vertical alignment */
+  gap: 15px; /* Space between the profile image, username, and time */
+  margin-bottom: 10px;
+}
+
+/* Link styling for the user's name */
+.ownerPost {
+  font-weight: 500;
+  font-size: 1.1rem; /* Slightly smaller font size for better readability */
+  color: black !important;
+  text-decoration: none !important;
+  display: flex;
+  align-items: center; /* Ensures image and name align in the center vertically */
+}
+
+/* Styling for the time ago text */
+.timeAgo {
+  font-size: 0.9rem;
+  color: grey;
+  margin: 0;
 }

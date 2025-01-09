@@ -55,7 +55,7 @@ export function Login() {
                 <button type="submit">Login</button>
             </form>
             <p>
-                Don't have an account? <button onClick={() => navigate("signup")}>Sign Up</button>
+                Don't have an account? <button onClick={() => navigate("/signup")}>Sign Up</button>
             </p>
         </div>
     );

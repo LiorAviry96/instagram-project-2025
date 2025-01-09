@@ -2,12 +2,11 @@
 export function Comments({ comments }) {
     return (
       <div>
-        <h4>Comments:</h4>
         {comments && comments.length > 0 ? (
           <ul>
             {comments.map((comment, index) => (
-              <li key={comment.id || index}>
-                <strong>{comment.by.fullname || "User"}:</strong> {comment.txt || "No comment text"}
+              <li className="comment" key={comment.id || index}>
+                <strong>{comment.by.fullname || "User"}</strong><span>{comment.txt || "No comment text"}</span> 
               </li>
             ))}
           </ul>

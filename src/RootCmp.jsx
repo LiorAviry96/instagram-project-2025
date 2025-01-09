@@ -15,7 +15,6 @@ import { Routes, Route } from 'react-router'
 
 export function RootCmp() {
 
-    console.log('posts')
     return (
         <div className="main-container">
          
@@ -28,7 +27,7 @@ export function RootCmp() {
                     <Route path="/user/:userId/search" element={<Search />} />
                     <Route path="/user/:userId/upload" element={<CreatePost />} />
                         <Route path="/login" element={<Login />} />
-                        <Route path="signup" element={<SignUp />} />
+                        <Route path="/signup" element={<SignUp />} />
                 </Routes>
             </main>
        
