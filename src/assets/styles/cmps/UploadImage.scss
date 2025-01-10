@@ -41,8 +41,8 @@
     }
 }
 
-button {
-    background-color: #007bff;
+.uploadSubmit {
+    background-color: #007bff !important;
     color: white;
     padding: 10px 15px;
     font-size: 16px;
@@ -52,6 +52,8 @@ button {
     transition: background-color 0.3s ease;
     margin-top: 15px; // Add some space between the button and other elements
     align-items: center;
+    display: flex;
+    margin: 0 auto;
     &:hover {
         background-color: #0056b3; // Darker shade on hover
     }

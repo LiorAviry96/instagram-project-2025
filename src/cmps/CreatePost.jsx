@@ -24,7 +24,7 @@ export function CreatePost() {
     }
     return (
 
-            <div className="gallery-item">
+            <div className="upload-item">
                 <form onSubmit={onUpadteImages}>
                 <ImgUploader onUploaded={onUploaded}/>
                 <button className="uploadSubmit">Submit</button>

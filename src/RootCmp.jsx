@@ -7,7 +7,6 @@ import { Profile } from "./pages/Profile"
 import { Search } from "./pages/Search"
 import { CreatePost } from "./cmps/CreatePost"
 
-
 import { Routes, Route } from 'react-router'
 
 
@@ -26,8 +25,9 @@ export function RootCmp() {
                     <Route path="/user/:userId" element={<Profile />} />
                     <Route path="/user/:userId/search" element={<Search />} />
                     <Route path="/user/:userId/upload" element={<CreatePost />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<SignUp />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<SignUp />} />
+                        
                 </Routes>
             </main>
        

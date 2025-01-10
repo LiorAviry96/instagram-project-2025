@@ -1,46 +1,83 @@
-  
-  /* Navbar on the left side */
+/* Default styling for desktop */
+.navbar {
+  width: 250px; /* Desktop width */
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Navbar menu items */
+.navbar-menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Stack items vertically for desktop */
+}
+
+.navbar-item {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  padding: 12px 3px 12px 10px;
+  border-radius: 10px;    
+  cursor: pointer;
+}
+
+.navbar-item i {
+  margin-right: 10px;
+}
+
+.navbar-item a {
+  color: black !important;
+  text-decoration: none;
+}
+
+.navbar-item:hover {
+  background-color: #d8d8d8;
+}
+
+/* Mobile-specific styling */
+@media (max-width: 768px) {
   .navbar {
-    width: 250px; /* You can adjust this width as needed */
-    background-color: #fff;
-    border-right: 1px solid #ddd;
-    padding: 20px;
-    position: fixed; /* Keeps the navbar fixed on the left side */
-    top: 0;
-    bottom: 0;
-    left: 0;
+      width: 100%; /* Full width */
+      height: auto;
+      background-color: #fff;
+      border-right: none;
+      border-top: 1px solid #ddd;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0; /* Place navbar at the bottom */
+      top: auto;
+      display: flex;
+      justify-content: center;
   }
-  
-  /* Navbar menu items */
+
   .navbar-menu {
-    list-style: none;
-    padding: 0;
+      flex-direction: row; /* Display items in a row */
+      justify-content: space-around; /* Space items evenly */
+      width: 100%;
   }
-  
+
   .navbar-item {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    padding: 12px 3px 12px 10px;
-    border-radius: 10px;    
-   
-    cursor: pointer;
+      margin-bottom: 0; /* Remove vertical spacing */
+      padding: 5px 10px; /* Adjust padding */
+      flex-direction: column; /* Align icon and text vertically if needed */
   }
-  
+
   .navbar-item i {
-    margin-right: 10px;
-  }
-  .navbar-item a{
-    color: black !important;
-    text-decoration: none;
+      margin: 0; /* Align icons better */
+      font-size: 20px; /* Adjust icon size */
   }
 
-  .navbar-item:hover {
-    background-color: #d8d8d8;
+  .navbar-item a {
+      font-size: 0; /* Hide the text */
   }
 
-  
-  
-  
-
-  
+  .navbar-item a::after {
+      content: ''; /* Ensure there's no placeholder for the hidden text */
+  }
+}

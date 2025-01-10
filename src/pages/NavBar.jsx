@@ -43,7 +43,8 @@ export function NavBar() {
 
         <li className="navbar-item">
           <i className="fas fa-envelope"></i>
-          <span>Messages</span>
+          <Link to="/">Messages</Link>
+
         </li>
         {user ? <li className="navbar-item">
           <i className="fas fa-user"></i>
@@ -66,7 +67,7 @@ export function NavBar() {
         <span onClick={onLogout}>Logout</span> 
         </li> : 
         <li className="navbar-item">
-        <Link to="login">login</Link> 
+        <Link to="/login">login</Link> 
         </li>} 
       </ul>
     </div>
