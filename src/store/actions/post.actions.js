@@ -1,6 +1,6 @@
 import { store }from '../store'
 import { postService } from '../../services/post.service'
-import { SET_POST, SET_POSTS } from '../reducer/posts.reducer'
+import { SET_POST, SET_POSTS , UPDATE_POST} from '../reducer/posts.reducer'
 
 export async function loadPosts() {
     try {
@@ -22,6 +22,24 @@ export async function loadPost(postId) {
         throw err
     }
 }
+export async function updatePost(updatedPost) {
+    try {
+        // Save the updated post to the storage or backend
+        const savedPost = await postService.save(updatedPost);
+
+        // Dispatch the updated post to the Redux store
+        store.dispatch({
+            type: UPDATE_POST,
+            post: savedPost,
+        });
+
+        console.log('Post updated successfully:', savedPost);
+    } catch (err) {
+        console.error('Error updating post:', err);
+        throw err;
+    }
+}
+
 
 function getCmdSetPosts(posts) {
 

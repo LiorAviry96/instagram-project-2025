@@ -46,6 +46,10 @@
         font-weight: bold;
         color: #fff;
         padding: 10px;
+        text-align: center; /* Ensure the text is aligned to the center */
+        display: flex; /* Use flexbox for alignment */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
         border: none;
         border-radius: 4px;
         background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
@@ -71,7 +75,7 @@
         border: none;
         cursor: pointer;
         font-weight: bold;
-  
+        margin: 0 auto;
         &:hover {
           text-decoration: underline;
         }

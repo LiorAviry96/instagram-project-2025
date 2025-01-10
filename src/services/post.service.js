@@ -44,6 +44,8 @@ async function remove(postId) {
 
 async function save(post) {
     let savedPost
+    console.log('Post to save:', post);
+
     if (post._id) {
         const postToSave = {
             _id: post._id,
