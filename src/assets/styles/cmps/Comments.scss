@@ -15,3 +15,40 @@
     padding-left: 10px;
     
 } 
+
+.add-comment {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.comment-input {
+  flex: 1;
+  border: none;
+  padding: 5px;
+  font-size: 1rem;
+  outline: none;
+ 
+}
+
+.comment-input:focus {
+  border-bottom: 1px solid black;
+}
+
+.comment-submit-btn {
+  background: none;
+  border: none;
+  color: #0095f6;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px;
+  align-items: center;
+  
+}
+
+.comment-submit-btn:hover {
+  color: #698da5;
+  ;
+}

@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { userService } from "../services/user.service";
 import { postService } from "../services/post.service";
-import { updatePost } from "../store/actions/post.actions";
 
 export function Likes({ initialLikes, likedBy, postId }) {
   const [likes, setLikes] = useState(initialLikes || 0);

@@ -3,11 +3,17 @@ import { Likes } from "./Likes";
 import { Comments } from "./Comments";
 import { formatDistanceToNow } from "date-fns";
 import { Link } from "react-router";
-import post3 from '../assets/images/post3.jpeg'
+import { useState } from "react";
+
+
 export function PostPreview({ post }) {
   
+  const [postComments, setPostComments] = useState(post.comments || []);
   const { imgUrl, comments, owner, createdAt, } = post
 
+  const updateComments = (updatedComments) => {
+    setPostComments(updatedComments);
+  };
 
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
   console.log('post', post)
@@ -31,7 +37,7 @@ export function PostPreview({ post }) {
       commentCount={comments?.length || 0}
       postId = {post._id}
     />      
-    <Comments comments={comments} />
-    </div>
+      <Comments comments={postComments} postId={post._id} updatePost={updateComments} />
+      </div>
   );
 }
