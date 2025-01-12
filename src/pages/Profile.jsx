@@ -41,7 +41,7 @@ export function Profile() {
             <section className="profile-gallery">
             {watchedUser.images?.map((imgUrl, idx) => (
                 <div key={idx} className="gallery-item">
-                    <ImageDetails image={imgUrl} alt={`User post ${idx + 1}`}  />
+                    <ImageDetails image={imgUrl} alt={`User post ${idx + 1}`} />
                 </div>
             ))}
 

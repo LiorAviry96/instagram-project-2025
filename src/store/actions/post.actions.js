@@ -1,6 +1,8 @@
 import { store }from '../store'
 import { postService } from '../../services/post.service'
-import { SET_POST, SET_POSTS , UPDATE_POST} from '../reducer/posts.reducer'
+import { SET_POST, SET_POSTS, ADD_POST , UPDATE_POST} from '../reducer/posts.reducer'
+import { showErrorMsg } from '../../services/event-bus.service'
+
 
 export async function loadPosts() {
     try {
@@ -40,6 +42,27 @@ export async function updatePost(updatedPost) {
     }
 }
 
+export async function createPost(newPost) {
+    try {
+        console.log('newPost', newPost)
+        // Save the new post using postService
+        const savedPost = await postService.save(newPost);
+        console.log('savedPost', savedPost)
+
+        // Dispatch the ADD_POST action to update the Redux store
+        store.dispatch({
+            type: ADD_POST,
+            post: savedPost,
+        });
+
+        console.log('Post created successfully:', savedPost);
+        return savedPost;
+    } catch (err) {
+        console.error('Error creating post:', err);
+        showErrorMsg('Failed to create post');
+        throw err;
+    }
+}
 
 function getCmdSetPosts(posts) {
 

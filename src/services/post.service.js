@@ -45,6 +45,7 @@ async function remove(postId) {
 async function save(post) {
     let savedPost
     console.log('Post to save:', post);
+    console.log('Saving post with ID:', post._id);
 
     if (post._id) {
         const postToSave = {
@@ -58,17 +59,24 @@ async function save(post) {
         savedPost = await storageService.put(STORAGE_KEY, postToSave)
     } else {
         const postToSave = {
+            _id: makeId(),
             txt: post.txt,
             imgUrl: post.imgUrl || '',
-            by: userService.getLoggedinUser(),
+            owner: {
+                _id:  userService.getLoggedinUser()._id,
+                fullname:  userService.getLoggedinUser().fullname,
+                imgeUrl:  userService.getLoggedinUser().imgUrl,
+            },
             comments: [],
             likedBy: [],
             createdAt: post.createdAt
         }
+        console.log('Saved post:', savedPost)
+
         savedPost = await storageService.post(STORAGE_KEY, postToSave)
     }
 
-    console.log('Saved post:', savedPost)
+   
     return savedPost
 }
 
@@ -163,5 +171,8 @@ async function _createPosts() {
     saveToStorage(STORAGE_KEY, posts);
     return posts;
 }
+
+const allPosts = await storageService.query(STORAGE_KEY);
+console.log('Posts in storage:', allPosts);
 
 

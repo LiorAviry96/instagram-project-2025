@@ -9,7 +9,9 @@ button {
     gap: 8px; /* Space between the heart icon and text */
     transition: all 0.3s ease; /* Smooth hover animation */
   }
-  
+.likes button i{
+  padding-top: 20px;
+}
   button:hover {
     color: black; /* Lighter shade of red on hover */
     transform: scale(1.1); /* Slight zoom effect */

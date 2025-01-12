@@ -22,9 +22,7 @@ export function ImageDetails({ image }) {
               style={{ width: "100%" }}
             />
             <div className="modal-body">
-              {/* Likes and Comments 
-              <Likes initialLikes={post?.likedBy?.length || 0} likedBy={post?.likedBy || []} />
-              <Comments comments={post?.comments || []} />*/}
+             
             </div>
           </div>
         </div>

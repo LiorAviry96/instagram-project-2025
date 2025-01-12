@@ -12,6 +12,7 @@ export function FeedIndex() {
     const posts = useSelector(storeState => storeState.postModule.posts)
     const user = useSelector(storeState => storeState.userModule.user)
     console.log('posts', posts)
+    
     useEffect(() =>{
         loadPosts()
     },[])

@@ -60,7 +60,7 @@ export function Likes({ initialLikes, likedBy, postId }) {
   }
 
   return (
-    <div>
+    <div className="likes">
     <button >
       <i onClick={handleLike}  className={`heart-icon ${isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}`}></i>
       <i  onClick={handleComment} className="fa-regular fa-comment comment-icon"></i>

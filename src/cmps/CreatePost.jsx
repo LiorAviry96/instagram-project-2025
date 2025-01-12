@@ -3,21 +3,50 @@ import { ImgUploader } from "./ImgUploader";
 import { updateUserImage } from "../store/actions/user.actions";
 import { useState } from "react";
 import { useNavigate } from 'react-router'
+import { userService } from "../services/user.service";
+import { makeId } from "../services/util.service";
+import { createPost } from "../store/actions/post.actions";
+import { useSelector } from "react-redux";
+
 
 export function CreatePost() {
     const [imgUrl, setImgUrl] = useState("")
+    const [postText, setPostText] = useState(""); 
     const navigate = useNavigate()
+    const user = useSelector((storeState) => storeState.userModule.user);
 
     async function onUpadteImages(ev = null) {
-        if (ev) ev.preventDefault()
+        if (ev) ev.preventDefault();
         if (!imgUrl) return console.error('Invalid image URL');
+
         try {
+            // Update the user image
             await updateUserImage(imgUrl);
             console.log('Image uploaded successfully');
+            let postId =  makeId()
+            // Create a new post
+            const newPost = {
+                txt: postText,
+                imgUrl,
+                owner: {
+                    _id:  userService.getLoggedinUser()._id,
+                    fullname:  userService.getLoggedinUser().fullname,
+                    imgeUrl:  userService.getLoggedinUser().imgUrl,
+                },
+                comment: [],
+                likedBy: [],
+                createdAt: new Date().toISOString(),
+            };
+            console.log('Generated ID:',postId );
+
+            await createPost(newPost);
+
+            console.log('Post created successfully');
         } catch (err) {
-            console.error('Failed to update user image:', err);
+            console.error('Failed to update user image or create post:', err);
         }
-        navigate('/')
+        navigate(`/user/${user._id}`);
+
     }
     function onUploaded(imgUrl) {
         setImgUrl(imgUrl)
@@ -27,6 +56,11 @@ export function CreatePost() {
             <div className="upload-item">
                 <form onSubmit={onUpadteImages}>
                 <ImgUploader onUploaded={onUploaded}/>
+                <textarea
+                    value={postText}
+                    onChange={(ev) => setPostText(ev.target.value)}
+                    placeholder="Write something about your image..."
+                />
                 <button className="uploadSubmit">Submit</button>
                 </form>
                 
