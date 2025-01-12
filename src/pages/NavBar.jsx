@@ -9,7 +9,7 @@ import { CreatePost } from '../cmps/CreatePost';
 import { Modal } from '../cmps/Modal';
 export function NavBar() {
 
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate()
 
   const openModal = () => setIsModalOpen(true);

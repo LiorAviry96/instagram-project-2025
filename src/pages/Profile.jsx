@@ -15,7 +15,6 @@ export function Profile() {
 
   
     const isFollowing = loggedInUser?.following?.includes(watchedUser?._id);
-    console.log('isFollowing', isFollowing)
     const handleFollowToggle = () => {
         if (isFollowing) {
             unfollowUser(watchedUser._id);
@@ -23,7 +22,6 @@ export function Profile() {
             followUser(watchedUser._id);
         }
     };
-    console.log(watchedUser);
     if (!watchedUser) return <div>Loading...</div>;
     return (
         <div className="profile-page">

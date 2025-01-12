@@ -6,20 +6,19 @@
     border-radius: 10px;
     background-color: #f9f9f9;
     max-width: 100%;
-    width: 300px; // Restrict the width to avoid it stretching too far on large screens
+    width: 300px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
 
     display: flex;
-    flex-direction: column; // Stack the children (label, img, and button) vertically
-    align-items: center; // Center the children horizontally
+    flex-direction: column;
+    align-items: center; 
 
-    // Adjust image styling
     img {
         max-width: 100%;
         height: auto;
         border-radius: 8px;
-        margin-bottom: 15px; // Add some space below the image
+        margin-bottom: 15px;
     }
 
     label {
@@ -32,35 +31,34 @@
         transition: color 0.3s ease;
         
         &:hover {
-            color: #0056b3; // Change color on hover
+            color: #0056b3; 
         }
     }
 
     input[type="file"] {
-        display: none; // Hide the file input
+        display: none; 
     }
 }
 textarea {
     width: 100%;
-    min-height: 150px; /* Set a minimum height for the textarea */
+    min-height: 150px; 
     padding: 12px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    resize: vertical; /* Allow resizing vertically only */
+    resize: vertical;
     transition: all 0.3s ease;
-    margin-bottom: 15px; /* Add some space below the textarea */
-    box-sizing: border-box; /* Ensure padding does not affect width */
+    margin-bottom: 15px; 
+    box-sizing: border-box; 
     
-    /* Focus and hover states */
     &:focus {
         outline: none;
-        border-color: #007bff; /* Change border color on focus */
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a blue glow effect */
+        border-color: #007bff; 
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
     }
 
     &:hover {
-        border-color: #0056b3; /* Change border color on hover */
+        border-color: #0056b3;
     }
 }
 .uploadSubmit {
@@ -72,15 +70,14 @@ textarea {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 15px; // Add some space between the button and other elements
-    align-items: center;
+    margin-top: 15px; 
     display: flex;
     margin: 0 auto;
     &:hover {
-        background-color: #0056b3; // Darker shade on hover
+        background-color: #0056b3; 
     }
 
     &:focus {
-        outline: none; // Remove default focus outline
+        outline: none;
     }
 }

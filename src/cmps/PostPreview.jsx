@@ -16,7 +16,6 @@ export function PostPreview({ post }) {
   };
 
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
-  console.log('post', post)
   return (
     <div style={{ border: "1px solid #ddd", marginBottom: "20px", padding: "10px" }}>
        <div className="post-header">

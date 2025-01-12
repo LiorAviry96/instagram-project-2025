@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { userService } from "../services/user.service"; // Adjust the path as necessary
+import { userService } from "../services/user.service";
 
 export function Search() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -8,7 +8,6 @@ export function Search() {
   const [following, setFollowing] = useState([]);
 
   useEffect(() => {
-    // Fetch the logged-in user's following list
     const loggedInUser = userService.getLoggedinUser();
     if (loggedInUser?.following) {
       setFollowing(loggedInUser.following);
@@ -17,9 +16,8 @@ export function Search() {
 
   useEffect(() => {
     if (searchTerm === "") {
-      setSearchResults(following); // Default: show accounts the user follows
+      setSearchResults(following); 
     } else {
-      // Filter the following list based on the search term
       const results = following.filter((user) =>
         user.fullname.toLowerCase().includes(searchTerm.toLowerCase())
       );

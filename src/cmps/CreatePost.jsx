@@ -20,11 +20,11 @@ export function CreatePost() {
         if (!imgUrl) return console.error('Invalid image URL');
 
         try {
-            // Update the user image
+
             await updateUserImage(imgUrl);
             console.log('Image uploaded successfully');
             let postId =  makeId()
-            // Create a new post
+
             const newPost = {
                 txt: postText,
                 imgUrl,
@@ -37,7 +37,6 @@ export function CreatePost() {
                 likedBy: [],
                 createdAt: new Date().toISOString(),
             };
-            console.log('Generated ID:',postId );
 
             await createPost(newPost);
 

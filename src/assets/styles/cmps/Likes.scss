@@ -1,33 +1,32 @@
 button {
     background-color: transparent !important;
-    color: black; /* Instagram-like red for likes */
+    color: black; 
     border: none;
-    font-size: 16px; /* Slightly larger font for visibility */
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px; /* Space between the heart icon and text */
-    transition: all 0.3s ease; /* Smooth hover animation */
+    gap: 8px;
+    transition: all 0.3s ease; 
   }
 .likes button i{
   padding-top: 20px;
 }
   button:hover {
-    color: black; /* Lighter shade of red on hover */
-    transform: scale(1.1); /* Slight zoom effect */
+    color: black; 
+    transform: scale(1.1); 
   }
   
   button:focus {
-    outline: none; /* Remove the default focus outline */
+    outline: none;
   }
   
   button:active {
-    transform: scale(0.95); /* Slight shrink effect on click */
+    transform: scale(0.95); 
   }
   
-  /* Add heart icon styling if using an image or SVG */
   button .heart-icon {
-    font-size: 18px; /* Adjust icon size */
+    font-size: 18px; 
   }
 
   .likes,

@@ -87,17 +87,14 @@ export async function updateUserImage(imgUrl) {
         const loggedInUser = userService.getLoggedinUser();
         if (!loggedInUser) throw new Error('No logged-in user');
 
-        // Update user in the backend
         const updatedUser = {
             ...loggedInUser,
             images: [...(loggedInUser.images || []), imgUrl],
         };
         await userService.update(updatedUser);
 
-        // Update in Redux store
         store.dispatch({ type: SET_USER, user: updatedUser });
 
-        // Save to session storage
         userService.saveLoggedinUser(updatedUser);
     } catch (err) {
         console.error('Error updating user image:', err);

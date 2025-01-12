@@ -15,13 +15,11 @@ export const postService = {
 
 window.cs = postService
 
-// Initialize posts storage
 _createPosts()
 
 async function query() {
     let posts = await storageService.query(STORAGE_KEY);
 
-    // Return all fields of the posts
     return posts.map(({ _id, txt, imgUrl, owner, comments, likedBy, createdAt }) => ({
         _id,
         txt,
@@ -44,9 +42,6 @@ async function remove(postId) {
 
 async function save(post) {
     let savedPost
-    console.log('Post to save:', post);
-    console.log('Saving post with ID:', post._id);
-
     if (post._id) {
         const postToSave = {
             _id: post._id,
@@ -167,12 +162,9 @@ async function _createPosts() {
         },
         // Add 10 more fake posts here with varied data
     ];
-    console.log(posts)
     saveToStorage(STORAGE_KEY, posts);
     return posts;
 }
 
-const allPosts = await storageService.query(STORAGE_KEY);
-console.log('Posts in storage:', allPosts);
 
 

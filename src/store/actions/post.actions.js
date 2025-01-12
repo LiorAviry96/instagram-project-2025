@@ -10,7 +10,7 @@ export async function loadPosts() {
         console.log(posts)
         store.dispatch(getCmdSetPosts(posts))
     } catch (err) {
-        console.log('Cannot load cars', err)
+        console.log('Cannot load posts', err)
         throw err
     }
 }
@@ -20,16 +20,14 @@ export async function loadPost(postId) {
         const post = await postService.getById(postId)
         store.dispatch(getCmdSetPost(post))
     } catch (err) {
-        console.log('Cannot load car', err)
+        console.log('Cannot load post', err)
         throw err
     }
 }
 export async function updatePost(updatedPost) {
     try {
-        // Save the updated post to the storage or backend
         const savedPost = await postService.save(updatedPost);
 
-        // Dispatch the updated post to the Redux store
         store.dispatch({
             type: UPDATE_POST,
             post: savedPost,
@@ -44,12 +42,8 @@ export async function updatePost(updatedPost) {
 
 export async function createPost(newPost) {
     try {
-        console.log('newPost', newPost)
-        // Save the new post using postService
         const savedPost = await postService.save(newPost);
-        console.log('savedPost', savedPost)
 
-        // Dispatch the ADD_POST action to update the Redux store
         store.dispatch({
             type: ADD_POST,
             post: savedPost,

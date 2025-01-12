@@ -25,7 +25,7 @@ export function Comments({ comments, postId, updatePost }) {
       const updatedComments = [
         ...fullPost.comments,
         {
-          id: Date.now(), // Temporary unique ID
+          id: Date.now(), 
           by: loggedInUser,
           txt: newComment,
         },
@@ -38,10 +38,8 @@ export function Comments({ comments, postId, updatePost }) {
 
       await postService.save(updatedPost);
 
-      // Update comments in the parent component
       updatePost(updatedComments);
 
-      // Clear input field
       setNewComment("");
     } catch (err) {
       console.error("Failed to add comment:", err);

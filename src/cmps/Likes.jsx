@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { userService } from "../services/user.service";
@@ -30,12 +31,9 @@ export function Likes({ initialLikes, likedBy, postId }) {
         ...fullPost, 
         likedBy: updatedLikedBy, 
       };
-  
-      console.log('Updated post:', updatedPost);
-  
+    
       await postService.save(updatedPost);
   
-      // Update local state
       setLikes(updatedLikedBy.length);
       setLikedUsers(updatedLikedBy);
       setIsLiked(!isLiked);
