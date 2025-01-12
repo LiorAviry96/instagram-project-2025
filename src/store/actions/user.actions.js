@@ -105,3 +105,52 @@ export async function updateUserImage(imgUrl) {
     }
 }
 
+export async function followUser(userIdToFollow) {
+    try {
+        const loggedInUser = userService.getLoggedinUser();
+        if (!loggedInUser) throw new Error('You must be logged in to follow users');
+
+        // Add the user to the logged-in user's following list
+        if (!loggedInUser.following.some(user => user._id === userIdToFollow)) {
+            const targetUser = await userService.getById(userIdToFollow);
+            loggedInUser.following.push(targetUser);
+            
+            // Add the logged-in user to the target user's followers list
+            if (!targetUser.followers.some(user => user._id === loggedInUser._id)) {
+                targetUser.followers.push(loggedInUser);
+            }
+
+            // Update users in the backend
+            await userService.update(loggedInUser);
+            await userService.update(targetUser);
+
+            // Update in Redux store
+            store.dispatch({ type: SET_USER, user: loggedInUser });
+            store.dispatch({ type: SET_WATCHED_USER, user: targetUser });
+        }
+    } catch (err) {
+        console.log('UserActions: error in followUser', err);
+        showErrorMsg('Failed to follow the user');
+    }
+}
+
+export async function unfollowUser(userIdToUnfollow) {
+    try {
+        const loggedInUser = userService.getLoggedinUser();
+        if (!loggedInUser) throw new Error('You must be logged in to unfollow users');
+
+        const targetUser = await userService.getById(userIdToUnfollow);
+        loggedInUser.following = loggedInUser.following.filter(user => user._id !== userIdToUnfollow);
+
+        targetUser.followers = targetUser.followers.filter(user => user._id !== loggedInUser._id);
+
+        await userService.update(loggedInUser);
+        await userService.update(targetUser);
+
+        store.dispatch({ type: SET_USER, user: loggedInUser });
+        store.dispatch({ type: SET_WATCHED_USER, user: targetUser });
+    } catch (err) {
+        console.log('UserActions: error in unfollowUser', err);
+        showErrorMsg('Failed to unfollow the user');
+    }
+}

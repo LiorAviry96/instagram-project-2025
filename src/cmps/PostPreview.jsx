@@ -9,7 +9,7 @@ import { useState } from "react";
 export function PostPreview({ post }) {
   
   const [postComments, setPostComments] = useState(post.comments || []);
-  const { imgUrl, comments, owner, createdAt, } = post
+  const { imgUrl, comments, owner, createdAt,txt } = post
 
   const updateComments = (updatedComments) => {
     setPostComments(updatedComments);
@@ -31,6 +31,8 @@ export function PostPreview({ post }) {
       ) : (
         <p>No image available</p>
       )}
+      <p className="description">{txt}</p>
+
     <Likes
       initialLikes={post.likedBy?.length || 0}
       likedBy={post.likedBy || []}
