@@ -40,7 +40,29 @@
         display: none; // Hide the file input
     }
 }
+textarea {
+    width: 100%;
+    min-height: 150px; /* Set a minimum height for the textarea */
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Allow resizing vertically only */
+    transition: all 0.3s ease;
+    margin-bottom: 15px; /* Add some space below the textarea */
+    box-sizing: border-box; /* Ensure padding does not affect width */
+    
+    /* Focus and hover states */
+    &:focus {
+        outline: none;
+        border-color: #007bff; /* Change border color on focus */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a blue glow effect */
+    }
 
+    &:hover {
+        border-color: #0056b3; /* Change border color on hover */
+    }
+}
 .uploadSubmit {
     background-color: #007bff !important;
     color: white;

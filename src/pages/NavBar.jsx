@@ -4,8 +4,16 @@ import { showErrorMsg } from '../services/event-bus.service';
 import { showSuccessMsg } from '../services/event-bus.service';
 import { useNavigate } from 'react-router'
 import { logout } from '../store/actions/user.actions';
+import { useState } from 'react';
+import { CreatePost } from '../cmps/CreatePost';
+import { Modal } from '../cmps/Modal';
 export function NavBar() {
-    const navigate = useNavigate()
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const navigate = useNavigate()
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
     const user = useSelector((storeState) => storeState.userModule.user);
     console.log(user)
@@ -54,13 +62,17 @@ export function NavBar() {
           <Link to="login">Profile</Link>
         </li>}
        
-        {user ? <li className="navbar-item">
-          <i className="fas fa-pen"></i>
-          <Link to={`/user/${user._id}/upload`}>Create Post</Link>
-        </li> :  <li className="navbar-item">
-          <i className="fas fa-pen"></i>
-          <Link to="/login">Create Post</Link>
-        </li>}
+        {user ? (
+          <li className="navbar-item">
+            <i className="fas fa-pen"></i>
+            <span onClick={openModal}>Create Post</span> {/* Trigger modal on click */}
+          </li>
+        ) : (
+          <li className="navbar-item">
+            <i className="fas fa-pen"></i>
+            <Link to="/login">Create Post</Link>
+          </li>
+        )}
 
         {user ? 
         <li className="navbar-item">
@@ -70,6 +82,12 @@ export function NavBar() {
         <Link to="/login">login</Link> 
         </li>} 
       </ul>
+
+
+        {/* Modal */}
+        <Modal show={isModalOpen} onClose={closeModal}>
+        <CreatePost />
+      </Modal>
     </div>
   );
 }
