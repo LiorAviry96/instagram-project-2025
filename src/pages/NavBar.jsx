@@ -83,7 +83,7 @@ export function NavBar() {
 
       {/* Create Post Modal */}
       <Modal show={isModalOpen} onClose={closeModal}>
-        <CreatePost />
+        <CreatePost show={isModalOpen} onClose={closeModal} />
       </Modal>
 
       {/* Search Modal */}

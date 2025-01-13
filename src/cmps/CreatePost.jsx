@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { ImgUploader } from "./ImgUploader";
 import { updateUserImage } from "../store/actions/user.actions";
@@ -9,7 +10,7 @@ import { createPost } from "../store/actions/post.actions";
 import { useSelector } from "react-redux";
 
 
-export function CreatePost() {
+export function CreatePost({ onClose }) {
     const [imgUrl, setImgUrl] = useState("")
     const [postText, setPostText] = useState(""); 
     const navigate = useNavigate()
@@ -39,10 +40,9 @@ export function CreatePost() {
             };
 
             await createPost(newPost);
-
+            onClose(); 
             console.log('Post created successfully');
-            navigate(`/user/${user._id}`);
-
+            navigate('/');
         } catch (err) {
             console.error('Failed to update user image or create post:', err);
         }
