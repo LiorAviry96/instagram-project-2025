@@ -41,10 +41,11 @@ export function CreatePost() {
             await createPost(newPost);
 
             console.log('Post created successfully');
+            navigate(`/user/${user._id}`);
+
         } catch (err) {
             console.error('Failed to update user image or create post:', err);
         }
-        navigate(`/user/${user._id}`);
 
     }
     function onUploaded(imgUrl) {

@@ -1,6 +1,6 @@
 import { storageService } from './async-storage.service'
 import { userService } from './user.service'
-import { makeId, saveToStorage } from './util.service'
+import { makeId, saveToStorage, loadFromStorage } from './util.service'
 
 const STORAGE_KEY = 'post'
 
@@ -90,80 +90,84 @@ function getEmptyPost(txt = '', imgUrl = '') {
 }
 
 async function _createPosts() {
+ let posts = loadFromStorage(STORAGE_KEY)
 
-    const posts = [
-        {
-            _id: makeId(),
-            txt: 'Amazing trip!',
-            imgUrl: "postImage1",
-            owner: {
-                _id: "u122",
-                fullname: "Muko",
-                imgUrl: "user1",
-            },
-            comments: [
-                {
-                    id: makeId(),
-                    by: {
-                        _id: "u196",
-                        fullname: "Dorothy",
-                        imgUrl: "user3",
-                    },
-                    txt: "Wow, looks amazing!",
-                },
-            ],
-            likedBy: [
-                {
-                    _id: "u196",
-                    fullname: "Dorothy",
-                    imgUrl: "user3",
-                },
-                {
-                    _id: "u119",
-                    fullname: "Orlando",
-                    imgUrl: "user6",
-                },
-            ],
-            createdAt: "2025-01-13T10:00:00Z"
-        },
-        {
-            _id: makeId(),
-            txt: 'Best day ever!',
-            imgUrl: "postImage2",
-            owner: {
-                _id: "u138",
-                fullname: "Bob",
-                imgUrl: "user2",
-            },
-            comments: [
-                {
-                    id: makeId(),
-                    by: {
-                        _id: "u409",
-                        fullname: "Chris",
-                        imgUrl: "user4",
-                    },
-                    txt: "Love it!",
-                },
-            ],
-            likedBy: [
-                {
+    if (!posts || !posts.length){
+         posts = [
+            {
+                _id: makeId(),
+                txt: 'Amazing trip!',
+                imgUrl: "postImage1",
+                owner: {
                     _id: "u122",
                     fullname: "Muko",
                     imgUrl: "user1",
                 },
-                {
-                    _id: "u129",
-                    fullname: "Shon Smith",
-                    imgUrl: "user5",
+                comments: [
+                    {
+                        id: makeId(),
+                        by: {
+                            _id: "u196",
+                            fullname: "Dorothy",
+                            imgUrl: "user3",
+                        },
+                        txt: "Wow, looks amazing!",
+                    },
+                ],
+                likedBy: [
+                    {
+                        _id: "u196",
+                        fullname: "Dorothy",
+                        imgUrl: "user3",
+                    },
+                    {
+                        _id: "u119",
+                        fullname: "Orlando",
+                        imgUrl: "user6",
+                    },
+                ],
+                createdAt: "2025-01-13T10:00:00Z"
+            },
+            {
+                _id: makeId(),
+                txt: 'Best day ever!',
+                imgUrl: "postImage2",
+                owner: {
+                    _id: "u138",
+                    fullname: "Bob",
+                    imgUrl: "user2",
                 },
-            ],
-            createdAt: "2025-01-12T10:00:00Z"
-        },
-        // Add 10 more fake posts here with varied data
-    ];
-    saveToStorage(STORAGE_KEY, posts);
-    return posts;
+                comments: [
+                    {
+                        id: makeId(),
+                        by: {
+                            _id: "u409",
+                            fullname: "Chris",
+                            imgUrl: "user4",
+                        },
+                        txt: "Love it!",
+                    },
+                ],
+                likedBy: [
+                    {
+                        _id: "u122",
+                        fullname: "Muko",
+                        imgUrl: "user1",
+                    },
+                    {
+                        _id: "u129",
+                        fullname: "Shon Smith",
+                        imgUrl: "user5",
+                    },
+                ],
+                createdAt: "2025-01-12T10:00:00Z"
+            },
+            // Add 10 more fake posts here with varied data
+        ];
+        saveToStorage(STORAGE_KEY, posts);
+
+    }
+    
 }
 
 

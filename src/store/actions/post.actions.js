@@ -26,19 +26,20 @@ export async function loadPost(postId) {
 }
 export async function updatePost(updatedPost) {
     try {
-        const savedPost = await postService.save(updatedPost);
-
-        store.dispatch({
-            type: UPDATE_POST,
-            post: savedPost,
-        });
-
-        console.log('Post updated successfully:', savedPost);
+      const savedPost = await postService.save(updatedPost);
+      
+      store.dispatch({
+        type: UPDATE_POST,
+        post: savedPost,
+      });
+  
+      console.log('Post updated successfully:', savedPost);
     } catch (err) {
-        console.error('Error updating post:', err);
-        throw err;
+      console.error('Error updating post:', err);
+      throw err;
     }
-}
+  }
+  
 
 export async function createPost(newPost) {
     try {

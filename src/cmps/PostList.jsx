@@ -2,6 +2,7 @@
 import { PostPreview } from "./PostPreview";
 
 export function PostList({ posts }) {
+  
   return (
     <div>
       {posts.length > 0 ? (

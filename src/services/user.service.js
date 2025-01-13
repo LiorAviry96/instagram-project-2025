@@ -1,5 +1,5 @@
 import { storageService } from './async-storage.service'
-import { saveToStorage } from './util.service'
+import { saveToStorage , loadFromStorage } from './util.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 export const userService = {
@@ -85,111 +85,116 @@ function saveLoggedinUser(user) {
 
 
 async function _createUsers() {
-    const users = [
-        {
-            _id: "u122",
-            username: 'Muko',
-            password: '12345',
-            fullname: 'John Doe',
-            imgUrl: "user1",
-            following: [
-                {
-                    _id: "u138",
-                    fullname: "Bob",
-                    imgUrl: "user2",
-                },
-            ],
-            followers: [
-                {
-                    _id: "u196",
-                    fullname: "Dorothy",
-                    imgUrl: "image1",
-                },
-            ],
-            images: [],
-        },
-        {
-            _id: "u138",
-            username: 'Bob',
-            password: '12345',
-            fullname: 'Robert Brown',
-            imgUrl: "user2",
-            following: [
-                {
-                    _id: "u122",
-                    fullname: "Muko",
-                    imgUrl: "image1",
-                },
-            ],
-            followers: [
-                {
-                    _id: "u196",
-                    fullname: "Dorothy",
-                    imgUrl: "image1",
-                },
-            ],
-            images: [],
-        },
-        {
-            _id: "u196",
-            username: 'Dorothy',
-            password: '12345',
-            fullname: 'Dorothy Smith',
-            imgUrl: "user3",
-            following: [],
-            followers: [
-                {
-                    _id: "u122",
-                    fullname: "Muko",
-                    imgUrl: "user1",
-                },
-                {
-                    _id: "u138",
-                    fullname: "Bob",
-                    imgUrl: "user2",
-                },
-            ],
-            images: [],
-        },
-        {
-            _id: "u409",
-            username: 'Chris',
-            password: '12345',
-            fullname: 'Chris Taylor',
-            imgUrl: "user4",
-            following: [],
-            followers: [
-                {
-                    _id: "u122",
-                    fullname: "Muko",
-                    imgUrl: "user1",
-                },
-            ],
-            images: [],
-        },
-        {
-            _id: "u129",
-            username: 'Shon',
-            password: '12345',
-            fullname: 'Shon Smith',
-            imgUrl: "user5",
-            following: [],
-            followers: [],
-            images: [],
-        },
-        {
-            _id: "u119",
-            username: 'Orlando',
-            password: '12345',
-            fullname: 'Orlando Bloom',
-            imgUrl: "user6",
-            following: [],
-            followers: [],
-            images: [],
-        },
-    ];
+    let users = loadFromStorage(STORAGE_KEY_LOGGEDIN_USER)
 
-    console.log('users', users)
-    saveToStorage('user', users)
-    return users
+    if (!users || !users.length){
+         users = [
+            {
+                _id: "u122",
+                username: 'Muko',
+                password: '12345',
+                fullname: 'John Doe',
+                imgUrl: "user1",
+                following: [
+                    {
+                        _id: "u138",
+                        fullname: "Bob",
+                        imgUrl: "user2",
+                    },
+                ],
+                followers: [
+                    {
+                        _id: "u196",
+                        fullname: "Dorothy",
+                        imgUrl: "image1",
+                    },
+                ],
+                images: [],
+            },
+            {
+                _id: "u138",
+                username: 'Bob',
+                password: '12345',
+                fullname: 'Robert Brown',
+                imgUrl: "user2",
+                following: [
+                    {
+                        _id: "u122",
+                        fullname: "Muko",
+                        imgUrl: "image1",
+                    },
+                ],
+                followers: [
+                    {
+                        _id: "u196",
+                        fullname: "Dorothy",
+                        imgUrl: "image1",
+                    },
+                ],
+                images: [],
+            },
+            {
+                _id: "u196",
+                username: 'Dorothy',
+                password: '12345',
+                fullname: 'Dorothy Smith',
+                imgUrl: "user3",
+                following: [],
+                followers: [
+                    {
+                        _id: "u122",
+                        fullname: "Muko",
+                        imgUrl: "user1",
+                    },
+                    {
+                        _id: "u138",
+                        fullname: "Bob",
+                        imgUrl: "user2",
+                    },
+                ],
+                images: [],
+            },
+            {
+                _id: "u409",
+                username: 'Chris',
+                password: '12345',
+                fullname: 'Chris Taylor',
+                imgUrl: "user4",
+                following: [],
+                followers: [
+                    {
+                        _id: "u122",
+                        fullname: "Muko",
+                        imgUrl: "user1",
+                    },
+                ],
+                images: [],
+            },
+            {
+                _id: "u129",
+                username: 'Shon',
+                password: '12345',
+                fullname: 'Shon Smith',
+                imgUrl: "user5",
+                following: [],
+                followers: [],
+                images: [],
+            },
+            {
+                _id: "u119",
+                username: 'Orlando',
+                password: '12345',
+                fullname: 'Orlando Bloom',
+                imgUrl: "user6",
+                following: [],
+                followers: [],
+                images: [],
+            },
+        ];
+        console.log('users', users)
+        saveToStorage('user', users)
+
+
+    }
+   
 }

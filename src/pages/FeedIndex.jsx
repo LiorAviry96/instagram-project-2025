@@ -4,9 +4,11 @@ import { PostList } from "../cmps/PostList";
 import { useSelector } from 'react-redux'
 import { loadPosts } from "../store/actions/post.actions";
 import { postService } from "../services/post.service";
+import { useDispatch } from 'react-redux';
 
 
 export function FeedIndex() {
+  const dispatch = useDispatch();
 
 
     const posts = useSelector(storeState => storeState.postModule.posts)
@@ -15,7 +17,7 @@ export function FeedIndex() {
     
     useEffect(() =>{
         loadPosts()
-    },[])
+    },[dispatch])
     return (
         <div className="feed">
           <PostList posts={posts} />
