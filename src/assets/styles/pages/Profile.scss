@@ -62,7 +62,8 @@
                         border-radius: 5px;
 
                         &.active {
-                            background-color: rgb(180, 180, 183); /* Change background to blue when active */
+                            background-color: #d3d8dd !important;
+                            color: black;
                         }
 
                         &:hover {

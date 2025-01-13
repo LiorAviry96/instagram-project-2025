@@ -96,7 +96,7 @@ async function _createUsers() {
                 {
                     _id: "u138",
                     fullname: "Bob",
-                    imgUrl: "image3",
+                    imgUrl: "user2",
                 },
             ],
             followers: [
@@ -146,7 +146,7 @@ async function _createUsers() {
                 {
                     _id: "u138",
                     fullname: "Bob",
-                    imgUrl: "image3",
+                    imgUrl: "user2",
                 },
             ],
             images: [],

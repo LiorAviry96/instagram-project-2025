@@ -9,12 +9,14 @@ export function Profile() {
     const loggedInUser = useSelector((state) => state.userModule.user); 
 
     const { userId } = useParams()
+
     useEffect(() => {
-        loadUser(userId); // Load profile data when component mounts
+        loadUser(userId); 
     }, [userId]);
 
-  
-    const isFollowing = loggedInUser?.following?.includes(watchedUser?._id);
+
+
+    const isFollowing = loggedInUser?.following?.some(follow => follow._id === watchedUser?._id);
     const handleFollowToggle = () => {
         if (isFollowing) {
             unfollowUser(watchedUser._id);

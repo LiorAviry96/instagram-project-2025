@@ -65,6 +65,7 @@ export async function logout() {
             user: null
         })
         socketService.logout()
+        console.log('Logout Successful')
     } catch (err) {
         console.log('Cannot logout', err)
         throw err
@@ -105,16 +106,20 @@ export async function updateUserImage(imgUrl) {
 export async function followUser(userIdToFollow) {
     try {
         const loggedInUser = userService.getLoggedinUser();
+        console.log('start follow function', loggedInUser)
         if (!loggedInUser) throw new Error('You must be logged in to follow users');
+        console.log('loggedInUser.following', loggedInUser.following)
 
-        // Add the user to the logged-in user's following list
         if (!loggedInUser.following.some(user => user._id === userIdToFollow)) {
             const targetUser = await userService.getById(userIdToFollow);
-            loggedInUser.following.push(targetUser);
+            loggedInUser.following.push({ _id: targetUser._id, username: targetUser.username , imgUrl :targetUser.imgUrl });
+
+
             
             // Add the logged-in user to the target user's followers list
             if (!targetUser.followers.some(user => user._id === loggedInUser._id)) {
-                targetUser.followers.push(loggedInUser);
+                targetUser.followers.push({ _id: loggedInUser._id, username: loggedInUser.username, imgUrl :loggedInUser.imgUrl });
+
             }
 
             // Update users in the backend
