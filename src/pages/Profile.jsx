@@ -14,7 +14,9 @@ export function Profile() {
         loadUser(userId); 
     }, [userId]);
 
+    console.log('loggedIn User  loaded:', loggedInUser);
 
+    console.log('watchedUser  loaded:', watchedUser);
 
     const isFollowing = loggedInUser?.following?.some(follow => follow._id === watchedUser?._id);
     const handleFollowToggle = () => {

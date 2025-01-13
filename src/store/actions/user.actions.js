@@ -74,13 +74,19 @@ export async function logout() {
 
 export async function loadUser(userId) {
     try {
-        const user = await userService.getById(userId)
-        store.dispatch({ type: SET_WATCHED_USER, user })
+        const loggedInUser = userService.getLoggedinUser();
+        if (loggedInUser && loggedInUser._id === userId) {
+            store.dispatch({ type: SET_WATCHED_USER, user: loggedInUser });
+            return; // Skip fetching since it's the same user
+        }
+        const user = await userService.getById(userId);
+        store.dispatch({ type: SET_WATCHED_USER, user });
     } catch (err) {
-        showErrorMsg('Cannot load user')
-        console.log('Cannot load user', err)
+        showErrorMsg('Cannot load user');
+        console.log('Cannot load user', err);
     }
 }
+
 
 export async function updateUserImage(imgUrl) {
     if (!imgUrl) throw new Error('Image URL is required for update');
@@ -92,6 +98,7 @@ export async function updateUserImage(imgUrl) {
             ...loggedInUser,
             images: [...(loggedInUser.images || []), imgUrl],
         };
+        console.log('updatedUser', updatedUser)
         await userService.update(updatedUser);
 
         store.dispatch({ type: SET_USER, user: updatedUser });
@@ -106,20 +113,25 @@ export async function updateUserImage(imgUrl) {
 export async function followUser(userIdToFollow) {
     try {
         const loggedInUser = userService.getLoggedinUser();
-        console.log('start follow function', loggedInUser)
         if (!loggedInUser) throw new Error('You must be logged in to follow users');
-        console.log('loggedInUser.following', loggedInUser.following)
 
+        const targetUser = await userService.getById(userIdToFollow);
+
+        // Avoid duplicates
         if (!loggedInUser.following.some(user => user._id === userIdToFollow)) {
-            const targetUser = await userService.getById(userIdToFollow);
-            loggedInUser.following.push({ _id: targetUser._id, username: targetUser.username , imgUrl :targetUser.imgUrl });
+            loggedInUser.following.push({ 
+                _id: targetUser._id, 
+                username: targetUser.username, 
+                imgUrl: targetUser.imgUrl 
+            });
 
-
-            
             // Add the logged-in user to the target user's followers list
             if (!targetUser.followers.some(user => user._id === loggedInUser._id)) {
-                targetUser.followers.push({ _id: loggedInUser._id, username: loggedInUser.username, imgUrl :loggedInUser.imgUrl });
-
+                targetUser.followers.push({ 
+                    _id: loggedInUser._id, 
+                    username: loggedInUser.username, 
+                    imgUrl: loggedInUser.imgUrl 
+                });
             }
 
             // Update users in the backend
@@ -128,10 +140,10 @@ export async function followUser(userIdToFollow) {
 
             // Update in Redux store
             store.dispatch({ type: SET_USER, user: loggedInUser });
-            store.dispatch({ type: SET_WATCHED_USER, user: targetUser });
+            store.dispatch({ type: SET_WATCHED_USER, user: targetUser }); // Update watchedUser here
         }
     } catch (err) {
-        console.log('UserActions: error in followUser', err);
+        console.error('UserActions: error in followUser', err);
         showErrorMsg('Failed to follow the user');
     }
 }
@@ -142,17 +154,21 @@ export async function unfollowUser(userIdToUnfollow) {
         if (!loggedInUser) throw new Error('You must be logged in to unfollow users');
 
         const targetUser = await userService.getById(userIdToUnfollow);
-        loggedInUser.following = loggedInUser.following.filter(user => user._id !== userIdToUnfollow);
 
+        // Remove from following and followers lists
+        loggedInUser.following = loggedInUser.following.filter(user => user._id !== userIdToUnfollow);
         targetUser.followers = targetUser.followers.filter(user => user._id !== loggedInUser._id);
 
+        // Update users in the backend
         await userService.update(loggedInUser);
         await userService.update(targetUser);
 
+        // Update in Redux store
         store.dispatch({ type: SET_USER, user: loggedInUser });
-        store.dispatch({ type: SET_WATCHED_USER, user: targetUser });
+        store.dispatch({ type: SET_WATCHED_USER, user: targetUser }); // Update watchedUser here
     } catch (err) {
-        console.log('UserActions: error in unfollowUser', err);
+        console.error('UserActions: error in unfollowUser', err);
         showErrorMsg('Failed to unfollow the user');
     }
 }
+

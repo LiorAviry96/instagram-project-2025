@@ -14,7 +14,9 @@ export function PostPreview({ post }) {
   const updateComments = (updatedComments) => {
     setPostComments(updatedComments);
   };
-
+/*const getImageSrc = (image) => 
+  image.startsWith('http') ? image : `/src/assets/images/${image}`;
+*/
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
   return (
     <div style={{ border: "1px solid #ddd", marginBottom: "20px", padding: "10px" }}>
