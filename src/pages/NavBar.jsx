@@ -14,10 +14,7 @@ export function NavBar() {
 
   const navigate = useNavigate();
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-  const openSearchModal = () => setIsSearchModalOpen(true);
-  const closeSearchModal = () => setIsSearchModalOpen(false);
+  const toggleSearchModal = () => setIsSearchModalOpen(!isSearchModalOpen);
 
   const user = useSelector((storeState) => storeState.userModule.user);
 
@@ -40,7 +37,7 @@ export function NavBar() {
         </li>
         <li className="navbar-item">
           <i className="fas fa-search"></i>
-          <span className="search-btn" onClick={openSearchModal}>
+          <span className="search-btn" onClick={toggleSearchModal}>
             Search
           </span>
         </li>
@@ -62,7 +59,7 @@ export function NavBar() {
         {user ? (
           <li className="navbar-item">
             <i className="fas fa-pen"></i>
-            <span onClick={openModal}>Create Post</span>
+            <span onClick={() => setIsModalOpen(true)}>Create Post</span>
           </li>
         ) : (
           <li className="navbar-item">
@@ -82,16 +79,16 @@ export function NavBar() {
       </ul>
 
       {/* Create Post Modal */}
-      <Modal show={isModalOpen} onClose={closeModal}>
-        <CreatePost show={isModalOpen} onClose={closeModal} />
+      <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <CreatePost />
       </Modal>
 
       {/* Search Modal */}
       {isSearchModalOpen && (
-  <div className="search-modal-container">
-    <Search show={isSearchModalOpen} onClose={closeSearchModal} />
-  </div>
-)}
+        <div className="search-modal-container">
+          <Search onClose={() => setIsSearchModalOpen(false)} />
+        </div>
+      )}
     </div>
   );
 }

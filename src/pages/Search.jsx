@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { userService } from "../services/user.service";
 
-export function Search({ show, onClose }) {
+export function Search({ onClose }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [following, setFollowing] = useState([]);
@@ -28,43 +28,47 @@ export function Search({ show, onClose }) {
     }
   }, [searchTerm, following]);
 
-  if (!show) return null;
-
   return (
     <div className="search-component">
-      <h2 className="search-header">Search</h2>
-      <div
-        className={`search-bar ${isFocused ? "active" : ""}`}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-      >
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          autoFocus
-        />
-      </div>
+  <div className="search-header-container">
+    <h2 className="search-header">Search</h2>
+    <button className="close-btn" onClick={onClose}>
+      ✖
+    </button>
+  </div>
+  <div
+    className={`search-bar ${isFocused ? "active" : ""}`}
+    onFocus={() => setIsFocused(true)}
+    onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+  >
+    <input
+      type="text"
+      placeholder="Search..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      autoFocus
+    />
+  </div>
 
-      {isFocused && searchResults.length > 0 && (
-        <div className="search-dropdown">
-          <ul className="search-results">
-            {searchResults.map((user) => (
-              <li key={user._id} className="search-item">
-                <Link to={`/user/${user._id}`}>
-                  <img
-                    src={`/src/assets/images/${user.imgUrl}.jpeg`}
-                    alt={user.fullname}
-                    className="user-avatar"
-                  />
-                  <span className="search-fullname">{user.fullname}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+  {isFocused && searchResults.length > 0 && (
+    <div className="search-dropdown">
+      <ul className="search-results">
+        {searchResults.map((user) => (
+          <li key={user._id} className="search-item">
+            <Link to={`/user/${user._id}`}>
+              <img
+                src={`/src/assets/images/${user.imgUrl}.jpeg`}
+                alt={user.fullname}
+                className="user-avatar"
+              />
+              <span className="search-fullname">{user.fullname}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
+  )}
+</div>
+
   );
 }

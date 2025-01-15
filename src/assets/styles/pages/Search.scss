@@ -6,12 +6,30 @@
   z-index: 1050;
   background: transparent;
 }
+.search-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
 .search-item{
   list-style: none;
 }
 .search-header{
   font-size: 1.3rem;
   padding-top: 0px !important;
+}
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #000;
 }
 a {
   text-decoration: none;
