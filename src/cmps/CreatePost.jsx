@@ -28,7 +28,7 @@ export function CreatePost({ onClose }) {
 
             const newPost = {
                 txt: postText,
-                imgUrl,
+                imgUrl: imgUrl,
                 owner: {
                     _id:  userService.getLoggedinUser()._id,
                     fullname:  userService.getLoggedinUser().fullname,
@@ -37,7 +37,8 @@ export function CreatePost({ onClose }) {
                 comment: [],
                 likedBy: [],
                 createdAt: new Date().toISOString(),
-            };
+            };  
+            console.log('newPost', newPost)
 
             await createPost(newPost);
             onClose(); 

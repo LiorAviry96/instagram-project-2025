@@ -11,8 +11,10 @@ export function Profile() {
     const { userId } = useParams()
 
     useEffect(() => {
-        loadUser(userId); 
-    }, [userId]);
+        if (!watchedUser || watchedUser._id !== userId) {
+            loadUser(userId);
+        }
+    }, [userId, watchedUser]);
 
     console.log('loggedIn User  loaded:', loggedInUser);
 
@@ -36,6 +38,8 @@ export function Profile() {
                 />
                 <div className="profile-info">
                     <div className="username-section">
+                    <h3 className="fullname">{watchedUser.fullname}</h3>
+
                         <h2 className="username">{watchedUser.username}</h2>
                         <div className="action-buttons">
                             <button

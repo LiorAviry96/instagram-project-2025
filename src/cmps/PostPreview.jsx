@@ -14,10 +14,11 @@ export function PostPreview({ post }) {
   const updateComments = (updatedComments) => {
     setPostComments(updatedComments);
   };
-/*const getImageSrc = (image) => 
-  image.startsWith('http') ? image : `/src/assets/images/${image}`;
-*/
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
+
+  const getImageSrc = (image) => 
+    image.startsWith('http') ? image : `/src/assets/images/${image}`;
+
   return (
     <div style={{ border: "1px solid #ddd", marginBottom: "20px", padding: "10px" }}>
        <div className="post-header">
@@ -28,7 +29,7 @@ export function PostPreview({ post }) {
         <p className="timeAgo">{timeAgo}</p>
       </div>
       {imgUrl ? (
-        <img src={`src/assets/images/${imgUrl}.jpeg`} style={{ width: "100%" }} alt="Post Preview" />
+        <img src={getImageSrc(imgUrl)} style={{ width: "100%" }} alt="Post Preview" />
       ) : (
         <p>No image available</p>
       )}

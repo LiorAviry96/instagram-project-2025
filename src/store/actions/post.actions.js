@@ -43,6 +43,7 @@ export async function updatePost(updatedPost) {
 
 export async function createPost(newPost) {
     try {
+        console.log('newPost actions page', newPost)
         const savedPost = await postService.save(newPost);
 
         store.dispatch({

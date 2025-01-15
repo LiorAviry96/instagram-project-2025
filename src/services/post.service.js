@@ -41,6 +41,7 @@ async function remove(postId) {
 }
 
 async function save(post) {
+    console.log('save post service page' , post)
     let savedPost
     if (post._id) {
         const postToSave = {
@@ -60,7 +61,7 @@ async function save(post) {
             owner: {
                 _id:  userService.getLoggedinUser()._id,
                 fullname:  userService.getLoggedinUser().fullname,
-                imgeUrl:  userService.getLoggedinUser().imgUrl,
+                imgUrl: userService.getLoggedinUser().imgUrl, 
             },
             comments: [],
             likedBy: [],
