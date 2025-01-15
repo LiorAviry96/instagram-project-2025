@@ -32,6 +32,7 @@ export function Search({ show, onClose }) {
 
   return (
     <div className="search-component">
+      <h2 className="search-header">Search</h2>
       <div
         className={`search-bar ${isFocused ? "active" : ""}`}
         onFocus={() => setIsFocused(true)}

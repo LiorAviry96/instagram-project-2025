@@ -1,3 +1,25 @@
+/* Remove modal overlay for search */
+.search-modal-container {
+  position: absolute;
+  top: 50px;
+  left: 150px; 
+  z-index: 1050;
+  background: transparent;
+}
+.search-item{
+  list-style: none;
+}
+.search-header{
+  font-size: 1.3rem;
+  padding-top: 0px !important;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
 .search-component {
   width: 300px;
   background: white;
@@ -5,74 +27,44 @@
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease-in-out;
+
+  .search-bar{
+    width: 100%;
+    border: none;
+    background-color: $secondary-color;
+    padding: 8px 0px;
+    border-radius: 5px;
+    
+
+    input{
+      background-color: $secondary-color !important; 
+      border: none !important;
+     
+
+      &:focus {
+        border-color: $secondary-color !important;
+        background-color: #ffffff;
+        outline: none;
+    }
+    }
+    
+  }
 }
-
-
-.search-bar.active {
-  border-color: #ddd;
+.user-avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  margin-right: 20px;
 }
-
-.search-bar input {
-  border: none;
-  background: transparent;
-  outline: none;
-  flex: 1;
-  font-size: 1.2rem;
-  text-decoration: none;
-
-}
-
-.search-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  width: 100%;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  z-index: 100;
-  padding: 10px;
-}
-
-.search-results {
-  list-style: none;
-  color: black !important;
-  padding: 0;
-  margin: 0;
-}
-
-.search-item {
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.2s;
-  text-decoration: none !important;
-}
-
-.search-item:hover {
-  background: #f0f0f0;
-}
-
-.search-item img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  margin-right: 10px;
-  object-fit: cover;
-}
-
-.search-fullname {
-  font-size: 1.1rem;
-  color: black !important;
-  line-height: 1;
-  text-decoration: none !important;
-}
-
-.modal {
-  display: flex;
-  justify-content: flex-end; /* Aligns the modal content to the right */
-  align-items: flex-start;
-  padding: 10px;
+/* Opening animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

@@ -5,10 +5,11 @@
   background: none;
   cursor: pointer;
   color: black !important;
+  padding-top: 20px ;
 
   i {
     font-size: 20px;
-    margin-right: $spacing / 2;
+    margin-right: $spacing /1.5;
     color: black;
 
     &.fa-heart {

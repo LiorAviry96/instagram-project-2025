@@ -87,9 +87,11 @@ export function NavBar() {
       </Modal>
 
       {/* Search Modal */}
-      <Modal show={isSearchModalOpen} onClose={closeSearchModal}>
-        <Search show={isSearchModalOpen} onClose={closeSearchModal} />
-      </Modal>
+      {isSearchModalOpen && (
+  <div className="search-modal-container">
+    <Search show={isSearchModalOpen} onClose={closeSearchModal} />
+  </div>
+)}
     </div>
   );
 }

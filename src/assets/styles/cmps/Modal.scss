@@ -1,4 +1,4 @@
-/* Modal Overlay */
+/* Keep the original modal styles intact */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -13,22 +13,9 @@
   }
   
   .modal-content {
+    /* Keep the other modal's styles unchanged */
     background: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-  }
-  
-  .close-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
   }
   

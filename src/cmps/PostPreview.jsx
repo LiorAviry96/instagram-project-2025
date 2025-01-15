@@ -20,7 +20,7 @@ export function PostPreview({ post }) {
     image.startsWith('http') ? image : `/src/assets/images/${image}.jpeg`;
 
   return (
-    <div style={{ border: "1px solid #ddd", marginBottom: "20px", padding: "10px" }}>
+    <div className="border-itmes-feed">
        <div className="post-header">
         <Link className="ownerPost" to={`/user/${owner._id}`} >
         <img src={`src/assets/images/${owner.imgUrl}.jpeg`} className="userProfileImg" ></img>
@@ -33,14 +33,15 @@ export function PostPreview({ post }) {
       ) : (
         <p>No image available</p>
       )}
-      <p className="description">{txt}</p>
+     
 
     <Likes
       initialLikes={post.likedBy?.length || 0}
       likedBy={post.likedBy || []}
       commentCount={comments?.length || 0}
       postId = {post._id}
-    />      
+    />   
+     <p className="description">{txt}</p>   
       <Comments comments={postComments} postId={post._id} updatePost={updateComments} />
       </div>
   );
