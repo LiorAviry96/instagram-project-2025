@@ -1,52 +1,39 @@
-button {
-    background-color: transparent !important;
-    color: black; 
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease; 
-  }
-.likes button i{
-  padding-top: 20px;
-}
-  button:hover {
-    color: black; 
-    transform: scale(1.1); 
-  }
-  
-  button:focus {
-    outline: none;
-  }
-  
-  button:active {
-    transform: scale(0.95); 
-  }
-  
-  button .heart-icon {
-    font-size: 18px; 
-  }
+.likes button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: black !important;
 
-  .likes,
-.comments {
-  color: black;
-  font-weight: 500;
-  font-size: 1.1rem;
-}
-.heart-icon{
-  color: black;
-  font-size: 1.5rem !important; 
+  i {
+    font-size: 20px;
+    margin-right: $spacing / 2;
+    color: black;
+
+    &.fa-heart {
+      color: red;
+    }
+  }
 }
 
-.send-icon{
-  font-size: 1.5rem !important; 
-  padding-left: 10px;
+
+.fa-regular.fa-heart{
+  color: black !important;
 }
 .fa-solid.fa-heart {
   color: red !important;
 }
+
 .heart-icon:hover{
-  color: rgb(137, 134, 134)
+  color: rgb(137, 134, 134) !important;
+}
+
+.send-icon:hover{
+  color: rgb(137, 134, 134) !important;
+
+}
+.comment-icon:hover{
+  color: rgb(137, 134, 134) !important;
+
 }

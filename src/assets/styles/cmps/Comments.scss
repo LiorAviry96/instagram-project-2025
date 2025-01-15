@@ -1,54 +1,55 @@
-.comment-icon{
-    color: black;
-    font-size: 1.5rem !important; 
-    padding-left: 10px;
-}
+.comments-container {
+  padding: $spacing;
 
-.comment-icon:hover{
-    color: rgb(137, 134, 134)
-  }
-  .comment {
+  ul {
     list-style: none;
+    padding: 0;
+
+    .comment {
+      margin-bottom: $spacing / 2;
+      display: flex;
+     /* justify-content: space-between;*/
+      
+
+      strong {
+        color: $text-color;
+        font-size: 1.2rem;
+      }
+
+      span {
+        color: $text-color;
+        padding-left: 10px;
+        font-size: 14px;
+        padding-top: 4px;
+      }
+    }
   }
-  .comment span{ 
-    font-size: 1rem;
-    padding-left: 10px;
-    
-} 
 
-.add-comment {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  width: 90%;
-  margin: 0 auto;
-}
+  .add-comment {
+    display: flex;
+    margin-top: $spacing;
 
-.comment-input {
-  flex: 1;
-  border: none;
-  padding: 5px;
-  font-size: 1rem;
-  outline: none;
- 
-}
+    .comment-input {
+      flex: 1;
+      border: none;
+      border-radius: 4px;
+      padding: $spacing / 2;
+      margin-right: $spacing / 2;
+      background-color: $background-color;
+    }
 
-.comment-input:focus {
-  border-bottom: 1px solid black;
-}
+    .comment-submit-btn {
+      background-color: $primary-color;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: $spacing / 2 $spacing;
+      cursor: pointer;
+      transition: background-color 0.3s;
 
-.comment-submit-btn {
-  background: none;
-  border: none;
-  color: #0095f6;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 5px 10px;
-  align-items: center;
-  
-}
-
-.comment-submit-btn:hover {
-  color: #698da5;
-  ;
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
 }

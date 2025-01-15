@@ -17,7 +17,7 @@ export function PostPreview({ post }) {
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
 
   const getImageSrc = (image) => 
-    image.startsWith('http') ? image : `/src/assets/images/${image}`;
+    image.startsWith('http') ? image : `/src/assets/images/${image}.jpeg`;
 
   return (
     <div style={{ border: "1px solid #ddd", marginBottom: "20px", padding: "10px" }}>

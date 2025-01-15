@@ -1,3 +1,9 @@
+
+@import "setup/variables";
+@import "basics/base";
+@import "RootCmp";
+
+
 //pages
 @import "pages/NavBar";
 @import "pages/FeedIndex";
@@ -21,4 +27,3 @@
 @import "basics/base";
 @import "basics/forms";
 
-@import "RootCmp";

@@ -1,11 +1,9 @@
-
-
 .main-container {
-    display: flex;
-    height: 100vh;
-    font-family: "Roboto", serif;
-    font-weight: 400;
-    font-style: bold;
-    font-size: 1.3rem;
-    background-color: #ffffff;
-  }
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing;
+}

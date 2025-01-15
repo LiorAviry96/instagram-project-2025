@@ -40,7 +40,6 @@ export function Profile() {
                     <div className="username-section">
                     <h3 className="fullname">{watchedUser.fullname}</h3>
 
-                        <h2 className="username">{watchedUser.username}</h2>
                         <div className="action-buttons">
                             <button
                                 className={`follow-btn ${isFollowing ? "active" : ""}`}
@@ -52,7 +51,6 @@ export function Profile() {
                         </div>
 
                     </div>
-                    <p className="fullname">{watchedUser.fullname}</p>
 
                     <div className="stats">
                         <span>
@@ -65,6 +63,9 @@ export function Profile() {
                             <strong>{watchedUser.following?.length || 0}</strong> following
                         </span>
                     </div>
+                    <p className="fullname">{watchedUser.fullname}</p>
+
+                 
                 </div>
             </header>
             <section className="profile-gallery">
