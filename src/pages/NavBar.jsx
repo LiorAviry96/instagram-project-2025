@@ -69,7 +69,7 @@ export function NavBar() {
         )}
         {user ? (
           <li className="navbar-item">
-            <span onClick={onLogout}>Logout</span>
+            <span className="logout" onClick={onLogout}>Logout</span>
           </li>
         ) : (
           <li className="navbar-item">

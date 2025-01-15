@@ -70,10 +70,18 @@
       margin: 0; 
       font-size: 20px; 
   }
+  .navbar-item .logout{
+    font-size: 15px !important;
+    margin: 0 !important; 
+  }
+  .navbar-item span {
+    font-size: 0px; 
+}
 
   .navbar-item a {
       font-size: 0;
   }
+
 
   .navbar-item a::after {
       content: '';
