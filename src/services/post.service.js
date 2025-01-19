@@ -101,7 +101,7 @@ async function _createPosts() {
                 imgUrl: "postImage1",
                 owner: {
                     _id: "u122",
-                    fullname: "Muko",
+                    fullname: "John Doe",
                     imgUrl: "user1",
                 },
                 comments: [
@@ -109,7 +109,7 @@ async function _createPosts() {
                         id: makeId(),
                         by: {
                             _id: "u196",
-                            fullname: "Dorothy",
+                            fullname: "Dorothy Smith",
                             imgUrl: "user3",
                         },
                         txt: "Wow, looks amazing!",
@@ -118,12 +118,12 @@ async function _createPosts() {
                 likedBy: [
                     {
                         _id: "u196",
-                        fullname: "Dorothy",
+                        fullname: "Dorothy Smith",
                         imgUrl: "user3",
                     },
                     {
                         _id: "u119",
-                        fullname: "Orlando",
+                        fullname: "Orlando Bloom",
                         imgUrl: "user6",
                     },
                 ],
@@ -131,11 +131,50 @@ async function _createPosts() {
             },
             {
                 _id: makeId(),
-                txt: 'Best day ever!',
+                txt: 'Amazing Day!!',
                 imgUrl: "postImage2",
                 owner: {
+                    _id: "u122",
+                    fullname: "Robert Brown",
+                    imgUrl: "user2",
+                },
+                comments: [
+                    {
+                        id: makeId(),
+                        by: {
+                            _id: "u196",
+                            fullname: "Dorothy Smith",
+                            imgUrl: "user3",
+                        },
+                        txt: "Wow, looks amazing!",
+                    },
+                ],
+                likedBy: [
+                    {
+                        _id: "u196",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "user3",
+                    },
+                    {
+                        _id: "u119",
+                        fullname: "Orlando Bloom",
+                        imgUrl: "user6",
+                    },
+                    {
+                        _id: "u409",
+                        fullname: "Chris Taylor",
+                        imgUrl: "user4",
+                    },
+                ],
+                createdAt: "2025-01-13T10:00:00Z"
+            },
+            {
+                _id: makeId(),
+                txt: 'Best day ever!',
+                imgUrl: "postImage3",
+                owner: {
                     _id: "u138",
-                    fullname: "Bob",
+                    fullname: "Robert Brown",
                     imgUrl: "user2",
                 },
                 comments: [
@@ -143,7 +182,7 @@ async function _createPosts() {
                         id: makeId(),
                         by: {
                             _id: "u409",
-                            fullname: "Chris",
+                            fullname: "Chris Taylor",
                             imgUrl: "user4",
                         },
                         txt: "Love it!",
@@ -152,7 +191,7 @@ async function _createPosts() {
                 likedBy: [
                     {
                         _id: "u122",
-                        fullname: "Muko",
+                        fullname: "John Doe",
                         imgUrl: "user1",
                     },
                     {
@@ -163,7 +202,112 @@ async function _createPosts() {
                 ],
                 createdAt: "2025-01-12T10:00:00Z"
             },
-            // Add 10 more fake posts here with varied data
+            {
+                _id: makeId(),
+                txt: 'Loving the weekend vibes!',
+                imgUrl: "postImage4",
+                owner: {
+                    _id: "u196",
+                    fullname: "Dorothy Smith",
+                    imgUrl: "user3",
+                },
+                comments: [
+                    {
+                        id: makeId(),
+                        by: {
+                            _id: "u122",
+                            fullname: "John Doe",
+                            imgUrl: "user1",
+                        },
+                        txt: "Sounds like fun!",
+                    },
+                    {
+                        id: makeId(),
+                        by: {
+                            _id: "u138",
+                            fullname: "Robert Brown",
+                            imgUrl: "user2",
+                        },
+                        txt: "Wish I was there!",
+                    },
+                ],
+                likedBy: [
+                    {
+                        _id: "u129",
+                        fullname: "Shon Smith",
+                        imgUrl: "user5",
+                    },
+                    {
+                        _id: "u119",
+                        fullname: "Orlando Bloom",
+                        imgUrl: "user6",
+                    },
+                ],
+                createdAt: "2025-01-14T09:00:00Z",
+            },
+            {
+                _id: makeId(),
+                txt: 'Exploring new horizons!',
+                imgUrl: "postImage5",
+                owner: {
+                    _id: "u409",
+                    fullname: "Chris Taylor",
+                    imgUrl: "user4",
+                },
+                comments: [
+                    {
+                        id: makeId(),
+                        by: {
+                            _id: "u138",
+                            fullname: "Robert Brown",
+                            imgUrl: "user2",
+                        },
+                        txt: "Amazing journey!",
+                    },
+                ],
+                likedBy: [
+                    {
+                        _id: "u122",
+                        fullname: "John Doe",
+                        imgUrl: "user1",
+                    },
+                ],
+                createdAt: "2025-01-15T08:30:00Z",
+            },
+            {
+                _id: makeId(),
+                txt: 'Just chilling with friends.',
+                imgUrl: "postImage6",
+                owner: {
+                    _id: "u129",
+                    fullname: "Shon Smith",
+                    imgUrl: "user5",
+                },
+                comments: [
+                    {
+                        id: makeId(),
+                        by: {
+                            _id: "u409",
+                            fullname: "Chris Taylor",
+                            imgUrl: "user4",
+                        },
+                        txt: "Looks relaxing!",
+                    },
+                ],
+                likedBy: [
+                    {
+                        _id: "u196",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "user3",
+                    },
+                    {
+                        _id: "u138",
+                        fullname: "Robert Brown",
+                        imgUrl: "user2",
+                    },
+                ],
+                createdAt: "2025-01-15T11:00:00Z",
+            },
         ];
         saveToStorage(STORAGE_KEY, posts);
 

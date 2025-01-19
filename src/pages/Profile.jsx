@@ -16,10 +16,8 @@ export function Profile() {
         }
     }, [userId, watchedUser]);
 
-    console.log('loggedIn User  loaded:', loggedInUser);
-
-    console.log('watchedUser  loaded:', watchedUser);
-
+    const isOwnProfile = loggedInUser?._id === watchedUser?._id;
+    
     const isFollowing = loggedInUser?.following?.some(follow => follow._id === watchedUser?._id);
     const handleFollowToggle = () => {
         if (isFollowing) {
@@ -40,15 +38,17 @@ export function Profile() {
                     <div className="username-section">
                     <h3 className="fullname">{watchedUser.fullname}</h3>
 
-                        <div className="action-buttons">
-                            <button
-                                className={`follow-btn ${isFollowing ? "active" : ""}`}
-                                onClick={handleFollowToggle}
-                            >
-                                {isFollowing ? "Following" : "Follow"}
-                            </button>
-                            <button className="message-btn">Message</button>
-                        </div>
+                    {!isOwnProfile && ( // Hide buttons if it's the logged-in user's profile
+                            <div className="action-buttons">
+                                <button
+                                    className={`follow-btn ${isFollowing ? "active" : ""}`}
+                                    onClick={handleFollowToggle}
+                                >
+                                    {isFollowing ? "Following" : "Follow"}
+                                </button>
+                                <button className="message-btn">Message</button>
+                            </div>
+                        )}
 
                     </div>
 
@@ -69,11 +69,12 @@ export function Profile() {
                 </div>
             </header>
             <section className="profile-gallery">
-                {watchedUser.images?.map((imgUrl, idx) => (
-                    <div key={idx} className="gallery-item">
-                        <ImageDetails image={imgUrl} alt={`User post ${idx + 1}`} />
-                    </div>
-                ))}
+            {watchedUser.images?.map((imgUrl, idx) => (
+                <div key={idx} className="gallery-item">
+                    <ImageDetails image={imgUrl} alt={`User post ${idx + 1}`} />
+                </div>
+            ))}
+
             </section>
         </div>
     );

@@ -1,6 +1,6 @@
 import { storageService } from './async-storage.service'
 import { saveToStorage , loadFromStorage } from './util.service'
-const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+const STORAGE_KEY_LOGGEDIN_USER = 'user'
 
 export const userService = {
     login,
@@ -33,7 +33,10 @@ function remove(userId) {
 }
 
 async function update(updatedUser) {
+    console.log('updatedUser service', updatedUser)
     const user = await storageService.get("user", updatedUser._id);
+    console.log('Object.assign(user, updatedUser)', Object.assign(user, updatedUser))
+
     Object.assign(user, updatedUser); // Merge the updated fields into the user object
     await storageService.put("user", user);
 
@@ -89,25 +92,41 @@ async function _createUsers() {
          users = [
             {
                 _id: "u122",
-                username: 'Muko',
+                username: 'JohnD',
                 password: '12345',
                 fullname: 'John Doe',
                 imgUrl: "user1",
                 following: [
                     {
                         _id: "u138",
-                        fullname: "Bob",
+                        fullname: "Robert Brown",
                         imgUrl: "user2",
+                    },
+                    {
+                        _id: "u196",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "user3",
+                    },
+                    {
+                        _id: "u122",
+                        fullname: "JohnD",
+                        imgUrl: "user1",
                     },
                 ],
                 followers: [
                     {
                         _id: "u196",
-                        fullname: "Dorothy",
-                        imgUrl: "image1",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "user3",
                     },
                 ],
-                images: [],
+                images: [
+                    {
+                        userId: "u122",
+                        fullname: "John Doe",
+                        imgUrl: "postImage1",
+                    },
+                ],
             },
             {
                 _id: "u138",
@@ -117,19 +136,30 @@ async function _createUsers() {
                 imgUrl: "user2",
                 following: [
                     {
-                        _id: "u122",
-                        fullname: "Muko",
-                        imgUrl: "image1",
+                        _id: "u196",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "user3",
                     },
                 ],
                 followers: [
                     {
                         _id: "u196",
-                        fullname: "Dorothy",
-                        imgUrl: "image1",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "user3",
                     },
                 ],
-                images: [],
+                images: [
+                    {
+                        userId: "u122",
+                        fullname: "Robert Brown",
+                        imgUrl: "postImage2",
+                    },
+                    {
+                        userId: "u122",
+                        fullname: "Robert Brown",
+                        imgUrl: "postImage3",
+                    },
+                ],
             },
             {
                 _id: "u196",
@@ -137,20 +167,43 @@ async function _createUsers() {
                 password: '12345',
                 fullname: 'Dorothy Smith',
                 imgUrl: "user3",
-                following: [],
-                followers: [
+                following: [
                     {
                         _id: "u122",
-                        fullname: "Muko",
+                        fullname: "JohnD",
                         imgUrl: "user1",
                     },
                     {
                         _id: "u138",
-                        fullname: "Bob",
+                        fullname: "Robert Brown",
+                        imgUrl: "user2",
+                    },
+                    {
+                        _id: "u409",
+                        fullname: "Chris Taylor",
+                        imgUrl: "user4",
+                    },
+                ],
+                followers: [
+                    {
+                        _id: "u122",
+                        fullname: "JohnD",
+                        imgUrl: "user1",
+                    },
+                    {
+                        _id: "u138",
+                        fullname: "Robert Brown",
                         imgUrl: "user2",
                     },
                 ],
-                images: [],
+                images: [
+                    {
+                        userId: "u196",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "postImage4",
+                    },
+
+                ],
             },
             {
                 _id: "u409",
@@ -161,22 +214,45 @@ async function _createUsers() {
                 following: [],
                 followers: [
                     {
-                        _id: "u122",
-                        fullname: "Muko",
-                        imgUrl: "user1",
+                        _id: "u196",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "user3",
+                    },
+                    {
+                        _id: "u129",
+                        fullname: "Shon Cohen",
+                        imgUrl: "user5",
                     },
                 ],
-                images: [],
+                images: [
+                    {
+                        _id: "u409",
+                        fullname: "Chris Taylor",
+                        imgUrl: "postImage5",
+                    },
+                ],
             },
             {
                 _id: "u129",
-                username: 'Shon',
+                username: 'Shon123',
                 password: '12345',
-                fullname: 'Shon Smith',
+                fullname: 'Shon Cohen',
                 imgUrl: "user5",
-                following: [],
+                following: [
+                    {
+                        _id: "u409",
+                        fullname: "Chris Taylor",
+                        imgUrl: "user4",
+                    },
+                ],
                 followers: [],
-                images: [],
+                images: [
+                    {
+                        _id: "u129",
+                        fullname: "Shon Smith",
+                        imgUrl: "postImage6",
+                    },
+                ],
             },
             {
                 _id: "u119",
@@ -190,7 +266,7 @@ async function _createUsers() {
             },
         ];
         console.log('users', users)
-        saveToStorage('user', users)
+       saveToStorage(STORAGE_KEY_LOGGEDIN_USER, users);
 
 
     }

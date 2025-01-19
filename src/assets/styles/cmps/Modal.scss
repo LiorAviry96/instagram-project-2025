@@ -18,4 +18,11 @@
     padding: 20px;
     border-radius: 8px;
   }
+  .modal-content img {
+    max-width: 90%; /* Ensure the image doesn't exceed 90% of the modal's width */
+    max-height: 80vh; /* Ensure the image doesn't exceed 80% of the viewport height */
+    object-fit: contain; /* Maintain the image's aspect ratio */
+    display: block; /* Center the image properly */
+    margin: 0 auto; /* Center the image horizontally */
+  }
   

@@ -89,23 +89,30 @@ export async function loadUser(userId) {
 
 
 export async function updateUserImage(imgUrl) {
-    if (!imgUrl) throw new Error('Image URL is required for update');
     try {
         const loggedInUser = userService.getLoggedinUser();
-        if (!loggedInUser) throw new Error('No logged-in user');
+        if (!loggedInUser) throw new Error("No logged-in user found.");
 
-        const updatedUser = {
-            ...loggedInUser,
-            images: [...(loggedInUser.images || []), imgUrl],
+        // Create a new image object
+        const newImage = {
+            userId: loggedInUser._id,
+            fullname: loggedInUser.fullname,
+            imgUrl,
         };
+        console.log('newImage', newImage)
+        const updatedUser = { ...loggedInUser };
+        updatedUser.images = [...updatedUser.images, newImage];
         console.log('updatedUser', updatedUser)
-        await userService.update(updatedUser);
+        const user = await userService.update(updatedUser);
+        
+        store.dispatch({
+            type: SET_USER,
+            user,
+        });
 
-        store.dispatch({ type: SET_USER, user: updatedUser });
-
-        userService.saveLoggedinUser(updatedUser);
+        return user;
     } catch (err) {
-        console.error('Error updating user image:', err);
+        console.error("Failed to update user image:", err);
         throw err;
     }
 }

@@ -8,11 +8,11 @@
       margin-bottom: $spacing;
   
       .profile-img {
-        width: 120px;
-        height: 120px;
+        width: 150px;
+        height: 150px;
         border-radius: 50%;
         object-fit: cover;
-        margin-right: 40px;
+        margin-right: 100px;
       }
   
       .profile-info {
@@ -78,11 +78,11 @@
           gap: 30px;
   
           span {
-            font-size: 14px;
+            font-size: 1.1rem;
             color: $text-color;
   
             strong {
-              font-size: 1rem;
+              font-size: 1.2rem;
               font-weight: bold;
             }
           }
@@ -114,10 +114,8 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
-    
-            &:hover {
-              transform: scale(1.1);
-            }
+            padding-top: 20px;
+            
           }
         }
       }

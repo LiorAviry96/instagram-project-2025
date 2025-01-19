@@ -7,6 +7,7 @@ import { useState } from "react";
 import { CreatePost } from "../cmps/CreatePost";
 import { Modal } from "../cmps/Modal";
 import { Search } from "./Search";
+import { Login } from "./Login";
 
 export function NavBar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,8 +29,17 @@ export function NavBar() {
     }
   }
 
+  if (!user) {
+    // Render only the login link if the user is not logged in
+    return (
+      <Login/>
+    );
+  }
+
+  // Render the full navigation bar if the user is logged in
   return (
     <div className="navbar">
+      <img className="logo" src="/src/assets/images/Instagram_logo.png" alt="Logo" />
       <ul className="navbar-menu">
         <li className="navbar-item">
           <i className="fas fa-home"></i>
@@ -45,37 +55,23 @@ export function NavBar() {
           <i className="fas fa-envelope"></i>
           <Link to="/">Messages</Link>
         </li>
-        {user ? (
-          <li className="navbar-item">
-            <i className="fas fa-user"></i>
-            <Link to={`/user/${user._id}`}>Profile</Link>
-          </li>
-        ) : (
-          <li className="navbar-item">
-            <i className="fas fa-user"></i>
-            <Link to="login">Profile</Link>
-          </li>
-        )}
-        {user ? (
-          <li className="navbar-item">
-            <i className="fas fa-pen"></i>
-            <span onClick={() => setIsModalOpen(true)}>Create Post</span>
-          </li>
-        ) : (
-          <li className="navbar-item">
-            <i className="fas fa-pen"></i>
-            <Link to="/login">Create Post</Link>
-          </li>
-        )}
-        {user ? (
-          <li className="navbar-item">
-            <span className="logout" onClick={onLogout}>Logout</span>
-          </li>
-        ) : (
-          <li className="navbar-item">
-            <Link to="/login">Login</Link>
-          </li>
-        )}
+        <li className="navbar-item">
+          <i className="fas fa-pen"></i>
+          <span onClick={() => setIsModalOpen(true)}>Create Post</span>
+        </li>
+        <li className="navbar-item">
+          <img
+            className="profile-image"
+            src={`/src/assets/images/${user.imgUrl || "default-profile"}.jpeg`}
+            alt="Profile"
+          />
+          <Link to={`/user/${user._id}`}>Profile</Link>
+        </li>
+        <li className="navbar-item">
+          <span className="logout" onClick={onLogout}>
+            Logout
+          </span>
+        </li>
       </ul>
 
       {/* Create Post Modal */}

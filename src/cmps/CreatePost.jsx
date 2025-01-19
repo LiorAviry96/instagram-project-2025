@@ -24,7 +24,7 @@ export function CreatePost({ onClose }) {
 
             await updateUserImage(imgUrl);
             console.log('Image uploaded successfully');
-            let postId =  makeId()
+            //let postId =  makeId()
 
             const newPost = {
                 txt: postText,
