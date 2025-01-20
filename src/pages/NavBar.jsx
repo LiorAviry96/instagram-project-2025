@@ -4,7 +4,7 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { useNavigate } from "react-router";
 import { logout } from "../store/actions/user.actions";
 import { useState } from "react";
-import { CreatePost } from "../cmps/CreatePost";
+import { CreateStory } from "../cmps/CreateStory";
 import { Modal } from "../cmps/Modal";
 import { Search } from "./Search";
 import { Login } from "./Login";
@@ -74,9 +74,9 @@ export function NavBar() {
         </li>
       </ul>
 
-      {/* Create Post Modal */}
+      {/* Create Story Modal */}
       <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <CreatePost />
+        <CreateStory />
       </Modal>
 
       {/* Search Modal */}

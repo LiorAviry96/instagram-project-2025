@@ -89,6 +89,12 @@
         }
       }
     }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background-color: #dbdbdb; /* Light gray color */
+      margin: 40px 0; /* Adjust spacing as needed */
+  }  
     .profile-gallery {
         display: grid;
         gap: $spacing;

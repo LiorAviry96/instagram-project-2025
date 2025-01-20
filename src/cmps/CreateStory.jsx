@@ -6,13 +6,13 @@ import { useState } from "react";
 import { useNavigate } from 'react-router'
 import { userService } from "../services/user.service";
 import { makeId } from "../services/util.service";
-import { createPost } from "../store/actions/post.actions";
+import { createStory } from "../store/actions/story.actions";
 import { useSelector } from "react-redux";
 
 
-export function CreatePost({ onClose }) {
+export function CreateStory({ onClose }) {
     const [imgUrl, setImgUrl] = useState("")
-    const [postText, setPostText] = useState(""); 
+    const [storyText, setStoryText] = useState(""); 
     const navigate = useNavigate()
     const user = useSelector((storeState) => storeState.userModule.user);
 
@@ -24,10 +24,9 @@ export function CreatePost({ onClose }) {
 
             await updateUserImage(imgUrl);
             console.log('Image uploaded successfully');
-            //let postId =  makeId()
 
-            const newPost = {
-                txt: postText,
+            const newStory = {
+                txt: storyText,
                 imgUrl: imgUrl,
                 owner: {
                     _id:  userService.getLoggedinUser()._id,
@@ -38,14 +37,14 @@ export function CreatePost({ onClose }) {
                 likedBy: [],
                 createdAt: new Date().toISOString(),
             };  
-            console.log('newPost', newPost)
+            console.log('newStory', newStory)
 
-            await createPost(newPost);
+            await createStory(newStory);
             onClose(); 
-            console.log('Post created successfully');
+            console.log('Story created successfully');
             navigate('/');
         } catch (err) {
-            console.error('Failed to update user image or create post:', err);
+            console.error('Failed to update user image or create story:', err);
         }
 
     }
@@ -58,8 +57,8 @@ export function CreatePost({ onClose }) {
                 <form onSubmit={onUpadteImages}>
                 <ImgUploader onUploaded={onUploaded}/>
                 <textarea
-                    value={postText}
-                    onChange={(ev) => setPostText(ev.target.value)}
+                    value={storyText}
+                    onChange={(ev) => setStoryText(ev.target.value)}
                     placeholder="Write something about your image..."
                 />
                 <button className="uploadSubmit">Submit</button>

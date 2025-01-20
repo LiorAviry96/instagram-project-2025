@@ -2,46 +2,46 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updatePost } from "../store/actions/post.actions";
+import { updateStory } from "../store/actions/story.actions";
 import { userService } from "../services/user.service";
-import { postService } from "../services/post.service";
+import { storyService } from "../services/story.service";
 
-export function Likes({ initialLikes, likedBy, postId }) {
+export function Likes({ initialLikes, likedBy, storyId }) {
   const dispatch = useDispatch();
   
-  const post = useSelector(state => state.postModule.posts.find(post => post._id === postId));
+  const story = useSelector(state => state.storyModule.storys.find(story => story._id === storyId));
   const [likes, setLikes] = useState(initialLikes || 0);
   const [isLiked, setIsLiked] = useState(false);
   const [likedUsers, setLikedUsers] = useState(likedBy || []);
   
   useEffect(() => {
-    if (post) {
-      setIsLiked(post.likedBy.some(user => user._id === userService.getLoggedinUser()?._id));
-      setLikes(post.likedBy.length);
-      setLikedUsers(post.likedBy);
+    if (story) {
+      setIsLiked(story.likedBy.some(user => user._id === userService.getLoggedinUser()?._id));
+      setLikes(story.likedBy.length);
+      setLikedUsers(story.likedBy);
     }
-  }, [post, postId]);
+  }, [story, storyId]);
 
   const handleLike = async () => {
     const loggedInUser = userService.getLoggedinUser();
     
     if (!loggedInUser) {
-      alert('Please log in to like posts');
+      alert('Please log in to like storys');
       return;
     }
 
     try {
-      const fullPost = await postService.getById(postId);
+      const fullStory = await storyService.getById(storyId);
       const updatedLikedBy = isLiked
-        ? fullPost.likedBy.filter(user => user._id !== loggedInUser._id)
-        : [...fullPost.likedBy, loggedInUser];
+        ? fullStory.likedBy.filter(user => user._id !== loggedInUser._id)
+        : [...fullStory.likedBy, loggedInUser];
 
-      const updatedPost = {
-        ...fullPost,
+      const updatedStory = {
+        ...fullStory,
         likedBy: updatedLikedBy,
       };
 
-      dispatch(updatePost(updatedPost)); // Dispatch to update Redux state
+      dispatch(updateStory(updatedStory)); // Dispatch to update Redux state
 
       setLikes(updatedLikedBy.length);
       setLikedUsers(updatedLikedBy);

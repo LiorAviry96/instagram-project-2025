@@ -9,6 +9,8 @@ export function Profile() {
     const loggedInUser = useSelector((state) => state.userModule.user); 
 
     const { userId } = useParams()
+    console.log('watchedUser', watchedUser)
+    console.log('loggedInUser', loggedInUser)
 
     useEffect(() => {
         if (!watchedUser || watchedUser._id !== userId) {
@@ -68,10 +70,11 @@ export function Profile() {
                  
                 </div>
             </header>
+            <div className="divider"></div>
             <section className="profile-gallery">
             {watchedUser.images?.map((imgUrl, idx) => (
                 <div key={idx} className="gallery-item">
-                    <ImageDetails image={imgUrl} alt={`User post ${idx + 1}`} />
+                    <ImageDetails image={imgUrl} alt={`User story ${idx + 1}`} />
                 </div>
             ))}
 

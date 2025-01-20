@@ -2,25 +2,25 @@ import { storageService } from './async-storage.service'
 import { userService } from './user.service'
 import { makeId, saveToStorage, loadFromStorage } from './util.service'
 
-const STORAGE_KEY = 'post'
+const STORAGE_KEY = 'storys'
 
-export const postService = {
+export const storyService = {
     query,
     getById,
     save,
     remove,
     getDefaultFilter,
-    getEmptyPost
+    getEmptyStory
 }
 
-window.cs = postService
+window.cs = storyService
 
-_createPosts()
+_createStorys()
 
 async function query() {
-    let posts = await storageService.query(STORAGE_KEY);
+    let storys = await storageService.query(STORAGE_KEY);
 
-    return posts.map(({ _id, txt, imgUrl, owner, comments, likedBy, createdAt }) => ({
+    return storys.map(({ _id, txt, imgUrl, owner, comments, likedBy, createdAt }) => ({
         _id,
         txt,
         imgUrl,
@@ -32,32 +32,32 @@ async function query() {
 }
 
 
-function getById(postId) {
-    return storageService.get(STORAGE_KEY, postId)
+function getById(storyId) {
+    return storageService.get(STORAGE_KEY, storyId)
 }
 
-async function remove(postId) {
-    await storageService.remove(STORAGE_KEY, postId)
+async function remove(storyId) {
+    await storageService.remove(STORAGE_KEY, storyId)
 }
 
-async function save(post) {
-    console.log('save post service page' , post)
-    let savedPost
-    if (post._id) {
-        const postToSave = {
-            _id: post._id,
-            txt: post.txt,
-            imgUrl: post.imgUrl || '',
-            by: post.by || userService.getLoggedinUser(),
-            comments: post.comments || [],
-            likedBy: post.likedBy || []
+async function save(story) {
+    console.log('save story service page' , story)
+    let savedStory
+    if (story._id) {
+        const storyToSave = {
+            _id: story._id,
+            txt: story.txt,
+            imgUrl: story.imgUrl || '',
+            by: story.by || userService.getLoggedinUser(),
+            comments: story.comments || [],
+            likedBy: story.likedBy || []
         }
-        savedPost = await storageService.put(STORAGE_KEY, postToSave)
+        savedStory = await storageService.put(STORAGE_KEY, storyToSave)
     } else {
-        const postToSave = {
+        const storyToSave = {
             _id: makeId(),
-            txt: post.txt,
-            imgUrl: post.imgUrl || '',
+            txt: story.txt,
+            imgUrl: story.imgUrl || '',
             owner: {
                 _id:  userService.getLoggedinUser()._id,
                 fullname:  userService.getLoggedinUser().fullname,
@@ -65,15 +65,15 @@ async function save(post) {
             },
             comments: [],
             likedBy: [],
-            createdAt: post.createdAt
+            createdAt: story.createdAt
         }
-        console.log('Saved post:', savedPost)
+        console.log('Saved story:', savedStory)
 
-        savedPost = await storageService.post(STORAGE_KEY, postToSave)
+        savedStory = await storageService.story(STORAGE_KEY, storyToSave)
     }
 
    
-    return savedPost
+    return savedStory
 }
 
 function getDefaultFilter() {
@@ -82,7 +82,7 @@ function getDefaultFilter() {
     }
 }
 
-function getEmptyPost(txt = '', imgUrl = '') {
+function getEmptyStory(txt = '', imgUrl = '') {
     return {
         txt,
         imgUrl,
@@ -90,11 +90,11 @@ function getEmptyPost(txt = '', imgUrl = '') {
     }
 }
 
-async function _createPosts() {
- let posts = loadFromStorage(STORAGE_KEY)
+async function _createStorys() {
+ let storys = loadFromStorage(STORAGE_KEY)
 
-    if (!posts || !posts.length){
-         posts = [
+    if (!storys || !storys.length){
+        storys = [
             {
                 _id: makeId(),
                 txt: 'Amazing trip!',
@@ -309,7 +309,7 @@ async function _createPosts() {
                 createdAt: "2025-01-15T11:00:00Z",
             },
         ];
-        saveToStorage(STORAGE_KEY, posts);
+        saveToStorage(STORAGE_KEY, storys);
 
     }
     

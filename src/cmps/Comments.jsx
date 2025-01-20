@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { userService } from "../services/user.service";
-import { postService } from "../services/post.service";
+import { storyService } from "../services/story.service";
 
-export function Comments({ comments, postId, updatePost }) {
+export function Comments({ comments, storyId, updateStory }) {
   const [newComment, setNewComment] = useState("");
 
   const handleAddComment = async () => {
     const loggedInUser = userService.getLoggedinUser();
 
     if (!loggedInUser) {
-      alert("Please log in to comment on posts");
+      alert("Please log in to comment on storys");
       return;
     }
 
@@ -20,10 +20,10 @@ export function Comments({ comments, postId, updatePost }) {
     }
 
     try {
-      const fullPost = await postService.getById(postId);
+      const fullStory = await storyService.getById(storyId);
 
       const updatedComments = [
-        ...fullPost.comments,
+        ...fullStory.comments,
         {
           id: Date.now(), 
           by: loggedInUser,
@@ -31,14 +31,14 @@ export function Comments({ comments, postId, updatePost }) {
         },
       ];
 
-      const updatedPost = {
-        ...fullPost,
+      const updatedStory = {
+        ...fullStory,
         comments: updatedComments,
       };
 
-      await postService.save(updatedPost);
+      await storyService.save(updatedStory);
 
-      updatePost(updatedComments);
+      updateStory(updatedComments);
 
       setNewComment("");
     } catch (err) {

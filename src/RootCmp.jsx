@@ -5,7 +5,7 @@ import { FeedIndex } from "./pages/FeedIndex"
 import { NavBar } from "./pages/NavBar"
 import { Profile } from "./pages/Profile"
 import { Search } from "./pages/Search"
-import { CreatePost } from "./cmps/CreatePost"
+import { CreateStory } from "./cmps/CreateStory"
 
 import { Routes, Route } from 'react-router'
 
@@ -24,7 +24,7 @@ export function RootCmp() {
                 <Route path="/" element={<FeedIndex />} />
                     <Route path="/user/:userId" element={<Profile />} />
                     <Route path="/user/:userId/search" element={<Search />} />
-                    <Route path="/user/:userId/upload" element={<CreatePost />} />
+                    <Route path="/user/:userId/upload" element={<CreateStory />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
                         

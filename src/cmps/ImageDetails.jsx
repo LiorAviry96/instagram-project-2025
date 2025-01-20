@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Likes } from "./Likes";
 import { Comments } from "./Comments";
@@ -8,29 +8,32 @@ import { Comments } from "./Comments";
 export function ImageDetails({ image }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const posts = useSelector((state) => state.postModule.posts);
-  const post = posts.find((post) => post.imgUrl === image.imgUrl);
-  const [postComments, setPostComments] = useState(post.comments || []);
-
+  const storys = useSelector((state) => state.storyModule.storys);
+  const story = storys.find((story) => story.imgUrl === image.imgUrl);
+  const [storyComments, setStoryComments] = useState(story?.comments || []);
   const dispatch = useDispatch();
 
 
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
- 
 
+  if (!story) {
+    return <div>Story not found for this image.</div>; // Provide meaningful fallback UI
+  }
+
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+  
   const getImageSrc = (image) => 
    image.startsWith('http') ? image : `/src/assets/images/${image}.jpeg`;
 
   const updateComments = (updatedComments) => {
-    setPostComments(updatedComments);
+    setStoryComments(updatedComments);
   };
 
-    if (!post) return null;
     return (
       <div className="gallery-item">
         <img
           src={getImageSrc(image.imgUrl)}
-          alt="User post"
+          alt="User story"
           onClick={toggleModal}
           style={{ cursor: "pointer" }}
         />
@@ -43,19 +46,19 @@ export function ImageDetails({ image }) {
               </button>
               <img
                 src={getImageSrc(image.imgUrl)}
-                alt="Post Image"
+                alt="Story Image"
                 style={{ width: "100%" }}
               />
               <div className="modal-body">
                 <Likes
-                  initialLikes={post.likedBy.length}
-                  likedBy={post.likedBy}
-                  postId={post._id}
+                  initialLikes={story.likedBy.length}
+                  likedBy={story.likedBy}
+                  storyId={story._id}
                 />
                 <Comments
-                  comments={post.comments}
-                  postId={post._id}
-                  updatePost={updateComments}
+                  comments={story.comments}
+                  storyId={story._id}
+                  updateStory={updateComments}
                 />
               </div>
             </div>

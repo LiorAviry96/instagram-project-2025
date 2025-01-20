@@ -6,13 +6,13 @@ import { Link } from "react-router";
 import { useState } from "react";
 
 
-export function PostPreview({ post }) {
+export function StoryPreview({ story }) {
   
-  const [postComments, setPostComments] = useState(post.comments || []);
-  const { imgUrl, comments, owner, createdAt,txt } = post
+  const [storyComments, setStoryComments] = useState(story.comments || []);
+  const { imgUrl, comments, owner, createdAt,txt } = story
 
   const updateComments = (updatedComments) => {
-    setPostComments(updatedComments);
+    setStoryComments(updatedComments);
   };
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
 
@@ -29,20 +29,20 @@ export function PostPreview({ post }) {
         <p className="timeAgo">{timeAgo}</p>
       </div>
       {imgUrl ? (
-        <img src={getImageSrc(imgUrl)} style={{ width: "100%" }} alt="Post Preview" />
+        <img src={getImageSrc(imgUrl)} style={{ width: "100%" }} alt="Story Preview" />
       ) : (
         <p>No image available</p>
       )}
      
 
     <Likes
-      initialLikes={post.likedBy?.length || 0}
-      likedBy={post.likedBy || []}
+      initialLikes={story.likedBy?.length || 0}
+      likedBy={story.likedBy || []}
       commentCount={comments?.length || 0}
-      postId = {post._id}
+      storyId = {story._id}
     />   
      <p className="description">{txt}</p>   
-      <Comments comments={postComments} postId={post._id} updatePost={updateComments} />
+      <Comments comments={storyComments} storyId={story._id} updateStory={updateComments} />
       </div>
   );
 }

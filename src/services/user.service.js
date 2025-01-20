@@ -74,6 +74,8 @@ function saveLoggedinUser(user) {
     }
 	user = { 
         _id: user._id, 
+        username: user.username, 
+        password: user.password, 
         fullname: user.fullname, 
         imgUrl: user.imgUrl, 
         following: user.following || [],
