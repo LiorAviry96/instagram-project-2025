@@ -3,69 +3,101 @@
 import { ImgUploader } from "./ImgUploader";
 import { updateUserImage } from "../store/actions/user.actions";
 import { useState } from "react";
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router';
 import { userService } from "../services/user.service";
 import { createStory } from "../store/actions/story.actions";
 import { useSelector } from "react-redux";
 
-
 export function CreateStory({ onClose }) {
-    const [imgUrl, setImgUrl] = useState("")
+    const [newImgUrl, setNewImgUrl] = useState("");
     const [storyText, setStoryText] = useState(""); 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const user = useSelector((storeState) => storeState.userModule.user);
+    console.log('user',user.imgUrl)
+
 
     async function onUpadteImages(ev = null) {
         if (ev) ev.preventDefault();
-        if (!imgUrl) return console.error('Invalid image URL');
+        if (!newImgUrl) return console.error('Invalid image URL');
 
         try {
-
-            await updateUserImage(imgUrl);
-            console.log('Image uploaded successfully');
+            await updateUserImage(newImgUrl);
 
             const newStory = {
                 txt: storyText,
-                imgUrl: imgUrl,
+                imgUrl: newImgUrl,
                 owner: {
-                    _id:  userService.getLoggedinUser()._id,
-                    fullname:  userService.getLoggedinUser().fullname,
-                    imgeUrl:  userService.getLoggedinUser().imgUrl,
+                    _id: userService.getLoggedinUser()._id,
+                    fullname: userService.getLoggedinUser().fullname,
+                    imgUrl: userService.getLoggedinUser().imgUrl,
                 },
                 comment: [],
                 likedBy: [],
                 createdAt: new Date().toISOString(),
-            };  
-            console.log('newStory', newStory)
+            };
 
             await createStory(newStory);
-            onClose(); 
-            console.log('Story created successfully');
+            onClose();
             navigate('/');
         } catch (err) {
             console.error('Failed to update user image or create story:', err);
         }
-
     }
+
     function onUploaded(imgUrl) {
-        setImgUrl(imgUrl)
+        setNewImgUrl(imgUrl);
     }
+
+   const getImageSrc = (image) => {
+        if (!image || !image.imgUrl) {
+            console.error("Image source is not available");
+            return "";
+        }
+        return image.imgUrl.startsWith("http") 
+            ? image.imgUrl 
+            : `/src/assets/images/${image.imgUrl}.jpeg`;
+    };
+
     return (
-
-            <div className="upload-item">
-                <form onSubmit={onUpadteImages}>
-                <ImgUploader onUploaded={onUploaded}/>
-                <textarea
-                    value={storyText}
-                    onChange={(ev) => setStoryText(ev.target.value)}
-                    placeholder="Write something about your image..."
-                />
-                <button className="uploadSubmit">Submit</button>
-                </form>
-                
-                
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <button
+                    className="submit-modal-upload"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                       onUpadteImages()
+                    }}
+                >
+                    Submit
+                </button>
+              
+                <div className="modal-horizontal">
+                    <div className="modal-image-container">
+                        {newImgUrl ? (
+                            <img src={newImgUrl} alt="Uploaded preview" className="modal-image" />
+                        ) : (
+                            <ImgUploader onUploaded={onUploaded} />
+                        )}
+                    </div>
+                    <div className="modal-details">
+                   { newImgUrl &&  <div className="username-modal">
+                    <img
+                            src={`src/assets/images/${user.imgUrl}.jpeg`}
+                            alt="Story Image"
+                            className="modal-userimg"
+                        />
+                               <p  className="modal-username"><strong>{user.fullname}</strong> </p> 
+                            </div>
+                            }
+                        <textarea
+                            value={storyText}
+                            onChange={(ev) => setStoryText(ev.target.value)}
+                            placeholder="Write something about your image..."
+                            className="modal-textarea"
+                        />
+                    </div>
+                </div>
             </div>
-
-
-    )
+        </div>
+    );
 }

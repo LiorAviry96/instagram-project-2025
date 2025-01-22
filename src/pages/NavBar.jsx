@@ -30,13 +30,11 @@ export function NavBar() {
   }
 
   if (!user) {
-    // Render only the login link if the user is not logged in
     return (
       <Login/>
     );
   }
 
-  // Render the full navigation bar if the user is logged in
   return (
     <div className="navbar">
       <img className="logo" src="/src/assets/images/Instagram_logo.png" alt="Logo" />
