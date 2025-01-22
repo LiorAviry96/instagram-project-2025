@@ -29,6 +29,7 @@
     display: flex;
     flex-direction: row;
     height: 100%;
+    padding: 0px;
 }
 
 .modal-actions {
@@ -40,12 +41,11 @@
 .modal-image-container {
     flex: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    //justify-content: center;
+    //align-items: center;
     background: #f9f9f9; 
     max-height: 100%; 
     overflow: hidden; 
-    padding: 0;
 
   }
 .modal-image {
@@ -84,10 +84,17 @@
 .modal-description {
   margin-bottom: 10px;
   display: flex;
-
+  .modal-userimg{
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    object-fit: cover;
+    margin-right: 15px;
+    }
   p{
     padding-right: 20px !important;
     margin-top: 10px;
   }
+
 }
 

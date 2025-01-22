@@ -58,3 +58,12 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+
+  .comment span {
+    padding-left: 3px !important;
+    font-size: 14px !important;
+    padding-top: 1px;
+  }
+}

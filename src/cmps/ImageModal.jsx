@@ -34,7 +34,7 @@ export function ImageModal({ image, txt, story, updateComments, toggleModal }) {
                     <div className="modal-details">
                         <div className="modal-description">
                         <img
-                            src={`src/assets/images/${story.owner.imgUrl}.jpeg`}
+                            src={`/src/assets/images/${story.owner.imgUrl}.jpeg`}
                             alt="Story Image"
                             className="modal-userimg"
                         />

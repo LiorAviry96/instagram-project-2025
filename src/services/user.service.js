@@ -110,9 +110,9 @@ async function _createUsers() {
                         imgUrl: "user3",
                     },
                     {
-                        _id: "u122",
-                        fullname: "JohnD",
-                        imgUrl: "user1",
+                        _id: "u140",
+                        fullname: "Ronen Chen",
+                        imgUrl: "user8",
                     },
                 ],
                 followers: [
@@ -120,6 +120,11 @@ async function _createUsers() {
                         _id: "u196",
                         fullname: "Dorothy Smith",
                         imgUrl: "user3",
+                    },
+                    {
+                        _id: "u140",
+                        fullname: "Ronen Chen",
+                        imgUrl: "user8",
                     },
                 ],
                 images: [
@@ -265,6 +270,46 @@ async function _createUsers() {
                 following: [],
                 followers: [],
                 images: [],
+            },
+            {
+                _id: "u140",
+                username: 'Ronen',
+                password: '12345',
+                fullname: 'Ronen Chen',
+                imgUrl: "user8",
+                following: [
+        
+                    {
+                        _id: "u122",
+                        fullname: "John Doe",
+                        imgUrl: "user1",
+                    },
+            
+                    {
+                        _id: "u196",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "user3",
+                    },
+                ],
+                followers: [
+                    {
+                        _id: "u196",
+                        fullname: "Dorothy Smith",
+                        imgUrl: "user3",
+                    },
+                ],
+                images: [
+                    {
+                        userId: "u140",
+                        fullname: "Ronen Chen",
+                        imgUrl: "post9",
+                    },
+                    {
+                        userId: "u140",
+                        fullname: "Ronen Chen",
+                        imgUrl: "post8",
+                    },
+                ],
             },
         ];
         console.log('users', users)
