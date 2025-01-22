@@ -5,24 +5,85 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(125, 125, 125, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+   
   }
   
   .modal-content {
     /* Keep the other modal's styles unchanged */
     background: white;
-    padding: 20px;
     border-radius: 8px;
+    max-width: 85%;
+    display: flex;
+    flex-direction: row;
+    position: relative; /* Keep content aligned properly */
   }
-  .modal-content img {
-    max-width: 90%; /* Ensure the image doesn't exceed 90% of the modal's width */
-    max-height: 80vh; /* Ensure the image doesn't exceed 80% of the viewport height */
-    object-fit: contain; /* Maintain the image's aspect ratio */
-    display: block; /* Center the image properly */
-    margin: 0 auto; /* Center the image horizontally */
+ 
+  .description-modal{
+    margin-bottom: 10px;    
   }
-  
+
+  .modal-horizontal {
+    display: flex;
+    flex-direction: row;
+    height: 100%; /* Fill the modal's height */
+}
+
+.modal-actions {
+  margin-top: auto; /* Push the actions to the bottom */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Add spacing between the Likes and Comments components */
+}
+.modal-image-container {
+    flex: 1; /* Take up half of the horizontal space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f9f9f9; /* Optional background for the image container */
+    max-height: 100%; /* Keep the image container height consistent */
+    overflow: hidden; /* Prevent any overflow */
+    padding: 0; /* Remove padding */
+
+  }
+.modal-image {
+  width: 99%;
+  max-width: 99%;
+  object-fit: coverף
+
+}
+.modal-details {
+  flex: 1; /* Take up the other half of the horizontal space */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Add scrolling if the content overflows */
+}
+.divider--modal{
+  width: 100%;
+  height: 1px;
+  background-color: #dbdbdb; /* Light gray color */
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px; /* Position the button outside the modal */
+  right: 10px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1100; /* Ensure it stays above the modal */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modal-description {
+  margin-bottom: 10px;
+}

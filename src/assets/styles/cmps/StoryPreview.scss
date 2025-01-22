@@ -6,11 +6,12 @@
   padding-left: 3px !important;
   border-bottom: 1px solid $border-color;
 
-  .ownerPost {
+  .owner-post {
     display: flex;
     align-items: center;
     color: $text-color;
     text-decoration: none;
+    font-weight: bold;
 
     img {
       border-radius: 50%;
@@ -22,10 +23,11 @@
   }
 
   .timeAgo {
-    font-size: 12px;
+    font-size: 13px;
     color: $secondary-color;
   }
 }
+
 
 .post {
   background: #fff;
@@ -45,6 +47,13 @@
   }
 }
 .border-itmes-feed{
+  width: 470px;
   padding-bottom: 40px;
   border-bottom: 1.5px solid $secondary-color;
+  border-radius: 10px;
+
+  .story-preview{
+    border-radius: 3px;
+     width: 100%;
+  }
 }

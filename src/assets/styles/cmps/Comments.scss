@@ -13,14 +13,14 @@
 
       strong {
         color: $text-color;
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
 
       span {
         color: $text-color;
         padding-left: 10px;
         font-size: 14px;
-        padding-top: 4px;
+        padding-top: 1px;
       }
     }
   }
@@ -36,6 +36,11 @@
       padding: $spacing / 2;
       margin-right: $spacing / 2;
       background-color: $background-color;
+      font-size: 0.9rem;
+
+      &:focus {
+        outline: none;
+     }
     }
 
     .comment-submit-btn {

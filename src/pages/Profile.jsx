@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useParams } from 'react-router-dom'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { loadUser, unfollowUser, followUser } from "../store/actions/user.actions";
 import { ImageDetails } from "../cmps/ImageDetails";
 export function Profile() {
     //const dispatch = useDispatch();
     const watchedUser = useSelector((state) => state.userModule.watchedUser);
     const loggedInUser = useSelector((state) => state.userModule.user); 
+    const dispatch = useDispatch();
 
     const { userId } = useParams()
     console.log('watchedUser', watchedUser)
@@ -14,9 +15,10 @@ export function Profile() {
 
     useEffect(() => {
         if (!watchedUser || watchedUser._id !== userId) {
+            console.log('use effect user')
             loadUser(userId);
         }
-    }, [userId, watchedUser]);
+    }, [userId, watchedUser, dispatch]);
 
     const isOwnProfile = loggedInUser?._id === watchedUser?._id;
     
@@ -38,7 +40,7 @@ export function Profile() {
                 />
                 <div className="profile-info">
                     <div className="username-section">
-                    <h3 className="fullname">{watchedUser.fullname}</h3>
+                    <h3 className="fullname">{watchedUser.username}</h3>
 
                     {!isOwnProfile && ( // Hide buttons if it's the logged-in user's profile
                             <div className="action-buttons">
@@ -65,7 +67,7 @@ export function Profile() {
                             <strong>{watchedUser.following?.length || 0}</strong> following
                         </span>
                     </div>
-                    <p className="fullname">{watchedUser.fullname}</p>
+                    <p className="username">{watchedUser.fullname}</p>
 
                  
                 </div>

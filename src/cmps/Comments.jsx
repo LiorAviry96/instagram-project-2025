@@ -6,6 +6,13 @@ import { storyService } from "../services/story.service";
 export function Comments({ comments, storyId, updateStory }) {
   const [newComment, setNewComment] = useState("");
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleAddComment();
+    }
+  };
+
+  
   const handleAddComment = async () => {
     const loggedInUser = userService.getLoggedinUser();
 
@@ -67,11 +74,12 @@ export function Comments({ comments, storyId, updateStory }) {
           placeholder="Add a comment..."
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
+          onKeyDown={handleKeyDown}
           className="comment-input"
         />
-        <button onClick={handleAddComment} className="comment-submit-btn">
+        {/* <button onClick={handleAddComment} className="comment-submit-btn">
           Post
-        </button>
+        </button>*/} 
       </div>
     </div>
   );

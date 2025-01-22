@@ -128,7 +128,7 @@ export async function followUser(userIdToFollow) {
         if (!loggedInUser.following.some(user => user._id === userIdToFollow)) {
             loggedInUser.following.push({ 
                 _id: targetUser._id, 
-                username: targetUser.username, 
+                fullname: targetUser.fullname, 
                 imgUrl: targetUser.imgUrl 
             });
 
@@ -136,7 +136,7 @@ export async function followUser(userIdToFollow) {
             if (!targetUser.followers.some(user => user._id === loggedInUser._id)) {
                 targetUser.followers.push({ 
                     _id: loggedInUser._id, 
-                    username: loggedInUser.username, 
+                    fullname: loggedInUser.fullname, 
                     imgUrl: loggedInUser.imgUrl 
                 });
             }

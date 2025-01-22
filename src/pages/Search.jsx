@@ -22,7 +22,7 @@ export function Search({ onClose }) {
       setSearchResults(following);
     } else {
       const results = following.filter((user) =>
-        user.fullname.toLowerCase().includes(searchTerm.toLowerCase())
+        user?.fullname?.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setSearchResults(results);
     }

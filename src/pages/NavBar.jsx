@@ -52,8 +52,14 @@ export function NavBar() {
           </span>
         </li>
         <li className="navbar-item">
-          <i className="fas fa-envelope"></i>
+          <i className="fa-regular fa-comment-dots"></i>
           <Link to="/">Messages</Link>
+        </li>
+        <li className="navbar-item">
+          <i className="fa-regular fa-heart"></i>
+          <span className="search-btn" >
+            Notifications
+          </span>
         </li>
         <li className="navbar-item">
           <i className="fas fa-pen"></i>
@@ -76,7 +82,7 @@ export function NavBar() {
 
       {/* Create Story Modal */}
       <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <CreateStory />
+        <CreateStory onClose={() => setIsModalOpen(false)} />
       </Modal>
 
       {/* Search Modal */}

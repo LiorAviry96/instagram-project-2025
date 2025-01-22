@@ -12,8 +12,33 @@
   align-items: center;
   margin-bottom: 10px;
 }
-.search-item{
+.search-dropdown {
+  width: 100%; /* Match the width of the search bar */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px; /* Rounded bottom corners for consistency */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  overflow: hidden;
+}
+
+.search-results {
   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.search-item img.user-avatar {
+  margin: 15px 0px 5px 5px ;
+  width: 40px; /* Fixed width for uniformity */
+  height: 40px; /* Fixed height for uniformity */
+  border-radius: 50%; /* Make it circular */
+  object-fit: cover; /* Ensure proper image fit */
+  margin-right: 10px; /* Space between image and text */
+}
+
+.search-item .search-fullname {
+  flex-grow: 1; /* Ensure text takes up remaining space */
+  font-size: 1rem; /* Consistent font size */
+  padding-top: 10px !important;
 }
 .search-header{
   font-size: 1.3rem;
@@ -45,7 +70,10 @@ a {
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  animation: slideDown 0.3s ease-in-out;
+  position: absolute;
+  left: 150px; /* Adjust as needed for starting position */
+  top: 50px; /* Keep this or adjust based on your layout */
+  animation: slideRight 0.3s ease-in-out;
 
   .search-bar{
     width: 100%;
@@ -56,10 +84,16 @@ a {
     
 
     input{
-      background-color: $secondary-color !important; 
+      background-color: $secondary-color !important;
       border: none !important;
+      padding: 5px 12px; /* Adjust top/bottom and left/right padding as needed */
+      font-size: 1rem; /* Optional: Adjust font size for better alignment */
+      border-radius: 5px; /* Ensures consistent rounded corners */
      
-
+      &::placeholder {
+        color: #aaa; /* Optional: Customize placeholder color */
+      }
+      
       &:focus {
         border-color: $secondary-color !important;
         background-color: #ffffff;
@@ -69,20 +103,22 @@ a {
     
   }
 }
-.user-avatar{
+/*.user-avatar{
   width: 40px;
   height: 40px;
-  border-radius: 50px;
+  margin-left: 0px !important;
   margin-right: 20px;
-}
+  border-radius: 50%;
+  object-fit: cover;
+}*/
 /* Opening animation */
-@keyframes slideDown {
+@keyframes slideRight {
   from {
-    transform: translateY(-20px);
+    transform: translateX(-20px);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
   }
 }

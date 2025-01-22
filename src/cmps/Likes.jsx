@@ -5,15 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateStory } from "../store/actions/story.actions";
 import { userService } from "../services/user.service";
 import { storyService } from "../services/story.service";
+import { ImageModal } from "./ImageModal";
 
 export function Likes({ initialLikes, likedBy, storyId }) {
   const dispatch = useDispatch();
-  
   const story = useSelector(state => state.storyModule.storys.find(story => story._id === storyId));
   const [likes, setLikes] = useState(initialLikes || 0);
   const [isLiked, setIsLiked] = useState(false);
   const [likedUsers, setLikedUsers] = useState(likedBy || []);
-  
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const shouldShowLikes = isLiked && likes > 1;
+
+
   useEffect(() => {
     if (story) {
       setIsLiked(story.likedBy.some(user => user._id === userService.getLoggedinUser()?._id));
@@ -24,9 +27,8 @@ export function Likes({ initialLikes, likedBy, storyId }) {
 
   const handleLike = async () => {
     const loggedInUser = userService.getLoggedinUser();
-    
     if (!loggedInUser) {
-      alert('Please log in to like storys');
+      alert('Please log in to like stories');
       return;
     }
 
@@ -41,7 +43,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
         likedBy: updatedLikedBy,
       };
 
-      dispatch(updateStory(updatedStory)); // Dispatch to update Redux state
+      updateStory(updatedStory); // Dispatch to update Redux state
 
       setLikes(updatedLikedBy.length);
       setLikedUsers(updatedLikedBy);
@@ -50,6 +52,8 @@ export function Likes({ initialLikes, likedBy, storyId }) {
       console.error('Failed to update likes:', err);
     }
   };
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen); // Toggle modal visibility
 
   const getRandomLiker = () => {
     if (likedUsers.length === 0) return "Anonymous";
@@ -67,13 +71,27 @@ export function Likes({ initialLikes, likedBy, storyId }) {
           onClick={handleLike}
           className={`heart-icon ${isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}`}
         ></i>
-        <i className="fa-regular fa-comment comment-icon"></i>
+        <i className="fa-regular fa-comment comment-icon" onClick={toggleModal}></i>
         <i className="fa-regular fa-paper-plane send-icon"></i>
       </button>
-      {isLiked && (
+      {shouldShowLikes && (
         <p>
           Liked by <b>{randomLiker}</b> and <b>{othersCount > 0 && ` ${othersCount} others`}</b>
         </p>
+      )}
+    {isModalOpen && (
+        <div className="modal-overlay" onClick={toggleModal}>
+          <ImageModal
+            image={{ imgUrl: story?.imgUrl }}
+            story={story}
+            txt={story.txt}
+            toggleModal={toggleModal}
+            updateComments={(updatedComments) => {
+              const updatedStory = { ...story, comments: updatedComments };
+              dispatch(updateStory(updatedStory));
+            }}
+          />
+        </div>
       )}
     </div>
   );

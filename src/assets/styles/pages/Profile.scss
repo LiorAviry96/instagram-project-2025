@@ -1,5 +1,6 @@
 .profile-page {
-    width: 100%;
+    width: 900px;
+    
     padding: $spacing;
   
     .profile-header {
@@ -95,9 +96,10 @@
       background-color: #dbdbdb; /* Light gray color */
       margin: 40px 0; /* Adjust spacing as needed */
   }  
+  
     .profile-gallery {
         display: grid;
-        gap: $spacing;
+        gap: 10px;
     
         // Responsive design for gallery grid
         grid-template-columns: repeat(3, 1fr);
@@ -116,13 +118,30 @@
           border-radius: 5px;
     
           img {
+            border-radius: 3px;
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
-            padding-top: 20px;
             
           }
         }
       }
     }
+      @media (max-width: 768px) {
+        span {
+          font-size: 2rem !important;
+
+          strong {
+            font-size: 2rem !important;
+            font-weight: bold;
+          }
+        }
+        .username {
+          font-size: 1.8rem;
+        }
+        .fullname {
+          font-size: 3rem !important;
+        }
+      }
+    

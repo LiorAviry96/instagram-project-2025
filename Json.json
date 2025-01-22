@@ -12,7 +12,7 @@ const "post" = {
         "id": "c1001",
         "by": {
           "_id": "u105",
-          "fullname": "Bob",
+          "fullname": "Robi",
           "imgUrl": "http://some-img"
         },
         "txt": "good one!",
@@ -30,7 +30,7 @@ const "post" = {
     "likedBy": [
       {
         "_id": "u105",
-        "fullname": "Bob",
+        "fullname": "Robi",
         "imgUrl": "http://some-img"
       },
       {
@@ -59,7 +59,7 @@ const "post" = {
     "followers": [
       {
         "_id": "u105",
-        "fullname": "Bob",
+        "fullname": "Robi",
         "imgUrl": "http://some-img"
       }
     ],

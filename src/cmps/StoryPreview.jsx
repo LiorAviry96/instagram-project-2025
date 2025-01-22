@@ -9,9 +9,10 @@ import { useState } from "react";
 export function StoryPreview({ story }) {
   
   const [storyComments, setStoryComments] = useState(story.comments || []);
-  const { imgUrl, comments, owner, createdAt,txt } = story
+  const { imgUrl, comments, owner, createdAt, txt } = story
 
   const updateComments = (updatedComments) => {
+    console.log('update the comments')
     setStoryComments(updatedComments);
   };
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
@@ -22,14 +23,14 @@ export function StoryPreview({ story }) {
   return (
     <div className="border-itmes-feed">
        <div className="post-header">
-        <Link className="ownerPost" to={`/user/${owner._id}`} >
+        <Link className="owner-post" to={`/user/${owner._id}`} >
         <img src={`src/assets/images/${owner.imgUrl}.jpeg`} className="userProfileImg" ></img>
          {owner?.fullname || "Anonymous"}
          </Link>
         <p className="timeAgo">{timeAgo}</p>
       </div>
       {imgUrl ? (
-        <img src={getImageSrc(imgUrl)} style={{ width: "100%" }} alt="Story Preview" />
+        <img className="story-preview" src={getImageSrc(imgUrl)} alt="Story Preview" />
       ) : (
         <p>No image available</p>
       )}
@@ -41,8 +42,10 @@ export function StoryPreview({ story }) {
       commentCount={comments?.length || 0}
       storyId = {story._id}
     />   
-     <p className="description">{txt}</p>   
+    
+   <p className="description"><strong>{owner?.fullname}</strong> {txt}</p>   
       <Comments comments={storyComments} storyId={story._id} updateStory={updateComments} />
+     
       </div>
   );
 }

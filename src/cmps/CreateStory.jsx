@@ -5,7 +5,6 @@ import { updateUserImage } from "../store/actions/user.actions";
 import { useState } from "react";
 import { useNavigate } from 'react-router'
 import { userService } from "../services/user.service";
-import { makeId } from "../services/util.service";
 import { createStory } from "../store/actions/story.actions";
 import { useSelector } from "react-redux";
 

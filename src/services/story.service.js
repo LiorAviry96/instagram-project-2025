@@ -69,7 +69,7 @@ async function save(story) {
         }
         console.log('Saved story:', savedStory)
 
-        savedStory = await storageService.story(STORAGE_KEY, storyToSave)
+        savedStory = await storageService.post(STORAGE_KEY, storyToSave)
     }
 
    

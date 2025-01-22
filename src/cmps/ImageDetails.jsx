@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Likes } from "./Likes";
 import { Comments } from "./Comments";
+import { ImageModal } from "./ImageModal";
 
 export function ImageDetails({ image }) {
 
@@ -40,29 +41,10 @@ export function ImageDetails({ image }) {
   
         {isModalOpen && (
           <div className="modal-overlay" onClick={toggleModal}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <button className="close-modal" onClick={toggleModal}>
-                X
-              </button>
-              <img
-                src={getImageSrc(image.imgUrl)}
-                alt="Story Image"
-                style={{ width: "100%" }}
-              />
-              <div className="modal-body">
-                <Likes
-                  initialLikes={story.likedBy.length}
-                  likedBy={story.likedBy}
-                  storyId={story._id}
-                />
-                <Comments
-                  comments={story.comments}
-                  storyId={story._id}
-                  updateStory={updateComments}
-                />
-              </div>
-            </div>
-          </div>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>  
+           <ImageModal txt={story.txt} story={story} image={image} toggleModal={toggleModal} updateComments={updateComments} /> 
+      </div>
+      </div>
         )}
       </div>
     );
