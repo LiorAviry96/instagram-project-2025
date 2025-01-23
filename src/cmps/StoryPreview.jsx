@@ -36,8 +36,8 @@ export function StoryPreview({ story }) {
 
   return (
     <div className="border-items-feed">
-       <div className="post-header">
-        <Link className="owner-post" to={`/user/${owner._id}`} >
+       <div className="story-header">
+        <Link className="owner-story" to={`/user/${owner._id}`} >
         <img src={`src/assets/images/${owner.imgUrl}.jpeg`} className="userProfileImg" ></img>
          {owner?.fullname || "Anonymous"}
          </Link>

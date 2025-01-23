@@ -50,6 +50,7 @@
   font-size: 1.5rem;
   cursor: pointer;
   color: #888;
+  border-radius: 50%;
   transition: color 0.2s;
 }
 
@@ -69,7 +70,7 @@ a {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(110, 109, 109, 0.2);
   position: absolute;
   left: 150px; /* Adjust as needed for starting position */
   top: 50px; /* Keep this or adjust based on your layout */
@@ -78,13 +79,13 @@ a {
   .search-bar{
     width: 100%;
     border: none;
-    background-color: $secondary-color;
+    background-color: #dbdbdb !important;
     padding: 8px 0px;
     border-radius: 5px;
     
 
     input{
-      background-color: $secondary-color !important;
+      background-color: #dbdbdb !important;
       border: none !important;
       padding: 5px 12px; /* Adjust top/bottom and left/right padding as needed */
       font-size: 1rem; /* Optional: Adjust font size for better alignment */

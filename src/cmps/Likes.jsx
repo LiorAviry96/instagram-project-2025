@@ -15,7 +15,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
   const [likedUsers, setLikedUsers] = useState(likedBy || []);
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const shouldShowLikes = isLiked && likes > 1;
-
+  const shouldShowLikes2 = !isLiked && likes > 1;
 
   useEffect(() => {
     if (story) {
@@ -74,13 +74,15 @@ export function Likes({ initialLikes, likedBy, storyId }) {
         <i className="fa-regular fa-comment comment-icon" onClick={toggleModal}></i>
         <i className="fa-regular fa-paper-plane send-icon"></i>
       </button>
-      {shouldShowLikes ? (
+      {shouldShowLikes && (
         <p>
           Liked by <b>{randomLiker}</b> and <b>{othersCount > 0 && ` ${othersCount} others`}</b>
         </p>
-      ) : ( <p className="number-likes">{likes} likes</p>
-
       )}
+       {shouldShowLikes2 &&(
+       <p className="number-likes">{likes} likes</p>
+      )}
+     
     {isModalOpen && (
         <div className="modal-overlay" onClick={toggleModal}>
           <ImageModal

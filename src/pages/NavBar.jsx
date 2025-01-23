@@ -77,6 +77,9 @@ export function NavBar() {
           <span className="logout" onClick={onLogout}>
             Logout
           </span>
+        </li> 
+         <li className="navbar-item">
+          <i className="fa-solid fa-bars bars-icon"></i>
         </li>
       </ul>
 
@@ -91,6 +94,11 @@ export function NavBar() {
           <Search onClose={() => setIsSearchModalOpen(false)} />
         </div>
       )}
+
+
+
+  
+
     </div>
   );
 }

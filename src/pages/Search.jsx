@@ -3,30 +3,34 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { userService } from "../services/user.service";
+import { useSelector } from "react-redux";
 
 export function Search({ onClose }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [following, setFollowing] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
+  const [list, setList] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const loggedInUser = userService.getLoggedinUser();
-    if (loggedInUser?.following) {
-      setFollowing(loggedInUser.following);
-    }
-  }, []);
+    loadUsers()
+}, [])
+
+async function loadUsers() {
+    const users = await userService.getUsers()
+    setList(users)
+}
 
   useEffect(() => {
     if (searchTerm === "") {
-      setSearchResults(following);
+      setSearchResults(list);
     } else {
-      const results = following.filter((user) =>
+      const results = list.filter((user) =>
         user?.fullname?.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setSearchResults(results);
     }
-  }, [searchTerm, following]);
+  }, [searchTerm, list]);
 
   return (
     <div className="search-component">
@@ -48,6 +52,7 @@ export function Search({ onClose }) {
       onChange={(e) => setSearchTerm(e.target.value)}
       autoFocus
     />
+   
   </div>
 
   {isFocused && searchResults.length > 0 && (
