@@ -74,10 +74,12 @@ export function Likes({ initialLikes, likedBy, storyId }) {
         <i className="fa-regular fa-comment comment-icon" onClick={toggleModal}></i>
         <i className="fa-regular fa-paper-plane send-icon"></i>
       </button>
-      {shouldShowLikes && (
+      {shouldShowLikes ? (
         <p>
           Liked by <b>{randomLiker}</b> and <b>{othersCount > 0 && ` ${othersCount} others`}</b>
         </p>
+      ) : ( <p className="number-likes">{likes} likes</p>
+
       )}
     {isModalOpen && (
         <div className="modal-overlay" onClick={toggleModal}>

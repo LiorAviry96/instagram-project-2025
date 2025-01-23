@@ -8,6 +8,8 @@ import { CreateStory } from "../cmps/CreateStory";
 import { Modal } from "../cmps/Modal";
 import { Search } from "./Search";
 import { Login } from "./Login";
+import { CreatePostSvg } from "../cmps/svg/CreatePostSvg";
+import { MessagesSVG } from "../cmps/svg/MessagesSvg";
 
 export function NavBar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,30 +41,30 @@ export function NavBar() {
     <div className="navbar">
       <img className="logo" src="/src/assets/images/Instagram_logo.png" alt="Logo" />
       <ul className="navbar-menu">
-        <li className="navbar-item">
-          <i className="fas fa-home"></i>
-          <Link to="/">Home</Link>
-        </li>
-        <li className="navbar-item">
-          <i className="fas fa-search"></i>
-          <span className="search-btn" onClick={toggleSearchModal}>
-            Search
-          </span>
-        </li>
-        <li className="navbar-item">
-          <i className="fa-regular fa-comment-dots"></i>
-          <Link to="/">Messages</Link>
-        </li>
+      <li className="navbar-item">
+        <i className="fas fa-home"></i>
+        <Link to="/">Home</Link>
+      </li>
+      <li className="navbar-item">
+        <i className="fas fa-search"></i>
+        <span className="search-btn" onClick={toggleSearchModal}>
+          Search
+        </span>
+      </li>
+      <li className="navbar-item">
+        <MessagesSVG className="messages-icon" />
+        <Link to="/">Messages</Link>
+      </li>
         <li className="navbar-item">
           <i className="fa-regular fa-heart"></i>
           <span className="search-btn" >
             Notifications
           </span>
         </li>
-        <li className="navbar-item">
-          <i className="fas fa-pen"></i>
-          <span onClick={() => setIsModalOpen(true)}>Create Post</span>
-        </li>
+        <li className="navbar-item" onClick={() => setIsModalOpen(true)}>
+          <CreatePostSvg className="create-post-icon" />
+          <span>Create Post</span>
+      </li>
         <li className="navbar-item">
           <img
             className="profile-image"

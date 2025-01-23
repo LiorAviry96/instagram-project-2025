@@ -1,9 +1,7 @@
 .post-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: $spacing;
-  padding-left: 3px !important;
+  padding: 10px 0px 10px 3px;
   border-bottom: 1px solid $border-color;
 
   .owner-post {
@@ -12,6 +10,9 @@
     color: $text-color;
     text-decoration: none;
     font-weight: bold;
+    margin-right: 12px !important;
+    font-size: 15px !important;
+
 
     img {
       border-radius: 50%;
@@ -20,12 +21,13 @@
       height: 40px;
       margin-right: $spacing / 2 + 5;
     }
+    
   }
-
   .timeAgo {
-    font-size: 13px;
+    font-size: 14px !important;
     color: $secondary-color;
   }
+  
 }
 
 
@@ -35,22 +37,23 @@
   margin-bottom: $spacing;
   border-radius: 8px;
   overflow: hidden;
+  
 
   img {
     width: 100%;
   }
 
-  .description {
-    padding: $spacing;
-    font-size: 14px;
-    color: $text-color;
-  }
+
 }
-.border-itmes-feed{
+.description {
+  color: $text-color;
+  font-size: $font-size-primary;
+
+}
+.border-items-feed{
   width: 490px;
-  padding-bottom: 40px;
-  border-bottom: 1.5px solid $secondary-color;
-  border-radius: 10px;
+  padding-bottom: 15px;
+  border-bottom: 1.5px solid #dbdbdb;
 
   .story-preview{
     border-radius: 3px;

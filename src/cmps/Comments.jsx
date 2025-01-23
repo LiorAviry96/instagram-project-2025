@@ -77,9 +77,11 @@ export function Comments({ comments, storyId, updateStory }) {
           onKeyDown={handleKeyDown}
           className="comment-input"
         />
-        {/* <button onClick={handleAddComment} className="comment-submit-btn">
-          Post
-        </button>*/} 
+            {newComment && (
+          <button onClick={handleAddComment} className="comment-submit-btn">
+            Post
+          </button>
+          )}
       </div>
     </div>
   );
