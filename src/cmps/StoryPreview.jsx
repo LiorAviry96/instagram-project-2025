@@ -58,8 +58,11 @@ export function StoryPreview({ story }) {
     />   
     
    <p className="description"><strong>{owner?.fullname}</strong> {txt}</p>   
-      <Comments comments={storyComments} storyId={story._id} updateStory={updateComments} />
-     
+   <Comments
+        comments={storyComments}
+        storyId={story._id}
+        updateStory={updateComments}
+      />     
       </div>
   );
 }

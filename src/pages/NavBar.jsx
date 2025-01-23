@@ -14,12 +14,14 @@ import { MessagesSVG } from "../cmps/svg/MessagesSvg";
 export function NavBar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const user = useSelector((storeState) => storeState.userModule.user);
 
   const navigate = useNavigate();
 
   const toggleSearchModal = () => setIsSearchModalOpen(!isSearchModalOpen);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const user = useSelector((storeState) => storeState.userModule.user);
 
   async function onLogout() {
     try {
@@ -73,14 +75,18 @@ export function NavBar() {
           />
           <Link to={`/user/${user._id}`}>Profile</Link>
         </li>
-        <li className="navbar-item">
-          <span className="logout" onClick={onLogout}>
-            Logout
-          </span>
-        </li> 
-         <li className="navbar-item">
-          <i className="fa-solid fa-bars bars-icon"></i>
-        </li>
+        
+        <li className="hamburger-menu">
+        <i className="fa-solid fa-bars" onClick={toggleMenu}> </i>
+        <span>More</span>
+        {isMenuOpen && (
+          <ul className="menu-options">
+            <li className="menu-option" onClick={onLogout}>
+              Logout
+            </li>
+          </ul>
+        )}
+      </li>
       </ul>
 
       {/* Create Story Modal */}

@@ -2,8 +2,9 @@
 
 import { Likes } from "./Likes";
 import { Comments } from "./Comments";
+import { AddComment } from "./AddComment";
 
-export function ImageModal({ image, txt, story, updateComments, toggleModal }) {
+export function ImageModal({ isModalOpen, image, txt, story, updateComments, toggleModal }) {
     const getImageSrc = (image) => {
         if (!image || !image.imgUrl) {
             console.error("Image source is not available");
@@ -44,7 +45,15 @@ export function ImageModal({ image, txt, story, updateComments, toggleModal }) {
                             <p>
                             {txt}
                             </p>
+
+                           
                         </div>
+                        <Comments
+                                comments={story.comments}
+                                storyId={story._id}
+                                updateStory={updateComments}
+                                isModalOpen={isModalOpen}
+                            />
                         <div className="modal-actions">
                             <div className="divider--modal"></div>
                             <Likes
@@ -52,11 +61,13 @@ export function ImageModal({ image, txt, story, updateComments, toggleModal }) {
                                 likedBy={story.likedBy}
                                 storyId={story._id}
                             />
-                            <Comments
-                                comments={story.comments}
-                                storyId={story._id}
-                                updateStory={updateComments}
+                            <AddComment
+                            comments={story.comments}
+                            storyId={story._id}
+                            updateStory={updateComments}
+                            isModalOpen={isModalOpen}
                             />
+                           
                         </div>
                     </div>
                 </div>

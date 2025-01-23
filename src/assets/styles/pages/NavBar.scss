@@ -4,10 +4,12 @@
   background-color: #fff;
   border-right: 1px solid #ddd;
   padding: 20px;
-  position: fixed;
+  position: relative;
+  display: block;
   top: 0;
   bottom: 0;
   left: 0;
+  overflow: auto !important; 
 }
 .logo{
   width: 135px;
@@ -51,7 +53,7 @@
 
 .navbar-item:hover {
   background-color: #ededed;
-  transition: all 0.3s ease;;
+  transition: all 0.3s ease;
 }
 
 .create-post-icon,
@@ -67,6 +69,59 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+}
+.hamburger-menu {
+  position: absolute;
+  bottom: 30px;
+  left: 20%;
+  transform: translateX(-50%);
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  border-radius: 8px;
+
+   span{
+    margin-left: 20px;
+    font-size: 1.1rem;
+
+  }
+}
+
+
+.hamburger-menu:hover{
+  background-color: #ededed;
+  transition: all 0.3s ease;
+}
+
+
+.hamburger-menu i {
+  font-size: 1.5rem;
+  color: black;
+}
+
+.menu-options {
+  position: absolute;
+  bottom: 40px; /* Position above the hamburger icon */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  list-style: none;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-option {
+  padding: 10px;
+  font-size: 1rem;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+}
+
+.menu-option:hover {
+  background-color: #f0f0f0;
 }
 
 @media (max-width: 1200px) {

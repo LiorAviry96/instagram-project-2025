@@ -1,7 +1,5 @@
 .profile-page {
     width: 900px;
-    
-    padding: $spacing;
   
     .profile-header {
       display: flex;
@@ -105,11 +103,11 @@
         // Responsive design for gallery grid
         grid-template-columns: repeat(3, 1fr);
     
-        @media (max-width: 768px) {
+        @media (max-width: 1068px) {
           grid-template-columns: repeat(2, 1fr);
         }
     
-        @media (max-width: 480px) {
+        @media (max-width: 680px) {
           grid-template-columns: 1fr;
         }
     

@@ -24,7 +24,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
       setLikedUsers(story.likedBy);
     }
   }, [story, storyId]);
-
+  console.log('isModalOpen', isModalOpen)
   const handleLike = async () => {
     const loggedInUser = userService.getLoggedinUser();
     if (!loggedInUser) {
@@ -90,6 +90,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
             story={story}
             txt={story.txt}
             toggleModal={toggleModal}
+            isModalOpen={isModalOpen}
             updateComments={(updatedComments) => {
               const updatedStory = { ...story, comments: updatedComments };
               dispatch(updateStory(updatedStory));
