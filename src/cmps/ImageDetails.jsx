@@ -16,7 +16,7 @@ export function ImageDetails({ image }) {
 
 
   if (!story) {
-    return <div>Story not found for this image.</div>; // Provide meaningful fallback UI
+    return <div>Story not found for this image.</div>; 
   }
 
 
@@ -41,7 +41,13 @@ export function ImageDetails({ image }) {
         {isModalOpen && (
           <div className="modal-overlay" onClick={toggleModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>  
-           <ImageModal isModalOpen={isModalOpen} txt={story.txt} story={story} image={image} toggleModal={toggleModal} updateComments={updateComments} /> 
+           <ImageModal
+            isModalOpen={isModalOpen}
+           txt={story.txt} 
+           story={story} 
+           image={image}
+          toggleModal={toggleModal}
+            updateComments={updateComments} /> 
       </div>
       </div>
         )}

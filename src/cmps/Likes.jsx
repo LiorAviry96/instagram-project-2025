@@ -13,7 +13,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
   const [likes, setLikes] = useState(initialLikes || 0);
   const [isLiked, setIsLiked] = useState(false);
   const [likedUsers, setLikedUsers] = useState(likedBy || []);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);  
   const shouldShowLikes = isLiked && likes > 1;
   const shouldShowLikes2 = !isLiked && likes > 1;
 
@@ -24,7 +24,6 @@ export function Likes({ initialLikes, likedBy, storyId }) {
       setLikedUsers(story.likedBy);
     }
   }, [story, storyId]);
-  console.log('isModalOpen', isModalOpen)
   const handleLike = async () => {
     const loggedInUser = userService.getLoggedinUser();
     if (!loggedInUser) {

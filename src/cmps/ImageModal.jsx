@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
 
 import { Likes } from "./Likes";
-import { Comments } from "./Comments";
 import { AddComment } from "./AddComment";
+import { ViewComments } from "./ViewComments";
 
 export function ImageModal({ isModalOpen, image, txt, story, updateComments, toggleModal }) {
+
+
+    
     const getImageSrc = (image) => {
         if (!image || !image.imgUrl) {
             console.error("Image source is not available");
@@ -48,12 +51,8 @@ export function ImageModal({ isModalOpen, image, txt, story, updateComments, tog
 
                            
                         </div>
-                        <Comments
-                                comments={story.comments}
-                                storyId={story._id}
-                                updateStory={updateComments}
-                                isModalOpen={isModalOpen}
-                            />
+                        <ViewComments comments={story.comments} />
+
                         <div className="modal-actions">
                             <div className="divider--modal"></div>
                             <Likes

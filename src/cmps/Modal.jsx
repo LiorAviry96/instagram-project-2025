@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 export function Modal({ show, onClose, children }) {
-  if (!show) return null; // Don't render the modal if not visible
+  if (!show) return null;
 
   return (
     <div className="modal-overlay" onClick={onClose}>

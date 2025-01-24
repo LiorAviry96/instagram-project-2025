@@ -9,7 +9,7 @@ export function CreatePostSvg(props) {
         role="img"
         viewBox="0 0 24 24"
         width={props.width || "24"}
-        {...props} // Pass additional props dynamically
+        {...props} 
       >
         <title>Create Post</title>
         <path

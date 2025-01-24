@@ -1,32 +1,40 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
+import { useState } from "react";
 import { AddComment } from "./AddComment";
+import { ImageModal } from "./ImageModal";
+import { useDispatch, useSelector } from "react-redux";
 
-export function Comments({ comments, storyId, updateStory, isModalOpen }) {
+export function Comments({ comments, storyId, updateStory }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const story = useSelector((state) =>
+    state.storyModule.storys.find((story) => story._id === storyId)
+  );
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    
-  }, [comments.length]);
-  console.log('isModalOpen',isModalOpen)
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
   return (
-    <div className="comments-container">
-      {comments && comments.length > 0 ? (
-        <ul>
-          {comments.map((comment, index) => (
-            <li className="comment" key={comment.id || index}>
-              <strong>{comment.by.fullname || "User"}</strong>
-              <span>{comment.txt || "No comment text"}</span>
-            </li>
-          ))}
-        </ul>
+    <div>
+      {isModalOpen ? (
+        <ImageModal
+          isModalOpen={isModalOpen}
+          image={{ imgUrl: story?.imgUrl }}
+          txt={story?.txt}
+          story={story}
+          updateComments={(updatedComments) => {
+            const updatedStory = { ...story, comments: updatedComments };
+            dispatch(updateStory(updatedStory));
+          }}
+          toggleModal={toggleModal}
+        />
       ) : (
-        <p>No comments yet</p>
+        <div>
+          <button className="show-comments-btn" onClick={toggleModal}>
+            View All {comments.length} Comments
+          </button>
+          <AddComment storyId={storyId} updateStory={updateStory} />
+        </div>
       )}
-
-    {!isModalOpen && (
-      <AddComment storyId={storyId} updateStory={updateStory} />
-    )}
-      
     </div>
   );
 }
