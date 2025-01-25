@@ -42,7 +42,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
         likedBy: updatedLikedBy,
       };
 
-      updateStory(updatedStory); // Dispatch to update Redux state
+      updateStory(updatedStory); 
 
       setLikes(updatedLikedBy.length);
       setLikedUsers(updatedLikedBy);
@@ -52,7 +52,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
     }
   };
 
-  const toggleModal = () => setIsModalOpen(!isModalOpen); // Toggle modal visibility
+  const toggleModal = () => setIsModalOpen(!isModalOpen); 
 
   const getRandomLiker = () => {
     if (likedUsers.length === 0) return "Anonymous";

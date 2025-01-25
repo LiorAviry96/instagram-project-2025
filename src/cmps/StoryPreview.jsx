@@ -12,7 +12,6 @@ export function StoryPreview({ story }) {
   const { imgUrl, comments, owner, createdAt, txt } = story
 
   const updateComments = (updatedComments) => {
-    console.log('update the comments')
     setStoryComments(updatedComments);
   };
   const formatTimeAgo = (date) => {

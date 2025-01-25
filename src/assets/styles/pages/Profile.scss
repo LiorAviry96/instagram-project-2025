@@ -1,11 +1,13 @@
 .profile-page {
     width: 900px;
-  
+    margin: 0 auto; /* This centers the profile page horizontally */
+    padding-top: 40px;
+
     .profile-header {
       display: flex;
       align-items: center;
       margin: 50px;
-      //margin-bottom: $spacing;
+       margin-top: 0;
   
       .profile-img {
         width: 170px;

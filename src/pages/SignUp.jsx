@@ -22,7 +22,7 @@ export function SignUp() {
         }
         try {
             await signup(credentials);
-            navigate('/');
+            navigate('/home');
         } catch (err) {
             console.error("Signup failed", err);
             alert("Signup failed. Please try again.");
@@ -67,9 +67,9 @@ export function SignUp() {
                 />
                 <button type="submit">Sign Up</button>
             </form>
-            <p>
+            <p className="signup-switch">
                 Already have an account?{" "}
-                <button onClick={() => navigate("/login")}>Log In</button>
+                <button onClick={() => navigate("/")}>Log In</button>
             </p>
         </div>
     );

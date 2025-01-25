@@ -1,18 +1,15 @@
 .upload-preview {
     text-align: center;
-    margin: 20px auto;
     padding: 20px;
-    border: 2px dashed #ccc;
     border-radius: 10px;
     background-color: #f9f9f9;
     max-width: 100%;
-    width: 300px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 400px;
+    width: 500px;
     position: relative;
-
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
 
     img {
         max-width: 100%;
@@ -23,63 +20,44 @@
 
     label {
         display: inline-block;
-        font-size: 16px;
-        font-weight: bold;
-        margin: 10px 0;
+        font-weight: 500;
+        background: #007bff;
+        color: white;
+        padding: 7px 16px;
+        font-size: $font-size-primary;
+        border-radius: 8px;
         cursor: pointer;
-        color: #007bff;
-        transition: color 0.3s ease;
-        
+        position: relative;
+        transform: translateY(-50%);
+        margin: auto;
+        flex-direction: column;
+        align-items: center;
         &:hover {
             color: #0056b3; 
         }
     }
-
+    h2{
+        position: relative;
+        font-size: 0.9rem;
+        border-bottom: 1px black solid;
+        font-weight: 500 !important;
+    }
     input[type="file"] {
         display: none; 
     }
+    h4{
+        align-items: center;
+        margin-bottom: 20px;
+      }
 }
-.modal-textarea {
+.modal-image-upload{
     width: 100%;
-    min-height: 150px;
-    padding: 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: vertical;
-    transition: all 0.3s ease;
-    border: none;
-    
-    &:focus {
-        outline: none;
-        border-color: #007bff;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    }
-
-    &:hover {
-        border-color: #0056b3;
-    }
+    max-width: 400px; // Define width for the image
+    height: auto;
 }
-.uploadSubmit {
-    background-color: #007bff !important;
-    color: white;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 15px; 
-    display: flex;
-    margin: 0 auto;
-    &:hover {
-        background-color: #0056b3; 
-    }
 
-    &:focus {
-        outline: none;
-    }
-}
+
+
 .submit-modal-upload{
     position: absolute;
     top: 10px;
@@ -91,12 +69,27 @@
     padding: 5px 10px;
     cursor: pointer;
     font-size: 14px;
+    font-weight: bold;
     z-index: 1100;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
-
-.username-modal{
+.username-modal {
     display: flex;
-}
+    align-items: center;
+    gap: 10px;
+
+    .modal-userimg {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    
+  }
+
+  .modal-username {
+    display: flex;
+  }

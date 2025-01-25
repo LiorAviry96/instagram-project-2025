@@ -24,7 +24,7 @@
     
   }
   .timeAgo {
-    font-size: 14px !important;
+    font-size: $font-size-primary !important;
     color: $secondary-color;
   }
   
@@ -54,7 +54,7 @@
   width: 490px;
   padding-bottom: 15px;
   border-bottom: 1.5px solid #dbdbdb;
-
+  margin: auto;
   .story-preview{
     border-radius: 3px;
      width: 100%;

@@ -4,7 +4,7 @@ import { StoryPreview } from "./StoryPreview";
 export function StoryList({ storys }) {
   
   return (
-    <div>
+    <div className="feed-list">
       {storys.length > 0 ? (
         storys.map((story) => (
           <StoryPreview key={story._id} story={story} />

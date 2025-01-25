@@ -10,27 +10,28 @@ import { CreateStory } from "./cmps/CreateStory"
 import { Routes, Route } from 'react-router'
 
 
-
-
 export function RootCmp() {
 
     return (
+       
         <div className="main-container">
          
          <NavBar />
 
-            <main className="feed">
+            <main className="second-container">
                 <Routes> 
-                <Route path="/" element={<FeedIndex />} />
+                <Route path="/home" element={<FeedIndex />} />
                     <Route path="/user/:userId" element={<Profile />} />
                     <Route path="/user/:userId/search" element={<Search />} />
-                    <Route path="/user/:userId/upload" element={<CreateStory />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<SignUp />} />
-                        
+                    <Route path="/user/:userId/upload" element={<CreateStory />} />      
+                <Route path="/" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
                 </Routes>
+              
             </main>
        
         </div>
+       
+    
     )
 }

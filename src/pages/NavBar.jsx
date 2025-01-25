@@ -7,7 +7,6 @@ import { useState } from "react";
 import { CreateStory } from "../cmps/CreateStory";
 import { Modal } from "../cmps/Modal";
 import { Search } from "./Search";
-import { Login } from "./Login";
 import { CreatePostSvg } from "../cmps/svg/CreatePostSvg";
 import { MessagesSVG } from "../cmps/svg/MessagesSvg";
 
@@ -26,7 +25,7 @@ export function NavBar() {
   async function onLogout() {
     try {
       await logout();
-      navigate("/login");
+      navigate("/");
       showSuccessMsg("Bye now");
     } catch (err) {
       showErrorMsg("Cannot logout", err);
@@ -35,7 +34,7 @@ export function NavBar() {
 
   if (!user) {
     return (
-      <Login/>
+      <Link to={'/'}/>
     );
   }
 
@@ -45,7 +44,7 @@ export function NavBar() {
       <ul className="navbar-menu">
       <li className="navbar-item">
         <i className="fas fa-home"></i>
-        <Link to="/">Home</Link>
+        <Link to="/home">Home</Link>
       </li>
       <li className="navbar-item">
         <i className="fas fa-search"></i>
@@ -55,7 +54,7 @@ export function NavBar() {
       </li>
       <li className="navbar-item">
         <MessagesSVG className="messages-icon" />
-        <Link to="/">Messages</Link>
+        <Link to="/home">Messages</Link>
       </li>
         <li className="navbar-item">
           <i className="fa-regular fa-heart"></i>

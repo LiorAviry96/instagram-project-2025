@@ -24,7 +24,7 @@ export function Login() {
 
             if (!credentials.username) return
             await login(credentials)
-            navigate('/')
+            navigate('/home')
     }
 
    
@@ -36,7 +36,7 @@ export function Login() {
     }
     return (
         <div className="login">
-            <h2>Login</h2>
+        <i data-visualcompletion="css-img" aria-label="Instagram" className="logo-login"  role="img"></i>
             <form onSubmit={handleLogin}>
                 <input
                     type="text"
@@ -54,7 +54,7 @@ export function Login() {
                 />
                 <button type="submit">Login</button>
             </form>
-            <p>
+            <p className="signup-switch">
                 Don't have an account? <button onClick={() => navigate("/signup")}>Sign Up</button>
             </p>
         </div>

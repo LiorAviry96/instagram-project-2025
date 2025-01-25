@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { ImgUploader } from "./ImgUploader";
 import { updateUserImage } from "../store/actions/user.actions";
 import { useState } from "react";
@@ -16,7 +14,7 @@ export function CreateStory({ onClose }) {
     console.log('user',user.imgUrl)
 
 
-    async function onUpadteImages(ev = null) {
+    async function onUpdateImages(ev = null) {
         if (ev) ev.preventDefault();
         if (!newImgUrl) return console.error('Invalid image URL');
 
@@ -38,7 +36,7 @@ export function CreateStory({ onClose }) {
 
             await createStory(newStory);
             onClose();
-            navigate('/');
+            navigate('/home');
         } catch (err) {
             console.error('Failed to update user image or create story:', err);
         }
@@ -61,43 +59,53 @@ export function CreateStory({ onClose }) {
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <button
+            {newImgUrl && <button
                     className="submit-modal-upload"
                     onClick={(e) => {
                         e.stopPropagation();
-                       onUpadteImages()
+                        onUpdateImages();
                     }}
                 >
                     Submit
                 </button>
-              
+                }
                 <div className="modal-horizontal">
-                    <div className="modal-image-container">
-                        {newImgUrl ? (
-                            <img src={newImgUrl} alt="Uploaded preview" className="modal-image" />
-                        ) : (
-                            <ImgUploader onUploaded={onUploaded} />
-                        )}
-                    </div>
-                    <div className="modal-details">
-                   { newImgUrl &&  <div className="username-modal">
-                    <img
-                            src={`src/assets/images/${user.imgUrl}.jpeg`}
-                            alt="Story Image"
-                            className="modal-userimg"
-                        />
-                               <p  className="modal-username"><strong>{user.fullname}</strong> </p> 
+                    {newImgUrl ? (
+                        <>
+                            <div className="modal-image-container">
+                                <img src={newImgUrl} alt="Uploaded preview" className="modal-image-upload" />
                             </div>
-                            }
-                        <textarea
-                            value={storyText}
-                            onChange={(ev) => setStoryText(ev.target.value)}
-                            placeholder="Write something about your image..."
-                            className="modal-textarea"
-                        />
-                    </div>
+                            <div className="modal-details">
+                                    <div className="modal-description">
+                                        <img
+                                            src={`/src/assets/images/${user.imgUrl}.jpeg`}
+                                            alt="Story Image"
+                                            className="modal-userimg"
+                                        />
+                                        <p className="modal-username">
+                                            <strong>{user.fullname}</strong>
+                                        </p>
+                                </div>
+                                        <textarea
+                                            value={storyText}
+                                            onChange={(ev) => setStoryText(ev.target.value)}
+                                            placeholder="Write something about your image..."
+                                            className="modal-textarea"
+                                        />
+                                   
+                                
+                            </div>
+                        </>
+                    ) : (
+                        <div>
+                        <h2 htmlFor="label">Create New Post</h2>
+
+                        <ImgUploader onUploaded={onUploaded} />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
+
     );
 }
