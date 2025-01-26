@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Likes } from "./Likes";
 import { Comments } from "./Comments";
 import { ImageModal } from "./ImageModal";
+import { PostContext } from "./contexts/PostContext";
 
 export function ImageDetails({ image }) {
 
@@ -12,6 +13,8 @@ export function ImageDetails({ image }) {
   const storys = useSelector((state) => state.storyModule.storys);
   const story = storys.find((story) => story.imgUrl === image.imgUrl);
   const [storyComments, setStoryComments] = useState(story?.comments || []);
+  const { getImageSrc } = useContext(PostContext);
+  
   const dispatch = useDispatch();
 
 
@@ -22,9 +25,7 @@ export function ImageDetails({ image }) {
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
   
-  const getImageSrc = (image) => 
-   image.startsWith('http') ? image : `/src/assets/images/${image}.jpeg`;
-
+  
   const updateComments = (updatedComments) => {
     setStoryComments(updatedComments);
   };
@@ -32,7 +33,7 @@ export function ImageDetails({ image }) {
     return (
       <div className="gallery-item">
         <img
-          src={getImageSrc(image.imgUrl)}
+          src={getImageSrc(image)}
           alt="User story"
           onClick={toggleModal}
           style={{ cursor: "pointer" }}

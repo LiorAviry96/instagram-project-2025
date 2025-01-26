@@ -62,7 +62,24 @@
   height: 24px;
   flex-shrink: 0; /* Prevent icons from resizing */
 }
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust spacing between image and text */
+  text-decoration: none;
+  color: inherit;
+}
+.home-link {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+  text-decoration: none;
+  color: inherit;
+}
 
+.home-link:hover {
+  color: #007bff; /* Example hover effect */
+}
 .profile-image {
   width: 25px;
   height: 25px;
@@ -143,7 +160,9 @@
 .logo{
   display: none !important;
 }
-
+.hamburger-menu span{
+  display: none;
+}
 .navbar{
   width: 40px;
 }
@@ -166,6 +185,9 @@
   }
   .logo{
     display: none !important;
+  }
+  .hamburger-menu{
+    display: none;
   }
   .navbar-menu {
       flex-direction: row; 

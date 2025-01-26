@@ -1,17 +1,18 @@
+/* eslint-disable react/prop-types */
 import { ImgUploader } from "./ImgUploader";
 import { updateUserImage } from "../store/actions/user.actions";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from 'react-router';
 import { userService } from "../services/user.service";
 import { createStory } from "../store/actions/story.actions";
 import { useSelector } from "react-redux";
-
+import { PostContext } from "./contexts/PostContext";
 export function CreateStory({ onClose }) {
+    const navigate = useNavigate();
     const [newImgUrl, setNewImgUrl] = useState("");
     const [storyText, setStoryText] = useState(""); 
-    const navigate = useNavigate();
+    const { getImageSrc } = useContext(PostContext);
     const user = useSelector((storeState) => storeState.userModule.user);
-    console.log('user',user.imgUrl)
 
 
     async function onUpdateImages(ev = null) {
@@ -46,15 +47,6 @@ export function CreateStory({ onClose }) {
         setNewImgUrl(imgUrl);
     }
 
-   const getImageSrc = (image) => {
-        if (!image || !image.imgUrl) {
-            console.error("Image source is not available");
-            return "";
-        }
-        return image.imgUrl.startsWith("http") 
-            ? image.imgUrl 
-            : `/src/assets/images/${image.imgUrl}.jpeg`;
-    };
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -78,7 +70,8 @@ export function CreateStory({ onClose }) {
                             <div className="modal-details">
                                     <div className="modal-description">
                                         <img
-                                            src={`/src/assets/images/${user.imgUrl}.jpeg`}
+                                         src={getImageSrc(user.imgUrl)}
+                                          
                                             alt="Story Image"
                                             className="modal-userimg"
                                         />

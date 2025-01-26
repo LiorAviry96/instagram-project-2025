@@ -3,18 +3,20 @@ import { useSelector } from "react-redux";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { useNavigate } from "react-router";
 import { logout } from "../store/actions/user.actions";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { CreateStory } from "../cmps/CreateStory";
 import { Modal } from "../cmps/Modal";
 import { Search } from "./Search";
 import { CreatePostSvg } from "../cmps/svg/CreatePostSvg";
 import { MessagesSVG } from "../cmps/svg/MessagesSvg";
+import { PostContext } from "../cmps/contexts/PostContext";
 
 export function NavBar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = useSelector((storeState) => storeState.userModule.user);
+    const { getImageSrc } = useContext(PostContext);
 
   const navigate = useNavigate();
 
@@ -43,8 +45,10 @@ export function NavBar() {
       <img className="logo" src="/src/assets/images/Instagram_logo.png" alt="Logo" />
       <ul className="navbar-menu">
       <li className="navbar-item">
-        <i className="fas fa-home"></i>
-        <Link to="/home">Home</Link>
+        <Link to="/home" className="home-link">
+          <i className="fas fa-home"></i>
+          <span>Home</span>
+        </Link>
       </li>
       <li className="navbar-item">
         <i className="fas fa-search"></i>
@@ -67,12 +71,14 @@ export function NavBar() {
           <span>Create Post</span>
       </li>
         <li className="navbar-item">
+        <Link to={`/user/${user._id}`} className="profile-link">
           <img
             className="profile-image"
-            src={`/src/assets/images/${user.imgUrl || "default-profile"}.jpeg`}
+            src={getImageSrc(user.imgUrl)}
             alt="Profile"
           />
-          <Link to={`/user/${user._id}`}>Profile</Link>
+          <span>Profile</span>
+       </Link>
         </li>
         
         <li className="hamburger-menu">

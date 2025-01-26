@@ -3,20 +3,12 @@
 import { Likes } from "./Likes";
 import { AddComment } from "./AddComment";
 import { ViewComments } from "./ViewComments";
+import { useContext } from "react";
+import { PostContext } from "./contexts/PostContext";
 
 export function ImageModal({ isModalOpen, image, txt, story, updateComments, toggleModal }) {
+  const { getImageSrc } = useContext(PostContext);
 
-
-    
-    const getImageSrc = (image) => {
-        if (!image || !image.imgUrl) {
-            console.error("Image source is not available");
-            return "";
-        }
-        return image.imgUrl.startsWith("http") 
-            ? image.imgUrl 
-            : `/src/assets/images/${image.imgUrl}.jpeg`;
-    };
 
     return (
         <div className="modal-overlay" onClick={toggleModal}>
@@ -38,7 +30,7 @@ export function ImageModal({ isModalOpen, image, txt, story, updateComments, tog
                     <div className="modal-details">
                         <div className="modal-description">
                         <img
-                            src={`/src/assets/images/${story.owner.imgUrl}.jpeg`}
+                        src={getImageSrc(story.owner.imgUrl)}
                             alt="Story Image"
                             className="modal-userimg"
                         />

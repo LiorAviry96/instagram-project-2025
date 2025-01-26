@@ -6,7 +6,7 @@ import { NavBar } from "./pages/NavBar"
 import { Profile } from "./pages/Profile"
 import { Search } from "./pages/Search"
 import { CreateStory } from "./cmps/CreateStory"
-
+import { PostProvider } from "./cmps/contexts/PostContext"
 import { Routes, Route } from 'react-router'
 
 
@@ -15,7 +15,7 @@ export function RootCmp() {
     return (
        
         <div className="main-container">
-         
+         <PostProvider>
          <NavBar />
 
             <main className="second-container">
@@ -29,7 +29,7 @@ export function RootCmp() {
                 </Routes>
               
             </main>
-       
+            </PostProvider>
         </div>
        
     

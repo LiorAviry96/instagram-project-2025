@@ -37,7 +37,7 @@
     margin-top: 30px 0px 0px 0px;
     padding: 10px;
       font-size: 0.9rem !important;
-      border-bottom: 1px  rgba(125, 125, 125, 0.7) solid;
+      border-bottom: 1px #dbdbdb solid;
       font-weight: bold !important;
       display: flex;
       margin: 0 auto !important;
@@ -72,6 +72,7 @@
   background: #f9f9f9;
   max-height: 100%;
   overflow: hidden;
+  object-fit: cover;
 
   }
 
@@ -81,7 +82,7 @@
   width: 100%;
     max-width: 100%;
     object-fit: cover;
-    border-radius: 8px;
+   
 
 }
 .modal-details {

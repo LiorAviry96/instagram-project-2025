@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { loadUser, unfollowUser, followUser } from "../store/actions/user.actions";
 import { ImageDetails } from "../cmps/ImageDetails";
+import { PostContext } from "../cmps/contexts/PostContext";
+
 export function Profile() {
-    //const dispatch = useDispatch();
     const watchedUser = useSelector((state) => state.userModule.watchedUser);
     const loggedInUser = useSelector((state) => state.userModule.user); 
+     const { getImageSrc } = useContext(PostContext);
     const dispatch = useDispatch();
 
     const { userId } = useParams()
@@ -36,7 +38,7 @@ export function Profile() {
             <header className="profile-header">
                 <img
                     className="profile-img"
-                    src={`/src/assets/images/${watchedUser.imgUrl}.jpeg`}
+                    src={getImageSrc(watchedUser.imgUrl)} 
                 />
                 <div className="profile-info">
                     <div className="username-section">
