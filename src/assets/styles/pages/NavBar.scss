@@ -1,6 +1,5 @@
-/* Default styling for desktop */
 .navbar {
-  width: 250px; /* Desktop width */
+  width: 250px;
   background-color: #fff;
   border-right: 1px solid #ddd;
   padding: 20px;
@@ -25,8 +24,8 @@
 .navbar-item {
   margin-bottom: 20px;
   display: flex;
-  align-items: center; /* Ensure icon and text are aligned */
-  gap: 10px; /* Add spacing between icon and text */
+  align-items: center; 
+  gap: 10px; 
   padding: 10px 3px 10px 10px;
   border-radius: 8px;
   font-size: 1.1rem;
@@ -34,7 +33,7 @@
 }
 .navbar-item i {
   font-size: 1.3rem !important;
-  width: 24px; /* Ensure consistent width for icons */
+  width: 24px;
   text-align: center;
 }
 
@@ -58,27 +57,27 @@
 
 .create-post-icon,
 .messages-icon {
-  width: 24px; /* Maintain consistent icon size */
+  width: 24px; 
   height: 24px;
-  flex-shrink: 0; /* Prevent icons from resizing */
+  flex-shrink: 0; 
 }
 .profile-link {
   display: flex;
   align-items: center;
-  gap: 10px; /* Adjust spacing between image and text */
+  gap: 10px;
   text-decoration: none;
   color: inherit;
 }
 .home-link {
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between icon and text */
+  gap: 10px; 
   text-decoration: none;
   color: inherit;
 }
 
 .home-link:hover {
-  color: #007bff; /* Example hover effect */
+  color: #007bff;
 }
 .profile-image {
   width: 25px;
@@ -118,7 +117,7 @@
 
 .menu-options {
   position: absolute;
-  bottom: 40px; /* Position above the hamburger icon */
+  bottom: 40px; 
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
@@ -196,7 +195,7 @@
   }
 
   .navbar-item {
-    padding: 5px; /* Adjust for smaller screens */
+    padding: 5px; 
     justify-content: center;
 }
 

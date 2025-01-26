@@ -1,6 +1,6 @@
 .profile-page {
     width: 900px;
-    margin: 0 auto; /* This centers the profile page horizontally */
+    margin: 0 auto; 
     padding-top: 40px;
 
     .profile-header {
@@ -94,15 +94,14 @@
     .divider {
       width: 100%;
       height: 1px;
-      background-color: #dbdbdb; /* Light gray color */
-      margin: 40px 0 50px 0; /* Adjust spacing as needed */
+      background-color: #dbdbdb;
+      margin: 40px 0 50px 0;
   }  
   
     .profile-gallery {
         display: grid;
         gap: 6px;
     
-        // Responsive design for gallery grid
         grid-template-columns: repeat(3, 1fr);
     
         @media (max-width: 1068px) {

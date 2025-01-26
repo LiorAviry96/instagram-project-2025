@@ -69,7 +69,7 @@ export function NavBar() {
         <li className="navbar-item" onClick={() => setIsModalOpen(true)}>
           <CreatePostSvg className="create-post-icon" />
           <span>Create Post</span>
-      </li>
+        </li>
         <li className="navbar-item">
         <Link to={`/user/${user._id}`} className="profile-link">
           <img

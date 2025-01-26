@@ -50,16 +50,16 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 20px; // Add some space between the left and right sections
+  gap: 20px; 
   padding: 20px;
 }
 .modal-container{
   display: flex;
   width: 100%;
-  max-width: 900px; // Adjust as needed
+  max-width: 900px; 
 }
 .modal-actions {
-  margin-top: auto; /* Push the actions to the bottom */
+  margin-top: auto; 
   display: flex;
   flex-direction: column;
   gap: 10px; 
@@ -86,11 +86,11 @@
 
 }
 .modal-details {
-  flex: 1; /* Take up the other half of the horizontal space */
+  flex: 1; 
   padding: 20px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto; /* Add scrolling if the content overflows */
+  overflow-y: auto;
   
 
 }
@@ -98,12 +98,12 @@
 .divider--modal{
   width: 100%;
   height: 1px;
-  background-color: #dbdbdb; /* Light gray color */
+  background-color: #dbdbdb;
 }
 
 .close-modal {
   position: absolute;
-  top: 10px; /* Position the button outside the modal */
+  top: 10px;
   right: 10px;
   background: white;
   border: none;
