@@ -23,43 +23,13 @@
       }
     }
   }
-
-  .add-comment {
-    display: flex;
-    margin-top: $spacing;
-
-    .comment-input {
-      flex: 1;
-      border: none;
-      border-radius: 4px;
-      margin-right: $spacing / 2;
-      background-color: $background-color;
-      font-size: 0.9rem;
-
-      &:focus {
-        outline: none;
-     }
-    }
-
-    .comment-submit-btn {
-      background-color: white;
-      color: $primary-color !important;
-      border: none;
-      font-weight: 600;
-      border-radius: 4px;
-      padding: $spacing / 2 $spacing;
-      cursor: pointer;
-      transition: background-color 0.3s;
-
-      
-    }
-  }
 }
 
-.add-comment-modal {
+.add-comment {
   display: flex;
   margin-top: $spacing;
-
+  
+  
   .comment-input-modal {
     flex: 1;
     border: none;
@@ -80,6 +50,7 @@
     font-weight: 600;
     border-radius: 4px;
     padding: $spacing / 2 $spacing;
+    justify-content: flex-end;
     cursor: pointer;
     transition: background-color 0.3s;
 

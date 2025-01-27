@@ -59,18 +59,22 @@
   
             .follow-btn {
               background-color: $primary-color;
-              color: white;
+              color: white !important;
               font-weight: bold;
   
               &.active {
-                background-color: $secondary-color;
-                color: $text-color;
+                background-color: $grey-bg-color;
+                color: $text-color !important;
+                font-weight: bold;
+
               }
             }
   
             .message-btn {
-              background-color: $secondary-color;
+              background-color: $grey-bg-color;
               color: $text-color;
+              font-weight: bold;
+
             }
           }
         }
@@ -94,7 +98,7 @@
     .divider {
       width: 100%;
       height: 1px;
-      background-color: #dbdbdb;
+      background-color: $grey-bg-color;
       margin: 40px 0 50px 0;
   }  
   

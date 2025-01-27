@@ -55,7 +55,7 @@ export function AddComment({storyId , updateStory}) {
 
   return (
 
-      <div className="add-comment-modal">
+      <div className="add-comment">
         <input
           type="text"
           placeholder="Add a comment..."

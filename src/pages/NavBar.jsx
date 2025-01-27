@@ -10,6 +10,7 @@ import { Search } from "./Search";
 import { CreatePostSvg } from "../cmps/svg/CreatePostSvg";
 import { MessagesSVG } from "../cmps/svg/MessagesSvg";
 import { PostContext } from "../cmps/contexts/PostContext";
+import { ModalSearch } from "../cmps/ModalSearch";
 
 export function NavBar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,6 +22,7 @@ export function NavBar() {
   const navigate = useNavigate();
 
   const toggleSearchModal = () => setIsSearchModalOpen(!isSearchModalOpen);
+  console.log('isSearchModalOpen', isSearchModalOpen)
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
 
@@ -101,9 +103,9 @@ export function NavBar() {
       
       {/* Search Modal */}
       {isSearchModalOpen && (
-        <div className="search-modal-container">
+        <ModalSearch show={isSearchModalOpen} onClose={() => setIsModalOpen(false)} className="">
           <Search onClose={() => setIsSearchModalOpen(false)} />
-        </div>
+        </ModalSearch>
       )}
 
 

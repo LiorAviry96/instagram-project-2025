@@ -24,6 +24,7 @@ button {
   display: flex;
   gap: 18px; /* Adjust the gap between the left-side icons */
   align-items: center;
+ 
 }
 
 .right-icons {
@@ -45,11 +46,14 @@ i {
   }
 }
 
+
 .number-likes {
   display: block;
    font-weight: bold;
-  margin-top: 10px; /* Adds some space between the icons and the paragraph */
+  margin-top: 12px; /* Adds some space between the icons and the paragraph */
+  margin-bottom:  0px;
 }
+
 
 .fa-regular.fa-heart {
   color: black !important;

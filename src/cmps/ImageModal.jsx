@@ -5,19 +5,22 @@ import { AddComment } from "./AddComment";
 import { ViewComments } from "./ViewComments";
 import { useContext } from "react";
 import { PostContext } from "./contexts/PostContext";
-
+import { CloseButtonSvg } from "./svg/closeButtonSvg";
 export function ImageModal({ isModalOpen, image, txt, story, updateComments, toggleModal }) {
   const { getImageSrc } = useContext(PostContext);
 
 
     return (
         <div className="modal-overlay" onClick={toggleModal}>
-            <button className="close-modal" onClick={(e) => {
-                e.stopPropagation();
-                toggleModal();
-            }}>
-                X
-            </button>
+           <div className="close-modal" onClick={(e) => {
+        e.stopPropagation();
+        toggleModal();
+      }}>
+        <CloseButtonSvg onClick={(e) => {
+          e.stopPropagation();
+          toggleModal();
+        }} />
+      </div>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-horizontal">
                     <div className="modal-image-container">

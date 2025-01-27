@@ -1,7 +1,7 @@
 .story-header {
   display: flex;
   align-items: center;
-  padding: 10px 0px 10px 3px;
+  padding: 15px 0px 10px 3px;
   border-bottom: 1px solid $border-color;
 
   .owner-story {
@@ -48,12 +48,12 @@
 .description {
   color: $text-color;
   font-size: $font-size-primary;
-  margin-top: 5px !important;
+  margin-top: 10px !important;
 }
 .border-items-feed{
   width: 490px;
   padding-bottom: 15px;
-  border-bottom: 1.5px solid #dbdbdb;
+  border-bottom: 1.5px solid $grey-bg-color;
   margin: auto;
   .story-preview{
     border-radius: 3px;

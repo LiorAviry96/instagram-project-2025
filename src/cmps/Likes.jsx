@@ -140,7 +140,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
     </div>
   </button>
       {shouldShowLikes && (
-        <p>
+        <p className="number-likes">
           Liked by <b>{randomLiker}</b> and <b>{othersCount > 0 && ` ${othersCount} others`}</b>
         </p>
       )}

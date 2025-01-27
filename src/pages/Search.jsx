@@ -32,13 +32,15 @@ async function loadUsers() {
     }
   }, [searchTerm, list]);
 
+  const clearSearchTerm = () => {
+    setSearchTerm(""); // Clear the input
+  };
+
   return (
-    <div className="search-component">
-  <div className="search-header-container">
-    <h2 className="search-header">Search</h2>
-    <button className="close-btn" onClick={onClose}>
-      ✖
-    </button>
+    <div className="search-modal-container">
+  <div className="search-header">
+    <h2 className="search-btn">Search</h2>
+  
   </div>
   <div
     className={`search-bar ${isFocused ? "active" : ""}`}
@@ -49,11 +51,20 @@ async function loadUsers() {
       type="text"
       placeholder="Search..."
       value={searchTerm}
+      className="input-search"
       onChange={(e) => setSearchTerm(e.target.value)}
       autoFocus
     />
+
+    {searchTerm && (
+          <button className="clear-button" onClick={clearSearchTerm}>
+            &times; {/* This is the "X" symbol */}
+          </button>
+        )}
    
   </div>
+  <div className="divider-search"></div>
+
 
   {isFocused && searchResults.length > 0 && (
     <div className="search-dropdown">
