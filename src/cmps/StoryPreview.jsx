@@ -10,6 +10,7 @@ import { useContext, useState } from "react";
 export function StoryPreview({ story }) {
   
   const [storyComments, setStoryComments] = useState(story.comments || []);
+  
   const { getImageSrc } = useContext(PostContext);
 
   const { imgUrl, comments, owner, createdAt, txt } = story

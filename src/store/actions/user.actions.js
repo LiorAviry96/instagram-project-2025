@@ -87,6 +87,24 @@ export async function loadUser(userId) {
     }
 }
 
+export async function updateUser(updatedUser) {
+    console.log('updatedUser actions', updatedUser)
+    try {
+        
+        const savedUser = await userService.update(updatedUser);
+
+      store.dispatch({
+        type: SET_USER,
+        story: savedUser,
+      });
+
+      console.log('User updated  successfully:', savedUser);
+    } catch (err) {
+      console.error('Error updating user', err);
+      throw err;
+    }
+  }
+  
 
 export async function updateUserImage(imgUrl) {
     try {

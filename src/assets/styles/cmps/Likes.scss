@@ -1,48 +1,72 @@
-.likes{
+.likes {
+  font-size: 0.9rem;
+  display: flex;
+  padding: 0px !important;
+  flex-direction: column; /* Stack the elements vertically */
+  justify-content: flex-start; /* Align items to the top */
+  align-items: flex-start; /* Align the items to the start */
+}
 
-font-size: 0.9rem;
 button {
   display: flex;
   align-items: center;
   border: none;
+  padding: 0px;
   background: none;
   cursor: pointer;
   color: black !important;
-  padding-top: 10px ;
+  padding-top: 10px;
+  width: 100%; /* Make button take the full width */
+  justify-content: space-between; /* Distribute space between left and right icons */
+}
 
-  i {
-    font-size: 1.5rem;
-    margin-right: 18px;
-    color: black;
+.left-icons {
+  display: flex;
+  gap: 18px; /* Adjust the gap between the left-side icons */
+  align-items: center;
+}
 
-    &.fa-heart {
-      color: red;
-    }
+.right-icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align bookmark icon to the right */
+}
+
+i {
+  font-size: 1.4rem;
+  color: black;
+
+  &.fa-heart {
+    color: red;
+  }
+
+  &:hover {
+    color: rgb(137, 134, 134) !important;
   }
 }
-}
-.number-likes{
-  padding-left: 5px;
-  font-weight: bold;
+
+.number-likes {
+  display: block;
+   font-weight: bold;
+  margin-top: 10px; /* Adds some space between the icons and the paragraph */
 }
 
-
-.fa-regular.fa-heart{
+.fa-regular.fa-heart {
   color: black !important;
 }
+
 .fa-solid.fa-heart {
   color: red !important;
 }
 
-.heart-icon:hover{
+.heart-icon:hover {
   color: rgb(137, 134, 134) !important;
 }
 
-.send-icon:hover{
+.send-icon:hover {
   color: rgb(137, 134, 134) !important;
-
 }
-.comment-icon:hover{
-  color: rgb(137, 134, 134) !important;
 
+.comment-icon:hover {
+  color: rgb(137, 134, 134) !important;
 }

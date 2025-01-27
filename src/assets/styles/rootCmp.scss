@@ -8,3 +8,7 @@
   
 
 
+  .second-container {
+    flex: 1; /* Occupies remaining space */
+    overflow-y: auto;
+  }

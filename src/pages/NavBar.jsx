@@ -98,7 +98,7 @@ export function NavBar() {
       <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <CreateStory onClose={() => setIsModalOpen(false)} />
       </Modal>
-
+      
       {/* Search Modal */}
       {isSearchModalOpen && (
         <div className="search-modal-container">

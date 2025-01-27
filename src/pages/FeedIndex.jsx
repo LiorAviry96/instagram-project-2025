@@ -13,7 +13,7 @@ export function FeedIndex() {
     const storys = useSelector(storeState => storeState.storyModule.storys)
     const user = useSelector(storeState => storeState.storyModule.user)
     console.log('storys', storys)
-    
+
     useEffect(() =>{
         loadStorys()
     },[dispatch])

@@ -81,6 +81,7 @@ function saveLoggedinUser(user) {
         following: user.following || [],
         followers: user.followers || [],
         images: user.images || [],   
+        savedStorys: user.savedStorys || [],   
     }
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 	return user
@@ -134,6 +135,13 @@ async function _createUsers() {
                         imgUrl: "postImage1",
                     },
                 ],
+                savedStorys: [
+                    {
+                        userId: "u409",
+                        fullname: "Chris Taylor",
+                        imgUrl: "postImage5",
+                    },
+                ],
             },
             {
                 _id: "u138",
@@ -167,6 +175,7 @@ async function _createUsers() {
                         imgUrl: "postImage3",
                     },
                 ],
+                savedStorys: [],
             },
             {
                 _id: "u196",
@@ -211,6 +220,13 @@ async function _createUsers() {
                     },
 
                 ],
+                savedStorys: [
+                    {
+                        userId: "u140",
+                        fullname: "Ronen Chen",
+                        imgUrl: "post9",
+                    },
+                ],
             },
             {
                 _id: "u409",
@@ -238,6 +254,13 @@ async function _createUsers() {
                         imgUrl: "postImage5",
                     },
                 ],
+                savedStorys: [
+                    {
+                        userId: "u140",
+                        fullname: "Ronen Chen",
+                        imgUrl: "post9",
+                    },
+                ],
             },
             {
                 _id: "u129",
@@ -260,6 +283,18 @@ async function _createUsers() {
                         imgUrl: "postImage6",
                     },
                 ],
+                savedStorys: [
+                    {
+                        userId: "u409",
+                        fullname: "Chris Taylor",
+                        imgUrl: "postImage5",
+                    },
+                    {
+                        userId: "u140",
+                        fullname: "Ronen Chen",
+                        imgUrl: "post9",
+                    },
+                ],
             },
             {
                 _id: "u119",
@@ -270,6 +305,13 @@ async function _createUsers() {
                 following: [],
                 followers: [],
                 images: [],
+                savedStorys: [
+                    {
+                        userId: "u140",
+                        fullname: "Ronen Chen",
+                        imgUrl: "post8",
+                    },
+                ],
             },
             {
                 _id: "u140",
@@ -310,12 +352,19 @@ async function _createUsers() {
                         imgUrl: "post8",
                     },
                 ],
+                savedStorys: [
+                    {
+                        userId: "u409",
+                        fullname: "Chris Taylor",
+                        imgUrl: "postImage5",
+                    },
+                ],
             },
         ];
-        console.log('users', users)
        saveToStorage(STORAGE_KEY_LOGGEDIN_USER, users);
 
 
     }
-   
+    console.log('users', users)
+
 }

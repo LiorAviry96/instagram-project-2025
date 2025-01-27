@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateStory } from "../store/actions/story.actions";
 import { userService } from "../services/user.service";
 import { storyService } from "../services/story.service";
+import { updateUser } from "../store/actions/user.actions";
 import { ImageModal } from "./ImageModal";
 
 export function Likes({ initialLikes, likedBy, storyId }) {
@@ -14,6 +15,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
   const [isLiked, setIsLiked] = useState(false);
   const [likedUsers, setLikedUsers] = useState(likedBy || []);
   const [isModalOpen, setIsModalOpen] = useState(false);  
+  const [isSaved, setIsSaved] = useState(false);  
   const shouldShowLikes = isLiked && likes > 1;
   const shouldShowLikes2 = !isLiked && likes > 1;
 
@@ -22,9 +24,18 @@ export function Likes({ initialLikes, likedBy, storyId }) {
       setIsLiked(story.likedBy.some(user => user._id === userService.getLoggedinUser()?._id));
       setLikes(story.likedBy.length);
       setLikedUsers(story.likedBy);
-    }
+      const loggedInUser = userService.getLoggedinUser();
+
+      if (loggedInUser) {
+      const isStorySaved = loggedInUser.savedStorys.some(savedStory => savedStory.userId === story.owner._id && savedStory.imgUrl === story.imgUrl);
+      setIsSaved(isStorySaved);
+      }
+      }
   }, [story, storyId]);
+
+
   const handleLike = async () => {
+   
     const loggedInUser = userService.getLoggedinUser();
     if (!loggedInUser) {
       alert('Please log in to like stories');
@@ -52,6 +63,55 @@ export function Likes({ initialLikes, likedBy, storyId }) {
     }
   };
 
+  const handleSaveStory = async () => {
+    const loggedInUser = userService.getLoggedinUser();
+
+    if (!loggedInUser) {
+        alert('Please log in to save stories');
+        return;
+    }
+
+    try {
+        const fullStory = await storyService.getById(storyId);
+
+        const existingSavedStory = loggedInUser.savedStorys.find(
+            (savedStory) =>
+                savedStory.userId === fullStory.owner._id && savedStory.imgUrl === fullStory.imgUrl
+        );
+
+        let updatedSavedStorys;
+        if (existingSavedStory) {
+            // If the story is already saved, remove it from savedStorys
+            updatedSavedStorys = loggedInUser.savedStorys.filter(
+                (savedStory) =>
+                    savedStory.userId !== fullStory.owner._id || savedStory.imgUrl !== fullStory.imgUrl
+            );
+            setIsSaved(false);
+        } else {
+            // If the story is not saved, add it to savedStorys
+            const savedStory = {
+                userId: fullStory.owner._id,
+                fullname: fullStory.owner.fullname,
+                imgUrl: fullStory.imgUrl,
+            };
+            updatedSavedStorys = [...loggedInUser.savedStorys, savedStory];
+            setIsSaved(true);
+        }
+
+        const updatedUser = {
+            ...loggedInUser,
+            savedStorys: updatedSavedStorys,
+        };
+
+        // Update the user in storage
+        await userService.update(updatedUser);
+        alert(isSaved ? "Story removed from saved" : "Story saved successfully!");
+    } catch (err) {
+        console.error('Failed to save story:', err);
+    }
+};
+
+
   const toggleModal = () => setIsModalOpen(!isModalOpen); 
 
   const getRandomLiker = () => {
@@ -65,14 +125,20 @@ export function Likes({ initialLikes, likedBy, storyId }) {
 
   return (
     <div className="likes">
-      <button>
-        <i
-          onClick={handleLike}
-          className={`heart-icon ${isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}`}
-        ></i>
-        <i className="fa-regular fa-comment comment-icon" onClick={toggleModal}></i>
-        <i className="fa-regular fa-paper-plane send-icon"></i>
-      </button>
+   <button>
+    <div className="left-icons">
+      <i
+        onClick={handleLike}
+        className={`heart-icon ${isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}`}
+      ></i>
+      <i className="fa-regular fa-comment comment-icon" onClick={toggleModal}></i>
+      <i className="fa-regular fa-paper-plane send-icon"></i>
+    </div>
+    <div className="right-icons">
+      <i
+      className={`heart-icon ${isSaved ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"}`} onClick={handleSaveStory}></i>
+    </div>
+  </button>
       {shouldShowLikes && (
         <p>
           Liked by <b>{randomLiker}</b> and <b>{othersCount > 0 && ` ${othersCount} others`}</b>
