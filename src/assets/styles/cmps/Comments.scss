@@ -6,19 +6,32 @@
     padding: 0;
 
     .comment {
-      margin-bottom: $spacing / 2;
+      margin-bottom: 20px;
       display: flex;
+
+      .comment-img {
+        width: 32px;
+        height: 32px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 18px;
+      }
 
       strong {
         color: $text-color;
         font-size: $font-size-primary;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       span {
         color: $text-color;
-        padding-left: 10px;
+        padding-left: 8px;
         font-size: $font-size-primary;
-        padding-top: 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
@@ -40,7 +53,6 @@
     margin-right: 0px;
     padding: 0;
   }
-
   .emoji-picker {
     position: absolute;
     top: 40px; /* Adjust based on input height */

@@ -5,9 +5,8 @@
 
   .profile-header {
     display: flex;
-    align-items: center;
     margin: 45px;
-    margin-top: 0;
+    align-items: center; /* Align items vertically in the center */
 
     .profile-img {
       width: 170px;
@@ -24,7 +23,7 @@
 
       .username-section {
         display: flex;
-        justify-content: space-between;
+        //justify-content: space-between;
         align-items: center;
         width: 100%;
 

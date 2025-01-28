@@ -57,7 +57,7 @@ export function CreateStory({ onClose }) {
               onUpdateImages();
             }}
           >
-            Submit
+            Share
           </button>
         )}
         <div className="modal-horizontal">
