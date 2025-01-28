@@ -33,7 +33,7 @@ async function loadUsers() {
   }, [searchTerm, list]);
 
   const clearSearchTerm = () => {
-    setSearchTerm(""); // Clear the input
+    setSearchTerm(""); 
   };
 
   return (

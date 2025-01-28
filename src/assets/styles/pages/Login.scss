@@ -10,15 +10,15 @@
     .signup-switch{
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Center content horizontally */
-        align-items: center; /* Center content vertically */
+        justify-content: center; 
+        align-items: center; 
         font-size: $font-size-primary;
         padding-bottom: 20px;
     }
       .signup-switch button{
         background-color: white;
-        justify-content: center; /* Center content horizontally */
-        align-items: center; /* Center content vertically */
+        justify-content: center; 
+        align-items: center; 
         border: none;
         color: $primary-color !important;
         font-weight: bold;
@@ -72,9 +72,9 @@
       }
      
       button {
-        display: flex; /* Make it a flex container */
-        justify-content: center; /* Center content horizontally */
-        align-items: center; /* Center content vertically */
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
         font-size: $font-size-primary;
         font-weight: bold;
         color: #fff !important;
@@ -82,7 +82,7 @@
         border: none;
         border-radius: 6px;
         background-color: #0095F6;
-        text-align: center; /* Optional but good for consistency */
+        text-align: center;
         margin: auto;
         margin-top: 15px;
         cursor: pointer;

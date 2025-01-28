@@ -2,9 +2,9 @@
   font-size: 0.9rem;
   display: flex;
   padding: 0px !important;
-  flex-direction: column; /* Stack the elements vertically */
-  justify-content: flex-start; /* Align items to the top */
-  align-items: flex-start; /* Align the items to the start */
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
 }
 
 button {
@@ -16,13 +16,13 @@ button {
   cursor: pointer;
   color: black !important;
   padding-top: 10px;
-  width: 100%; /* Make button take the full width */
-  justify-content: space-between; /* Distribute space between left and right icons */
+  width: 100%; 
+  justify-content: space-between;
 }
 
 .left-icons {
   display: flex;
-  gap: 18px; /* Adjust the gap between the left-side icons */
+  gap: 18px; 
   align-items: center;
  
 }
@@ -30,7 +30,7 @@ button {
 .right-icons {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Align bookmark icon to the right */
+  justify-content: flex-end; 
 }
 
 i {
@@ -50,7 +50,7 @@ i {
 .number-likes {
   display: block;
    font-weight: bold;
-  margin-top: 12px; /* Adds some space between the icons and the paragraph */
+  margin-top: 12px; 
   margin-bottom:  0px;
 }
 

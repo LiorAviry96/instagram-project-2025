@@ -53,7 +53,7 @@ export function Profile() {
                     <div className="username-section">
                     <h3 className="fullname">{watchedUser.username}</h3>
 
-                    {!isOwnProfile && ( // Hide buttons if it's the logged-in user's profile
+                    {!isOwnProfile && ( 
                             <div className="action-buttons">
                                 <button
                                     className={`follow-btn ${isFollowing ? "active" : ""}`}

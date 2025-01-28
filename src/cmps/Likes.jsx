@@ -81,14 +81,12 @@ export function Likes({ initialLikes, likedBy, storyId }) {
 
         let updatedSavedStorys;
         if (existingSavedStory) {
-            // If the story is already saved, remove it from savedStorys
             updatedSavedStorys = loggedInUser.savedStorys.filter(
                 (savedStory) =>
                     savedStory.userId !== fullStory.owner._id || savedStory.imgUrl !== fullStory.imgUrl
             );
             setIsSaved(false);
         } else {
-            // If the story is not saved, add it to savedStorys
             const savedStory = {
                 userId: fullStory.owner._id,
                 fullname: fullStory.owner.fullname,
