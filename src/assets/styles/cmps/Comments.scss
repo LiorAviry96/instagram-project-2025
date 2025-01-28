@@ -27,6 +27,29 @@
 .add-comment {
   display: flex;
   margin-top: $spacing;
+  position: relative;
+  gap: 8px; /* Small space between emoji and input */
+
+  .emoji-picker-btn {
+    background: none;
+    display: flex;
+    width: 20px;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 0px;
+    padding: 0;
+  }
+
+  .emoji-picker {
+    position: absolute;
+    top: 40px; /* Adjust based on input height */
+    left: 0;
+    z-index: 10;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
 
   .comment-input-modal {
     flex: 1;

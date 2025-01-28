@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export function Comments({ comments, storyId, updateStory }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const story = useSelector((state) =>
     state.storyModule.storys.find((story) => story._id === storyId)
   );
