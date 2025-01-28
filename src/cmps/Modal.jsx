@@ -6,7 +6,9 @@ export function Modal({ show, onClose, children }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="close-modal" onClick={onClose}>X</button>
+        <button className="close-modal" onClick={onClose}>
+          X
+        </button>
         {children}
       </div>
     </div>

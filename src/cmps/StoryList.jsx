@@ -2,13 +2,10 @@
 import { StoryPreview } from "./StoryPreview";
 
 export function StoryList({ storys }) {
-  
   return (
     <div className="feed-list">
       {storys.length > 0 ? (
-        storys.map((story) => (
-          <StoryPreview key={story._id} story={story} />
-        ))
+        storys.map((story) => <StoryPreview key={story._id} story={story} />)
       ) : (
         <p>No storys to display</p>
       )}

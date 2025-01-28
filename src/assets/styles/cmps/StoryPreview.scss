@@ -13,7 +13,6 @@
     margin-right: 12px !important;
     font-size: 15px !important;
 
-
     img {
       border-radius: 50%;
       object-fit: cover;
@@ -21,15 +20,12 @@
       height: 40px;
       margin-right: $spacing / 2 + 5;
     }
-    
   }
   .timeAgo {
     font-size: $font-size-primary !important;
     color: $secondary-color;
   }
-  
 }
-
 
 .post {
   background: #fff;
@@ -37,26 +33,23 @@
   margin-bottom: $spacing;
   border-radius: 8px;
   overflow: hidden;
-  
 
   img {
     width: 100%;
   }
-
-
 }
 .description {
   color: $text-color;
   font-size: $font-size-primary;
   margin-top: 10px !important;
 }
-.border-items-feed{
+.border-items-feed {
   width: 490px;
   padding-bottom: 15px;
   border-bottom: 1.5px solid $grey-bg-color;
   margin: auto;
-  .story-preview{
+  .story-preview {
     border-radius: 3px;
-     width: 100%;
+    width: 100%;
   }
 }

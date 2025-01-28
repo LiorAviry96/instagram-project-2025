@@ -1,8 +1,6 @@
-
 @import "setup/variables";
 @import "basics/base";
 @import "RootCmp";
-
 
 //pages
 @import "pages/NavBar";
@@ -16,13 +14,10 @@
 @import "cmps/Likes";
 @import "cmps/Comments";
 @import "cmps/UploadImage";
-@import "cmps/ImageDetails";
 @import "cmps/Modal";
-
 
 // Basics
 @import "basics/helpers";
 @import "basics/layout";
 @import "basics/base";
 @import "basics/forms";
-

@@ -2,19 +2,22 @@
 import { Likes } from "./Likes";
 import { Comments } from "./Comments";
 import { PostContext } from "./contexts/PostContext";
-import { differenceInSeconds, differenceInMinutes, differenceInHours, differenceInDays, differenceInWeeks } from "date-fns";
+import {
+  differenceInSeconds,
+  differenceInMinutes,
+  differenceInHours,
+  differenceInDays,
+  differenceInWeeks,
+} from "date-fns";
 import { Link } from "react-router";
 import { useContext, useState } from "react";
 
-
 export function StoryPreview({ story }) {
-  
   const [storyComments, setStoryComments] = useState(story.comments || []);
-  
+
   const { getImageSrc } = useContext(PostContext);
 
-  const { imgUrl, comments, owner, createdAt, txt } = story
-
+  const { imgUrl, comments, owner, createdAt, txt } = story;
 
   const updateComments = (updatedComments) => {
     setStoryComments(updatedComments);
@@ -37,34 +40,38 @@ export function StoryPreview({ story }) {
   const timeAgo = formatTimeAgo(new Date(createdAt));
   return (
     <div className="border-items-feed">
-       <div className="story-header">
-        <Link className="owner-story" to={`/user/${owner._id}`} >
-        <img
-         src={getImageSrc(owner.imgUrl)} className="userProfileImg" ></img>
-         {owner?.fullname || "Anonymous"}
-         </Link>
+      <div className="story-header">
+        <Link className="owner-story" to={`/user/${owner._id}`}>
+          <img src={getImageSrc(owner.imgUrl)} className="userProfileImg"></img>
+          {owner?.fullname || "Anonymous"}
+        </Link>
         <p className="timeAgo">• {timeAgo}</p>
       </div>
       {imgUrl ? (
-        <img className="story-preview" src={getImageSrc({ imgUrl })} alt="Story Preview" />
+        <img
+          className="story-preview"
+          src={getImageSrc({ imgUrl })}
+          alt="Story Preview"
+        />
       ) : (
         <p>No image available</p>
       )}
-     
 
-    <Likes
-      initialLikes={story.likedBy?.length || 0}
-      likedBy={story.likedBy || []}
-      commentCount={comments?.length || 0}
-      storyId = {story._id}
-    />   
-    
-   <p className="description"><strong>{owner?.fullname}</strong> {txt}</p>   
-   <Comments
+      <Likes
+        initialLikes={story.likedBy?.length || 0}
+        likedBy={story.likedBy || []}
+        commentCount={comments?.length || 0}
+        storyId={story._id}
+      />
+
+      <p className="description">
+        <strong>{owner?.fullname}</strong> {txt}
+      </p>
+      <Comments
         comments={storyComments}
         storyId={story._id}
         updateStory={updateComments}
-      />     
-      </div>
+      />
+    </div>
   );
 }

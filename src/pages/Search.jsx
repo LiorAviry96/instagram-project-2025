@@ -13,13 +13,13 @@ export function Search({ onClose }) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    loadUsers()
-}, [])
+    loadUsers();
+  }, []);
 
-async function loadUsers() {
-    const users = await userService.getUsers()
-    setList(users)
-}
+  async function loadUsers() {
+    const users = await userService.getUsers();
+    setList(users);
+  }
 
   useEffect(() => {
     if (searchTerm === "") {
@@ -33,58 +33,54 @@ async function loadUsers() {
   }, [searchTerm, list]);
 
   const clearSearchTerm = () => {
-    setSearchTerm(""); 
+    setSearchTerm("");
   };
 
   return (
     <div className="search-modal-container">
-  <div className="search-header">
-    <h2 className="search-btn">Search</h2>
-  
-  </div>
-  <div
-    className={`search-bar ${isFocused ? "active" : ""}`}
-    onFocus={() => setIsFocused(true)}
-    onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-  >
-    <input
-      type="text"
-      placeholder="Search..."
-      value={searchTerm}
-      className="input-search"
-      onChange={(e) => setSearchTerm(e.target.value)}
-      autoFocus
-    />
+      <div className="search-header">
+        <h2 className="search-btn">Search</h2>
+      </div>
+      <div
+        className={`search-bar ${isFocused ? "active" : ""}`}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+      >
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          className="input-search"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          autoFocus
+        />
 
-    {searchTerm && (
+        {searchTerm && (
           <button className="clear-button" onClick={clearSearchTerm}>
             &times; {/* This is the "X" symbol */}
           </button>
         )}
-   
-  </div>
-  <div className="divider-search"></div>
+      </div>
+      <div className="divider-search"></div>
 
-
-  {isFocused && searchResults.length > 0 && (
-    <div className="search-dropdown">
-      <ul className="search-results">
-        {searchResults.map((user) => (
-          <li key={user._id} className="search-item">
-            <Link to={`/user/${user._id}`}>
-              <img
-                src={`/src/assets/images/${user.imgUrl}.jpeg`}
-                alt={user.fullname}
-                className="user-avatar"
-              />
-              <span className="search-fullname">{user.fullname}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {isFocused && searchResults.length > 0 && (
+        <div className="search-dropdown">
+          <ul className="search-results">
+            {searchResults.map((user) => (
+              <li key={user._id} className="search-item">
+                <Link to={`/user/${user._id}`}>
+                  <img
+                    src={`/src/assets/images/${user.imgUrl}.jpeg`}
+                    alt={user.fullname}
+                    className="user-avatar"
+                  />
+                  <span className="search-fullname">{user.fullname}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
-  )}
-</div>
-
   );
 }

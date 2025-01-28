@@ -1,129 +1,128 @@
-.login, .signup {
-    position: relative; 
-    top: 50%;
-    transform: translateY(-50%); 
-    margin: auto; 
-    width: 350px;
-    overflow: auto; 
-    border: 1px solid $grey-bg-color;
-    
-    .signup-switch{
-        display: flex;
-        flex-direction: column;
-        justify-content: center; 
-        align-items: center; 
-        font-size: $font-size-primary;
-        padding-bottom: 20px;
-    }
-      .signup-switch button{
-        background-color: white;
-        justify-content: center; 
-        align-items: center; 
-        border: none;
-        color: $primary-color !important;
-        font-weight: bold;
-      }
- 
-.logo-login{
-    background-image: url(https://static.cdninstagram.com/rsrc.php/v4/yh/r/Od9eMReFEzN.png); 
-    background-position: 0px 0px; 
-    background-size: 176px 553px; 
-    width: 175px;
-     height: 51px; 
-     margin: auto;
-    margin-top: 40px !important;
-     background-repeat: no-repeat;
-     display: flex;
-}
+.login,
+.signup {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  width: 350px;
+  overflow: auto;
+  border: 1px solid $grey-bg-color;
 
+  .signup-switch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-primary;
+    padding-bottom: 20px;
+  }
+  .signup-switch button {
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: $primary-color !important;
+    font-weight: bold;
+  }
+
+  .logo-login {
+    background-image: url(https://static.cdninstagram.com/rsrc.php/v4/yh/r/Od9eMReFEzN.png);
+    background-position: 0px 0px;
+    background-size: 176px 553px;
+    width: 175px;
+    height: 51px;
+    margin: auto;
+    margin-top: 40px !important;
+    background-repeat: no-repeat;
+    display: flex;
+  }
 
   h2 {
-      font-family: "Roboto", sans-serif;
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #262626;
-      text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #262626;
+    text-align: center;
   }
 
   form {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 300px;
-      background: #fff;
-      padding: 25px;
-      border-radius: 10px;
-      animation: fadeIn 0.6s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    animation: fadeIn 0.6s ease-in-out;
 
-      input {
-          font-size: $font-size-primary;
-          padding: 10px 0px 10px 8px;
-          margin: 12px 0;
-          border: 1px solid #ccc;
-          border-radius: 6px;
-          background-color: #fafafa;
-          transition: border-color 0.3s ease, background-color 0.3s ease;
+    input {
+      font-size: $font-size-primary;
+      padding: 10px 0px 10px 8px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fafafa;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
 
-          &:focus {
-              border-color: #b3b3b3;
-              background-color: #ffffff;
-              outline: none;
-          }
+      &:focus {
+        border-color: #b3b3b3;
+        background-color: #ffffff;
+        outline: none;
       }
-     
-      button {
-        display: flex; 
-        justify-content: center; 
-        align-items: center; 
-        font-size: $font-size-primary;
-        font-weight: bold;
-        color: #fff !important;
-        padding: 12px;
-        border: none;
-        border-radius: 6px;
-        background-color: #0095F6;
-        text-align: center;
-        margin: auto;
-        margin-top: 15px;
-        cursor: pointer;
-        transition: transform 0.2s ease, background 0.3s ease;
-    
-        &:hover {
-            transform: scale(1.05);
-            background-color: #1967b1;
-        }
     }
-    
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: $font-size-primary;
+      font-weight: bold;
+      color: #fff !important;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background-color: #0095f6;
+      text-align: center;
+      margin: auto;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        background-color: #1967b1;
+      }
+    }
   }
 
   .social-login {
-      margin: 20px 0;
-      font-size: $font-size-primary;
-      color: #262626;
-      text-align: center;
+    margin: 20px 0;
+    font-size: $font-size-primary;
+    color: #262626;
+    text-align: center;
 
-      button {
-          color: #0095f6;
-          background: none;
-          border: none;
-          cursor: pointer;
-          font-weight: bold;
-          margin: 0 auto;
+    button {
+      color: #0095f6;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 0 auto;
 
-          &:hover {
-              text-decoration: underline;
-          }
+      &:hover {
+        text-decoration: underline;
       }
+    }
   }
 }
 
 @keyframes fadeIn {
   from {
-      opacity: 0;
-      transform: translateY(10px);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }

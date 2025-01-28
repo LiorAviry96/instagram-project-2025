@@ -1,5 +1,5 @@
 .comments-container {
-  padding: 0px ;
+  padding: 0px;
 
   ul {
     list-style: none;
@@ -8,7 +8,6 @@
     .comment {
       margin-bottom: $spacing / 2;
       display: flex;
-      
 
       strong {
         color: $text-color;
@@ -28,8 +27,7 @@
 .add-comment {
   display: flex;
   margin-top: $spacing;
-  
-  
+
   .comment-input-modal {
     flex: 1;
     border: none;
@@ -40,7 +38,7 @@
 
     &:focus {
       outline: none;
-   }
+    }
   }
 
   .comment-submit-btn {
@@ -53,8 +51,6 @@
     justify-content: flex-end;
     cursor: pointer;
     transition: background-color 0.3s;
-
-    
   }
 }
 
@@ -72,9 +68,7 @@
   text-decoration: underline;
 }
 
-
 @media (max-width: 768px) {
-
   .comment span {
     padding-left: 3px !important;
     font-size: $font-size-primary !important;

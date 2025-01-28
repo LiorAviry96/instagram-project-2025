@@ -1,185 +1,179 @@
 .profile-page {
-    width: 900px;
-    margin: 0 auto; 
-    padding-top: 40px;
+  width: 900px;
+  margin: 0 auto;
+  padding-top: 40px;
 
-    .profile-header {
+  .profile-header {
+    display: flex;
+    align-items: center;
+    margin: 45px;
+    margin-top: 0;
+
+    .profile-img {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 100px;
+    }
+
+    .profile-info {
       display: flex;
-      align-items: center;
-      margin: 50px;
-       margin-top: 0;
-  
-      .profile-img {
-        width: 170px;
-        height: 170px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 100px;
-      }
-  
-      .profile-info {
+      flex-direction: column;
+      gap: $spacing;
+
+      .username-section {
         display: flex;
-        flex-direction: column;
-        gap: $spacing;
-  
-        .username-section {
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .username {
+          font-size: 1.2rem;
+          color: $text-color;
+        }
+
+        .fullname {
+          font-size: 1.4rem;
+          font-weight: 400;
+          color: $text-color;
+        }
+
+        .action-buttons {
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-  
-          .username {
-            font-size: 1.2rem;
-            color: $text-color;
-          }
-  
-          .fullname {
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: $text-color;
-          }
-  
-          .action-buttons {
-            display: flex;
-            gap: $spacing;
-            padding-left: 20px;
-  
-            button {
-              padding: 10px 20px;
-              font-size: 14px;
-              border: none;
-              border-radius: 5px;
-              cursor: pointer;
-              transition: all 0.3s ease;
-  
-              &:hover {
-                background-color: lighten($primary-color, 10%);
-              }
-            }
-  
-            .follow-btn {
-              background-color: $primary-color;
-              color: white !important;
-              font-weight: bold;
-  
-              &.active {
-                background-color: $grey-bg-color;
-                color: $text-color !important;
-                font-weight: bold;
+          gap: $spacing;
+          padding-left: 20px;
 
-              }
+          button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background-color: lighten($primary-color, 10%);
             }
-  
-            .message-btn {
+          }
+
+          .follow-btn {
+            background-color: $primary-color;
+            color: white !important;
+            font-weight: bold;
+
+            &.active {
               background-color: $grey-bg-color;
-              color: $text-color;
+              color: $text-color !important;
               font-weight: bold;
-
             }
+          }
+
+          .message-btn {
+            background-color: $grey-bg-color;
+            color: $text-color;
+            font-weight: bold;
           }
         }
-  
-        .stats {
-          display: flex;
-          gap: 30px;
-  
-          span {
+      }
+
+      .stats {
+        display: flex;
+        gap: 30px;
+
+        span {
+          font-size: 1.1rem;
+          color: $text-color;
+
+          strong {
             font-size: 1.1rem;
-            color: $text-color;
-  
-            strong {
-              font-size: 1.1rem;
-              font-weight: bold;
-            }
+            font-weight: bold;
           }
         }
       }
     }
-    .tab-nav {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-      width: 40%;
-      margin: auto;
-      
-      margin-bottom: 20px;
-      transform: scale(1.1);
-
-      .icon-profile{
-        width: 15px;
-        height: 15px;
-        color: $secondary-color;
-        margin-right: 8px !important;
-        
-      }
   }
- 
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    width: 28%;
+    margin: auto;
+
+    margin-bottom: 15px;
+    transform: scale(1.1);
+
+    .icon-profile {
+      width: 15px;
+      height: 15px;
+      color: $secondary-color;
+      margin-right: 8px !important;
+    }
+  }
+
   .tab-btn {
     color: $secondary-color !important;
 
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      margin: 0px 10px 0px 0px;
-      font-size: 12px;
-      display: flex;
-      justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 0px 10px 0px 0px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
   }
-  
+
   .tab-btn.active {
     color: $text-color !important;
 
     font-weight: bold;
   }
-    .divider {
-      width: 100%;
-      height: 1px;
-      background-color: $grey-bg-color;
-      margin: 40px 0 20px 0;
-  }  
-  
-    .profile-gallery {
-        display: grid;
-        gap: 6px;
-    
-        grid-template-columns: repeat(3, 1fr);
-    
-        @media (max-width: 1068px) {
-          grid-template-columns: repeat(2, 1fr);
-        }
-    
-        @media (max-width: 680px) {
-          grid-template-columns: 1fr;
-        }
-    
-        .gallery-item {
-          aspect-ratio: 1;
-          overflow: hidden;
-    
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            
-          }
-        }
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: $grey-bg-color;
+    margin: 40px 0 15px 0;
+  }
+
+  .profile-gallery {
+    display: grid;
+    gap: 5px;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: 1068px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 680px) {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
       }
     }
-      @media (max-width: 768px) {
-        span {
-          font-size: 2rem !important;
+  }
+}
+@media (max-width: 768px) {
+  span {
+    font-size: 2rem !important;
 
-          strong {
-            font-size: 2rem !important;
-            font-weight: bold;
-          }
-        }
-        .username {
-          font-size: 1.8rem;
-        }
-        .fullname {
-          font-size: 3rem !important;
-        }
-      }
-    
+    strong {
+      font-size: 2rem !important;
+      font-weight: bold;
+    }
+  }
+  .username {
+    font-size: 1.8rem;
+  }
+  .fullname {
+    font-size: 3rem !important;
+  }
+}

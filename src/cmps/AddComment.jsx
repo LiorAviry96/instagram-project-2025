@@ -3,7 +3,7 @@ import { useState } from "react";
 import { userService } from "../services/user.service";
 import { storyService } from "../services/story.service";
 
-export function AddComment({storyId , updateStory}) {
+export function AddComment({ storyId, updateStory }) {
   const [newComment, setNewComment] = useState("");
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -11,7 +11,6 @@ export function AddComment({storyId , updateStory}) {
     }
   };
 
-  
   const handleAddComment = async () => {
     const loggedInUser = userService.getLoggedinUser();
 
@@ -31,7 +30,7 @@ export function AddComment({storyId , updateStory}) {
       const updatedComments = [
         ...fullStory.comments,
         {
-          id: Date.now(), 
+          id: Date.now(),
           by: loggedInUser,
           txt: newComment,
         },
@@ -53,21 +52,20 @@ export function AddComment({storyId , updateStory}) {
   };
 
   return (
-
-      <div className="add-comment">
-        <input
-          type="text"
-          placeholder="Add a comment..."
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="comment-input-modal"
-        />
-            {newComment && (
-          <button onClick={handleAddComment} className="comment-submit-btn">
-            Post
-          </button>
-          )}
-      </div>
+    <div className="add-comment">
+      <input
+        type="text"
+        placeholder="Add a comment..."
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
+        onKeyDown={handleKeyDown}
+        className="comment-input-modal"
+      />
+      {newComment && (
+        <button onClick={handleAddComment} className="comment-submit-btn">
+          Post
+        </button>
+      )}
+    </div>
   );
 }

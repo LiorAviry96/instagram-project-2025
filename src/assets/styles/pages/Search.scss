@@ -1,52 +1,49 @@
 .search-modal-container {
   position: fixed;
-  top: 0px; 
-  left: 80px; 
+  top: 0px;
+  left: 80px;
   z-index: 1050;
   box-shadow: none;
-  padding: 20px; 
+  padding: 20px;
   width: 385px;
   max-width: 100%;
   background: white;
   border: 1px solid #ddd;
   border-radius: 0px 8px 8px 0px;
   box-sizing: border-box;
-  animation: slideRight 0.3s ease-in-out;
+  animation: slideRight 0.5s ease-in-out;
 
-
- 
-  .search-header{
+  .search-header {
     font-size: 1.05rem;
   }
-  .divider-search{
+  .divider-search {
     border-bottom: 1px solid $grey-bg-color;
     padding: 10px;
   }
-  .search-bar{
+  .search-bar {
     width: 100%;
     border: none;
     background-color: #ebebeb !important;
-    padding: 3px ;
+    padding: 3px;
     border-radius: 5px;
     position: relative;
 
-    .input-search{
+    .input-search {
       background-color: #ebebeb !important;
       border: none !important;
-      padding: 8px 12px; 
+      padding: 8px 12px;
       font-size: 1rem;
       border-radius: 5px;
-    
-     
+
       &::placeholder {
         color: #aaa;
       }
-      
+
       &:focus {
         border-color: $secondary-color !important;
         background-color: #ffffff;
         outline: none;
-    }
+      }
     }
     .clear-button {
       position: absolute;
@@ -58,15 +55,12 @@
       font-size: 18px;
       cursor: pointer;
       border-radius: 50%;
-      color: #aaa; 
+      color: #aaa;
     }
     .clear-button:hover {
-      color: #000; 
+      color: #000;
     }
-
   }
-
-
 }
 
 .search-dropdown {
@@ -82,21 +76,19 @@
   margin: 0;
 }
 .search-item img.user-avatar {
-  margin: 15px 0px 5px 5px ;
-  width: 40px; 
+  margin: 15px 0px 5px 5px;
+  width: 40px;
   height: 40px;
   border-radius: 50%;
-  object-fit: cover; 
+  object-fit: cover;
   margin-right: 10px;
 }
 
 .search-item .search-fullname {
   flex-grow: 1;
-  font-size: 1rem; 
+  font-size: 1rem;
   padding-top: 10px !important;
 }
-
-
 
 .close-btn:hover {
   color: #000;
@@ -107,7 +99,7 @@ a {
   display: flex;
   align-items: center;
 }
- 
+
 /* Opening animation */
 @keyframes slideRight {
   from {

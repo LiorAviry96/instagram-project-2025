@@ -2,9 +2,9 @@
   font-size: 0.9rem;
   display: flex;
   padding: 0px !important;
-  flex-direction: column; 
-  justify-content: flex-start; 
-  align-items: flex-start; 
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 button {
@@ -16,21 +16,20 @@ button {
   cursor: pointer;
   color: black !important;
   padding-top: 10px;
-  width: 100%; 
+  width: 100%;
   justify-content: space-between;
 }
 
 .left-icons {
   display: flex;
-  gap: 18px; 
+  gap: 16px;
   align-items: center;
- 
 }
 
 .right-icons {
   display: flex;
   align-items: center;
-  justify-content: flex-end; 
+  justify-content: flex-end;
 }
 
 i {
@@ -46,14 +45,17 @@ i {
   }
 }
 
-
 .number-likes {
   display: block;
-   font-weight: bold;
-  margin-top: 12px; 
-  margin-bottom:  0px;
+  margin-top: 12px;
+  margin-bottom: 0px;
 }
-
+.number-likes2 {
+  display: block;
+  font-weight: bold;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
 
 .fa-regular.fa-heart {
   color: black !important;
