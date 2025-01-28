@@ -1,11 +1,11 @@
 .search-modal-container {
   position: fixed;
-  top: 50px; 
-  left: 290px; 
+  top: 0px; 
+  left: 80px; 
   z-index: 1050;
   box-shadow: none;
   padding: 20px; 
-  width: 300px;
+  width: 385px;
   max-width: 100%;
   background: white;
   border: 1px solid #ddd;
@@ -13,9 +13,10 @@
   box-sizing: border-box;
   animation: slideRight 0.3s ease-in-out;
 
+
+ 
   .search-header{
-    font-size: 1.1rem;
-    padding-top: 0px !important;
+    font-size: 1.05rem;
   }
   .divider-search{
     border-bottom: 1px solid $grey-bg-color;
@@ -24,15 +25,15 @@
   .search-bar{
     width: 100%;
     border: none;
-    background-color: $grey-bg-color !important;
+    background-color: #ebebeb !important;
     padding: 3px ;
     border-radius: 5px;
     position: relative;
 
     .input-search{
-      background-color: $grey-bg-color !important;
+      background-color: #ebebeb !important;
       border: none !important;
-      padding: 5px 12px; 
+      padding: 8px 12px; 
       font-size: 1rem;
       border-radius: 5px;
     

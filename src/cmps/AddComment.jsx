@@ -5,7 +5,6 @@ import { storyService } from "../services/story.service";
 
 export function AddComment({storyId , updateStory}) {
   const [newComment, setNewComment] = useState("");
-
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleAddComment();
