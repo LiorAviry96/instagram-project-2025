@@ -41,7 +41,8 @@
   display: flex;
   margin-top: $spacing;
   position: relative;
-  gap: 8px; /* Small space between emoji and input */
+  gap: 8px;
+  align-items: center;
 
   .emoji-picker-btn {
     background: none;
@@ -50,9 +51,16 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    margin-right: 0px;
+    margin: 0px 10px 0px 0px;
     padding: 0;
+    flex-shrink: 0;
   }
+  .emoji-picker-btn svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0 !important;
+  }
+
   .emoji-picker {
     position: absolute;
     top: 40px; /* Adjust based on input height */
@@ -67,7 +75,7 @@
     flex: 1;
     border: none;
     border-radius: 4px;
-    margin-right: $spacing / 2;
+    margin-right: 0px;
     background-color: $background-color;
     font-size: 0.9rem;
 

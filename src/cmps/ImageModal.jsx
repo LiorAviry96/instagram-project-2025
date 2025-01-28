@@ -6,6 +6,8 @@ import { ViewComments } from "./ViewComments";
 import { useContext } from "react";
 import { PostContext } from "./contexts/PostContext";
 import { CloseButtonSvg } from "./svg/closeButtonSvg";
+import { Link } from "react-router";
+
 export function ImageModal({
   isModalOpen,
   image,
@@ -43,14 +45,17 @@ export function ImageModal({
           </div>
           <div className="modal-details">
             <div className="modal-description">
-              <img
-                src={getImageSrc(story.owner.imgUrl)}
-                alt="Story Image"
-                className="modal-userimg"
-              />
-              <p className="modal-fullname">
-                <strong>{story.owner?.fullname}</strong>
-              </p>
+              <Link to={`/user/${story.owner._id}`}>
+                <img
+                  src={getImageSrc(story.owner.imgUrl)}
+                  alt="Story Image"
+                  className="modal-userimg"
+                ></img>
+                <p className="modal-fullname">
+                  <strong>{story.owner?.fullname}</strong>
+                </p>
+              </Link>
+
               <p>{txt}</p>
             </div>
             <div className="divider--modal"></div>

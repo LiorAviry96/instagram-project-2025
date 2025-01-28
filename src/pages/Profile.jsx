@@ -92,14 +92,15 @@ export function Profile() {
           <PostsSvg className="icon-profile" ariaLabel="Post Icon" />
           POSTS
         </button>
-
-        <button
-          className={`tab-btn ${activeTab === "saved" ? "active" : ""}`}
-          onClick={() => handleTabClick("saved")}
-        >
-          <SavedStorysSvg className="icon-profile" ariaLabel="Saved Story" />
-          SAVED
-        </button>
+        {isOwnProfile && (
+          <button
+            className={`tab-btn ${activeTab === "saved" ? "active" : ""}`}
+            onClick={() => handleTabClick("saved")}
+          >
+            <SavedStorysSvg className="icon-profile" ariaLabel="Saved Story" />
+            SAVED
+          </button>
+        )}
       </div>
       <section className="profile-gallery">
         {activeTab === "posts"

@@ -50,10 +50,6 @@
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
-
-            &:hover {
-              background-color: lighten($primary-color, 10%);
-            }
           }
 
           .follow-btn {
@@ -72,6 +68,10 @@
             background-color: $grey-bg-color;
             color: $text-color;
             font-weight: bold;
+
+            &:hover {
+              background-color: rgb(194, 194, 194) !important;
+            }
           }
         }
       }
@@ -111,7 +111,7 @@
 
   .tab-btn {
     color: $secondary-color !important;
-
+    letter-spacing: 1.6px;
     padding: 10px 20px;
     border: none;
     cursor: pointer;

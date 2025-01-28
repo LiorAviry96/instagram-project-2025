@@ -36,7 +36,13 @@ export function SignUp() {
   }
   return (
     <div className="signup">
-      <h2>Sign Up</h2>
+      <i
+        data-visualcompletion="css-img"
+        aria-label="Instagram"
+        className="logo-login"
+        role="img"
+      ></i>
+      <h2>Sign up to see photos and videos from your friends.</h2>
       <form onSubmit={handleSignup}>
         <input
           type="text"
