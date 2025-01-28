@@ -95,11 +95,47 @@
         }
       }
     }
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      width: 40%;
+      margin: auto;
+      
+      margin-bottom: 20px;
+      transform: scale(1.1);
+
+      .icon-profile{
+        width: 15px;
+        height: 15px;
+        color: $secondary-color;
+        margin-right: 8px !important;
+        
+      }
+  }
+ 
+  .tab-btn {
+    color: $secondary-color !important;
+
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin: 0px 10px 0px 0px;
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+  }
+  
+  .tab-btn.active {
+    color: $text-color !important;
+
+    font-weight: bold;
+  }
     .divider {
       width: 100%;
       height: 1px;
       background-color: $grey-bg-color;
-      margin: 40px 0 50px 0;
+      margin: 40px 0 20px 0;
   }  
   
     .profile-gallery {

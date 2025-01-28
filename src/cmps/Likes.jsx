@@ -137,6 +137,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
     <div className="right-icons">
       <i
       className={`heart-icon ${isSaved ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"}`} onClick={handleSaveStory}></i>
+    
     </div>
   </button>
       {shouldShowLikes && (

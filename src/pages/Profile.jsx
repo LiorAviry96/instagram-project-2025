@@ -1,13 +1,18 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { loadUser, unfollowUser, followUser } from "../store/actions/user.actions";
 import { ImageDetails } from "../cmps/ImageDetails";
 import { PostContext } from "../cmps/contexts/PostContext";
+import { SavedStorysSvg } from "../cmps/svg/SavedStorysSvg";
+import { PostsSvg } from "../cmps/svg/PostsSvg";
 
 export function Profile() {
+    const [activeTab, setActiveTab] = useState('posts');
     const watchedUser = useSelector((state) => state.userModule.watchedUser);
     const loggedInUser = useSelector((state) => state.userModule.user); 
+    const isFollowing = loggedInUser?.following?.some(follow => follow._id === watchedUser?._id);
+
      const { getImageSrc } = useContext(PostContext);
     const dispatch = useDispatch();
 
@@ -24,7 +29,6 @@ export function Profile() {
 
     const isOwnProfile = loggedInUser?._id === watchedUser?._id;
     
-    const isFollowing = loggedInUser?.following?.some(follow => follow._id === watchedUser?._id);
     const handleFollowToggle = () => {
         if (isFollowing) {
             unfollowUser(watchedUser._id);
@@ -32,6 +36,11 @@ export function Profile() {
             followUser(watchedUser._id);
         }
     };
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
+    };
+    console.log('activeTab', activeTab)
     if (!watchedUser) return <div>Loading...</div>;
     return (
         <div className="profile-page">
@@ -75,13 +84,39 @@ export function Profile() {
                 </div>
             </header>
             <div className="divider"></div>
-            <section className="profile-gallery">
-            {watchedUser.images?.map((imgUrl, idx) => (
-                <div key={idx} className="gallery-item">
-                    <ImageDetails image={imgUrl} alt={`User story ${idx + 1}`} />
-                </div>
-            ))}
+            <div className="tab-nav">
+                <button 
+                    className={`tab-btn ${activeTab === 'posts' ? 'active' : ''}`} 
+                    onClick={() => handleTabClick('posts')}
+                >
+                    <PostsSvg className="icon-profile" ariaLabel="Post Icon" />
 
+                    POSTS
+                </button>
+
+                <button 
+                    className={`tab-btn ${activeTab === 'saved' ? 'active' : ''}`} 
+                    onClick={() => handleTabClick('saved')}
+                >
+                <SavedStorysSvg className="icon-profile" ariaLabel="Saved Story" />
+
+                    SAVED
+                </button>
+            </div>
+            <section className="profile-gallery">
+                {activeTab === 'posts' ? (
+                    watchedUser.images?.map((imgUrl, idx) => (
+                        <div key={idx} className="gallery-item">
+                            <ImageDetails image={imgUrl} alt={`User story ${idx + 1}`} />
+                        </div>
+                    ))
+                ) : (
+                    watchedUser.savedStorys?.map((imgUrl, idx) => (
+                        <div key={idx} className="gallery-item">
+                            <ImageDetails image={imgUrl} alt={`Saved story ${idx + 1}`} />
+                        </div>
+                    ))
+                )}
             </section>
         </div>
     );

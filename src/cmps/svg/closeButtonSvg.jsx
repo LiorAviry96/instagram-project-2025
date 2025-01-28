@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // CloseButton.js
 export function CloseButtonSvg({ onClick }) {
     return (
