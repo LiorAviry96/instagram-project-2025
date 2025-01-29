@@ -10,6 +10,7 @@ import { ImageDetails } from "../cmps/ImageDetails";
 import { PostContext } from "../cmps/contexts/PostContext";
 import { SavedStorysSvg } from "../cmps/svg/SavedStorysSvg";
 import { PostsSvg } from "../cmps/svg/PostsSvg";
+import { SvgIcon } from "../cmps/SvgIcon";
 
 export function Profile() {
   const [activeTab, setActiveTab] = useState("posts");
@@ -89,7 +90,7 @@ export function Profile() {
           className={`tab-btn ${activeTab === "posts" ? "active" : ""}`}
           onClick={() => handleTabClick("posts")}
         >
-          <PostsSvg className="icon-profile" ariaLabel="Post Icon" />
+          <SvgIcon iconName="posts" className="icon-profile" />
           POSTS
         </button>
         {isOwnProfile && (
@@ -97,7 +98,7 @@ export function Profile() {
             className={`tab-btn ${activeTab === "saved" ? "active" : ""}`}
             onClick={() => handleTabClick("saved")}
           >
-            <SavedStorysSvg className="icon-profile" ariaLabel="Saved Story" />
+            <SvgIcon iconName="saved" className="icon-profile" />
             SAVED
           </button>
         )}

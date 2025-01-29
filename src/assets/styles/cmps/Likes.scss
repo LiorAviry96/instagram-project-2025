@@ -26,6 +26,9 @@
   align-items: center;
   cursor: pointer;
 }
+.is-saved polygon {
+  fill: black !important;
+}
 
 .right-icons {
   display: flex;
@@ -33,19 +36,6 @@
   cursor: pointer;
 
   justify-content: flex-end;
-}
-
-i {
-  font-size: 1.4rem;
-  color: black;
-
-  &.fa-heart {
-    color: red;
-  }
-
-  &:hover {
-    color: rgb(137, 134, 134) !important;
-  }
 }
 
 .number-likes {
@@ -60,22 +50,6 @@ i {
   margin-bottom: 0px;
 }
 
-.fa-regular.fa-heart {
-  color: black !important;
-}
-
-.fa-solid.fa-heart {
-  color: red !important;
-}
-
-.heart-icon:hover {
-  color: rgb(137, 134, 134) !important;
-}
-
-.send-icon:hover {
-  color: rgb(137, 134, 134) !important;
-}
-
-.comment-icon:hover {
+.icons:hover {
   color: rgb(137, 134, 134) !important;
 }

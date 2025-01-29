@@ -135,20 +135,22 @@ export function Likes({ initialLikes, likedBy, storyId }) {
     <div className="likes">
       <div className="icons-container">
         <div className="left-icons">
-          <i
+          <SvgIcon
+            className="icons"
+            iconName={`${isLiked ? "heart" : "heartRed"}`}
             onClick={handleLike}
-            className={`heart-icon ${
-              isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"
-            }`}
-          ></i>
-          <i
-            className="fa-regular fa-comment comment-icon"
-            onClick={toggleModal}
-          ></i>
-          <i className="fa-regular fa-paper-plane send-icon"></i>
+          />
+
+          <SvgIcon className="icons" iconName="comment" onClick={toggleModal} />
+          <SvgIcon iconName="share" />
         </div>
         <div className="right-icons">
-          <SvgIcon iconName="saved" onClick={handleSaveStory} />
+          <SvgIcon
+            className={`${isSaved ? "is-saved icons" : "icons"}`}
+            iconName="saved"
+            isSaved={isSaved}
+            onClick={handleSaveStory}
+          />
         </div>
       </div>
       {shouldShowLikes && (

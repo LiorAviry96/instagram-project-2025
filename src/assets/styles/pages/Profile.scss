@@ -111,13 +111,17 @@
       margin-right: 8px !important;
     }
   }
-
+  .icon-profile svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
   .tab-btn {
     color: $secondary-color !important;
     letter-spacing: 1.6px;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    background-color: transparent;
     margin: 0px 10px 0px 0px;
     font-size: 12px;
     display: flex;

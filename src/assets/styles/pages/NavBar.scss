@@ -16,13 +16,10 @@
     font-size: 15px !important;
     margin: 0 !important;
   }
-  .navbar-item a {
+  .navbar-item span {
     font-size: 0;
   }
-  .navbar-item span {
-    display: none;
-    font-size: 0px;
-  }
+
   .logo {
     display: none !important;
   }
@@ -33,6 +30,10 @@
     width: 40px;
   }
 }
+.is-messages polygon {
+  fill: black !important;
+}
+
 .logo {
   width: 105px;
   padding-top: 15px;

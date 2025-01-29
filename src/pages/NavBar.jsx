@@ -11,6 +11,7 @@ import { CreatePostSvg } from "../cmps/svg/CreatePostSvg";
 import { MessagesSVG } from "../cmps/svg/MessagesSvg";
 import { PostContext } from "../cmps/contexts/PostContext";
 import { ModalSearch } from "../cmps/ModalSearch";
+import { SvgIcon } from "../cmps/SvgIcon";
 
 export function NavBar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,7 +51,9 @@ export function NavBar() {
           onClick={() => setActiveItem("home")}
         >
           <Link to="/home" className="home-link">
-            <i className="fas fa-home icon"></i>
+            <SvgIcon
+              iconName={`${activeItem === "home" ? "home-bold" : "home"}`}
+            />
             <span>Home</span>
           </Link>
         </li>
@@ -58,7 +61,10 @@ export function NavBar() {
           className={`navbar-item ${activeItem === "search" ? "active" : ""}`}
           onClick={() => setActiveItem("search")}
         >
-          <i className="fas fa-search icon" onClick={toggleSearchModal}></i>
+          <SvgIcon
+            iconName={`${activeItem === "search" ? "searchBold" : "search"}`}
+            onClick={toggleSearchModal}
+          />
           <span className="search-btn" onClick={toggleSearchModal}>
             Search
           </span>
@@ -67,8 +73,11 @@ export function NavBar() {
           className={`navbar-item ${activeItem === "messages" ? "active" : ""}`}
           onClick={() => setActiveItem("messages")}
         >
-          <MessagesSVG className="messages-icon icon" />
-          <Link to="/home">Messages</Link>
+          <SvgIcon iconName="messenger" />
+
+          <Link to="/home">
+            <span>Messages</span>
+          </Link>
         </li>
         <li
           className={`navbar-item ${
@@ -76,9 +85,14 @@ export function NavBar() {
           }`}
           onClick={() => setActiveItem("notifications")}
         >
-          <i className="fa-regular fa-heart icon"></i>
+          <SvgIcon
+            iconName={`${
+              activeItem === "notifications" ? "heartBlack" : "heart"
+            }`}
+          />
+
           <Link className="notification-btn" to="/home">
-            Notifications
+            <span>Notifications</span>
           </Link>
         </li>
         <li
@@ -91,8 +105,8 @@ export function NavBar() {
           }}
         >
           {" "}
-          <CreatePostSvg className="create-post-icon icon" />
-          <span>Create Post</span>
+          <SvgIcon iconName="addFeed" />
+          <span>Create</span>
         </li>
         <li
           className={`navbar-item ${activeItem === "profile" ? "active" : ""}`}
