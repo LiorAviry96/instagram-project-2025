@@ -12,11 +12,6 @@
   align-items: center;
   margin: auto;
 
-  .center-container {
-    align-items: center;
-    margin: auto;
-    padding: 0px;
-  }
   img {
     max-width: 100%;
     height: auto;
@@ -26,7 +21,7 @@
 
   label {
     font-weight: 500;
-    background: $primary-color;
+    background: #007bff;
     color: white;
     display: flex;
     padding: 7px 16px;
@@ -39,7 +34,7 @@
     align-items: center;
 
     &:hover {
-      background-color: #0068ad;
+      color: #0056b3;
     }
   }
 

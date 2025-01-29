@@ -7,6 +7,7 @@ import { userService } from "../services/user.service";
 import { storyService } from "../services/story.service";
 import { updateUser } from "../store/actions/user.actions";
 import { ImageModal } from "./ImageModal";
+import { SvgIcon } from "./SvgIcon";
 
 export function Likes({ initialLikes, likedBy, storyId }) {
   const dispatch = useDispatch();
@@ -132,7 +133,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
 
   return (
     <div className="likes">
-      <button>
+      <div className="icons-container">
         <div className="left-icons">
           <i
             onClick={handleLike}
@@ -147,14 +148,9 @@ export function Likes({ initialLikes, likedBy, storyId }) {
           <i className="fa-regular fa-paper-plane send-icon"></i>
         </div>
         <div className="right-icons">
-          <i
-            className={`heart-icon ${
-              isSaved ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"
-            }`}
-            onClick={handleSaveStory}
-          ></i>
+          <SvgIcon iconName="saved" onClick={handleSaveStory} />
         </div>
-      </button>
+      </div>
       {shouldShowLikes && (
         <p className="number-likes">
           Liked by <b>{randomLiker}</b> and{" "}

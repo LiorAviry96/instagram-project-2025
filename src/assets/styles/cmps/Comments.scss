@@ -36,7 +36,9 @@
     }
   }
 }
-
+.emoji-container {
+  margin-left: 10px;
+}
 .add-comment {
   display: flex;
   margin-top: $spacing;
@@ -55,6 +57,7 @@
     padding: 0;
     flex-shrink: 0;
   }
+
   .emoji-picker-btn svg {
     width: 24px;
     height: 24px;

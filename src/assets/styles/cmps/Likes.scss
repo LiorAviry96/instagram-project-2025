@@ -4,16 +4,16 @@
   padding: 0px !important;
   flex-direction: column;
   justify-content: flex-start;
+
   align-items: flex-start;
 }
 
-button {
+.icons-container {
   display: flex;
   align-items: center;
   border: none;
   padding: 0px;
   background: none;
-  cursor: pointer;
   color: black !important;
   padding-top: 10px;
   width: 100%;
@@ -24,11 +24,14 @@ button {
   display: flex;
   gap: 16px;
   align-items: center;
+  cursor: pointer;
 }
 
 .right-icons {
   display: flex;
   align-items: center;
+  cursor: pointer;
+
   justify-content: flex-end;
 }
 

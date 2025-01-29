@@ -32,12 +32,12 @@ export function ImgUploader({ onUploaded = null }) {
           style={{ maxWidth: "200px", float: "right" }}
         />
       )}
-      <div className="icon-and-text">
+      <div className="center-container">
         <MediaIconSvg className="media-icon" />
         <h4>Drag Photos here</h4>
+        <label htmlFor="imgUpload">{getUploadLabel()}</label>
       </div>
 
-      <label htmlFor="imgUpload">{getUploadLabel()}</label>
       <input type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />
     </div>
   );
