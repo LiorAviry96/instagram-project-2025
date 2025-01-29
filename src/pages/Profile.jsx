@@ -1,17 +1,14 @@
 import { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { ImageDetails } from "../cmps/ImageDetails";
+import { PostContext } from "../cmps/contexts/PostContext";
+import { SvgIcon } from "../cmps/SvgIcon";
 import {
   loadUser,
   unfollowUser,
   followUser,
 } from "../store/actions/user.actions";
-import { ImageDetails } from "../cmps/ImageDetails";
-import { PostContext } from "../cmps/contexts/PostContext";
-import { SavedStorysSvg } from "../cmps/svg/SavedStorysSvg";
-import { PostsSvg } from "../cmps/svg/PostsSvg";
-import { SvgIcon } from "../cmps/SvgIcon";
-
 export function Profile() {
   const [activeTab, setActiveTab] = useState("posts");
   const watchedUser = useSelector((state) => state.userModule.watchedUser);

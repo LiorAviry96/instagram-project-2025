@@ -7,8 +7,6 @@ import { useState, useContext } from "react";
 import { CreateStory } from "../cmps/CreateStory";
 import { Modal } from "../cmps/Modal";
 import { Search } from "./Search";
-import { CreatePostSvg } from "../cmps/svg/CreatePostSvg";
-import { MessagesSVG } from "../cmps/svg/MessagesSvg";
 import { PostContext } from "../cmps/contexts/PostContext";
 import { ModalSearch } from "../cmps/ModalSearch";
 import { SvgIcon } from "../cmps/SvgIcon";

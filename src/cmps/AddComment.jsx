@@ -59,13 +59,27 @@ export function AddComment({ storyId, updateStory }) {
     setNewComment((prev) => prev + emojiObject.emoji);
     setShowEmojiPicker(false); // Close the emoji picker after selecting an emoji
   };
+  const handleEmojiButtonClick = (e) => {
+    setShowEmojiPicker((prev) => !prev);
+
+    if (!showEmojiPicker) {
+      const buttonRect = e.currentTarget.getBoundingClientRect();
+      const topPosition = buttonRect.top + window.scrollY - 250; // Adjust height
+
+      document.documentElement.style.setProperty(
+        "--emoji-picker-top",
+        `${topPosition}px`
+      );
+      document.documentElement.style.setProperty(
+        "--emoji-picker-left",
+        `${buttonRect.left}px`
+      );
+    }
+  };
 
   return (
     <div className="add-comment">
-      <SvgIcon
-        iconName="emojiBig"
-        onClick={() => setShowEmojiPicker((prev) => !prev)}
-      />
+      <SvgIcon iconName="emojiBig" onClick={handleEmojiButtonClick} />
       {showEmojiPicker && (
         <div className="emoji-picker">
           <EmojiPicker onEmojiClick={handleEmojiClick} />

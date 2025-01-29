@@ -19,8 +19,8 @@ export function Likes({ initialLikes, likedBy, storyId }) {
   const [likedUsers, setLikedUsers] = useState(likedBy || []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const shouldShowLikes = isLiked && likes > 1;
-  const shouldShowLikes2 = !isLiked && likes > 1;
+  const shouldShowLikes = !isLiked && likes > 1;
+  const shouldShowLikes2 = isLiked && likes > 1;
 
   useEffect(() => {
     if (story) {
@@ -148,7 +148,6 @@ export function Likes({ initialLikes, likedBy, storyId }) {
           <SvgIcon
             className={`${isSaved ? "is-saved icons" : "icons"}`}
             iconName="saved"
-            isSaved={isSaved}
             onClick={handleSaveStory}
           />
         </div>

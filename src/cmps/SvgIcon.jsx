@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export function SvgIcon({ iconName, className = "", ...restOfProps }) {
   const icon = _getIcon(iconName);
 

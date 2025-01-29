@@ -65,10 +65,10 @@
   }
 
   .emoji-picker {
-    position: absolute;
-    top: 40px; /* Adjust based on input height */
-    left: 0;
-    z-index: 10;
+    position: fixed;
+    top: var(--emoji-picker-top); /* Dynamic positioning */
+    left: var(--emoji-picker-left);
+    z-index: 1000;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
