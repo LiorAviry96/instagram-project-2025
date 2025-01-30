@@ -11,6 +11,7 @@ import {
 } from "date-fns";
 import { Link } from "react-router";
 import { useContext, useState } from "react";
+import { updateStoryDetails } from "../store/actions/story.actions";
 
 export function StoryPreview({ story }) {
   const [storyComments, setStoryComments] = useState(story.comments || []);
@@ -21,6 +22,7 @@ export function StoryPreview({ story }) {
 
   const updateComments = (updatedComments) => {
     setStoryComments(updatedComments);
+    updateStoryDetails(updatedComments);
   };
   const formatTimeAgo = (date) => {
     const now = new Date();

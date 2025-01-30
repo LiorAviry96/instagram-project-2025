@@ -26,7 +26,6 @@ export function Profile() {
 
   useEffect(() => {
     if (!watchedUser || watchedUser._id !== userId) {
-      console.log("use effect user");
       loadUser(userId);
     }
   }, [userId, watchedUser, dispatch]);

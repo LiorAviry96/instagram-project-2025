@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { AddComment } from "./AddComment";
 import { ImageModal } from "./ImageModal";
+import { updateStoryDetails } from "../store/actions/story.actions";
 import { useDispatch, useSelector } from "react-redux";
 
 export function Comments({ comments, storyId, updateStory }) {
@@ -10,7 +11,7 @@ export function Comments({ comments, storyId, updateStory }) {
   const story = useSelector((state) =>
     state.storyModule.storys.find((story) => story._id === storyId)
   );
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -24,15 +25,17 @@ export function Comments({ comments, storyId, updateStory }) {
           story={story}
           updateComments={(updatedComments) => {
             const updatedStory = { ...story, comments: updatedComments };
-            dispatch(updateStory(updatedStory));
+            updateStoryDetails(updatedStory);
           }}
           toggleModal={toggleModal}
         />
       ) : (
         <div>
-          <button className="show-comments-btn" onClick={toggleModal}>
-            View All {comments.length} Comments
-          </button>
+          {comments.length > 0 && (
+            <button className="show-comments-btn" onClick={toggleModal}>
+              View All {comments.length} Comments
+            </button>
+          )}
           <AddComment storyId={storyId} updateStory={updateStory} />
         </div>
       )}

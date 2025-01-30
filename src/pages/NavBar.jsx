@@ -63,9 +63,20 @@ export function NavBar() {
             iconName={`${activeItem === "search" ? "searchBold" : "search"}`}
             onClick={toggleSearchModal}
           />
-          <span className="search-btn" onClick={toggleSearchModal}>
-            Search
-          </span>
+          <span onClick={toggleSearchModal}>Search</span>
+        </li>
+        <li
+          className={`navbar-item ${activeItem === "explore" ? "active" : ""}`}
+          onClick={() => setActiveItem("explore")}
+        >
+          <SvgIcon
+            iconName={`${
+              activeItem === "explore" ? "explore-bold" : "explore"
+            }`}
+          />
+          <Link to="/explore">
+            <span>Explore</span>
+          </Link>
         </li>
         <li
           className={`navbar-item ${activeItem === "messages" ? "active" : ""}`}

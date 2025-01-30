@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { uploadService } from "../services/upload.service";
-import { MediaIconSvg } from "./svg/MediaIconSvg";
+import { SvgIcon } from "./SvgIcon";
 export function ImgUploader({ onUploaded = null }) {
   const [imgData, setImgData] = useState({
     imgUrl: null,
@@ -33,7 +33,7 @@ export function ImgUploader({ onUploaded = null }) {
         />
       )}
       <div className="center-container">
-        <MediaIconSvg className="media-icon" />
+        <SvgIcon iconName="media" className="media-icon" />
         <h4>Drag Photos here</h4>
         <label htmlFor="imgUpload">{getUploadLabel()}</label>
       </div>

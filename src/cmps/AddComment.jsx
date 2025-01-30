@@ -46,10 +46,8 @@ export function AddComment({ storyId, updateStory }) {
       };
 
       await storyService.save(updatedStory);
-
-      updateStory(updatedComments);
-
       setNewComment("");
+      updateStory(updatedComments);
     } catch (err) {
       console.error("Failed to add comment:", err);
     }

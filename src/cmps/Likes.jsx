@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateStory } from "../store/actions/story.actions";
+import { updateStoryDetails } from "../store/actions/story.actions";
 import { userService } from "../services/user.service";
 import { storyService } from "../services/story.service";
 import { updateUser } from "../store/actions/user.actions";
@@ -14,13 +14,17 @@ export function Likes({ initialLikes, likedBy, storyId }) {
   const story = useSelector((state) =>
     state.storyModule.storys.find((story) => story._id === storyId)
   );
+  const loggedInUser = userService.getLoggedinUser();
+  const isInitiallyLiked = likedBy?.some(
+    (user) => user._id === loggedInUser?._id
+  );
   const [likes, setLikes] = useState(initialLikes || 0);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(isInitiallyLiked);
   const [likedUsers, setLikedUsers] = useState(likedBy || []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const shouldShowLikes = !isLiked && likes > 1;
-  const shouldShowLikes2 = isLiked && likes > 1;
+  const shouldShowLikes2 = isLiked && likes > 0;
+  const shouldShowLikes = !isLiked && likes > 0;
 
   useEffect(() => {
     if (story) {
@@ -62,7 +66,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
         likedBy: updatedLikedBy,
       };
 
-      updateStory(updatedStory);
+      updateStoryDetails(updatedStory);
 
       setLikes(updatedLikedBy.length);
       setLikedUsers(updatedLikedBy);
@@ -170,7 +174,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
             isModalOpen={isModalOpen}
             updateComments={(updatedComments) => {
               const updatedStory = { ...story, comments: updatedComments };
-              dispatch(updateStory(updatedStory));
+              dispatch(updateStoryDetails(updatedStory));
             }}
           />
         </div>

@@ -5,8 +5,8 @@ import { AddComment } from "./AddComment";
 import { ViewComments } from "./ViewComments";
 import { useContext } from "react";
 import { PostContext } from "./contexts/PostContext";
-import { CloseButtonSvg } from "./svg/closeButtonSvg";
 import { Link } from "react-router";
+import { SvgIcon } from "./SvgIcon";
 
 export function ImageModal({
   isModalOpen,
@@ -27,7 +27,8 @@ export function ImageModal({
           toggleModal();
         }}
       >
-        <CloseButtonSvg
+        <SvgIcon
+          iconName="close"
           onClick={(e) => {
             e.stopPropagation();
             toggleModal();

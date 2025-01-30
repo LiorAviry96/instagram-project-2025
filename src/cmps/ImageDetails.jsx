@@ -6,8 +6,10 @@ import { Likes } from "./Likes";
 import { Comments } from "./Comments";
 import { ImageModal } from "./ImageModal";
 import { PostContext } from "./contexts/PostContext";
+import { SvgIcon } from "./SvgIcon";
 
 export function ImageDetails({ image }) {
+  const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const storys = useSelector((state) => state.storyModule.storys);
   const story = storys.find((story) => story.imgUrl === image.imgUrl);
@@ -27,14 +29,29 @@ export function ImageDetails({ image }) {
   };
 
   return (
-    <div className="gallery-item">
+    <div
+      className="gallery-item"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ position: "relative" }}
+    >
       <img
         src={getImageSrc(image)}
+        className="story-details"
         alt="User story"
-        onClick={toggleModal}
-        style={{ cursor: "pointer" }}
       />
-
+      {isHovered && (
+        <div className="overlay" onClick={toggleModal}>
+          <div className="info-container">
+            <div className="info">
+              <SvgIcon iconName="heart" /> {story.likedBy.length}
+            </div>
+            <div className="info">
+              <SvgIcon iconName="comment" /> {story.comments.length}
+            </div>
+          </div>
+        </div>
+      )}
       {isModalOpen && (
         <div className="modal-overlay" onClick={toggleModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

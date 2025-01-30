@@ -28,7 +28,7 @@ export async function loadStory(storyId) {
     throw err;
   }
 }
-export async function updateStory(updatedStory) {
+export async function updateStoryDetails(updatedStory) {
   try {
     const savedStory = await storyService.save(updatedStory);
 
