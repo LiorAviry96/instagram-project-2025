@@ -23,8 +23,8 @@ export function Likes({ initialLikes, likedBy, storyId }) {
   const [likedUsers, setLikedUsers] = useState(likedBy || []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const shouldShowLikes2 = isLiked && likes > 0;
-  const shouldShowLikes = !isLiked && likes > 0;
+  const shouldShowLikes = isLiked && likes > 0;
+  const shouldShowLike2 = !isLiked && likes > 0;
 
   useEffect(() => {
     if (story) {
@@ -141,7 +141,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
         <div className="left-icons">
           <SvgIcon
             className="icons"
-            iconName={`${isLiked ? "heart" : "heartRed"}`}
+            iconName={`${isLiked ? "heartRed" : "heart"}`}
             onClick={handleLike}
           />
 
@@ -162,7 +162,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
           <b>{othersCount > 0 && ` ${othersCount} others`}</b>
         </p>
       )}
-      {shouldShowLikes2 && <p className="number-likes2">{likes} likes</p>}
+      {shouldShowLike2 && <p className="number-likes2">{likes} likes</p>}
 
       {isModalOpen && (
         <div className="modal-overlay" onClick={toggleModal}>
