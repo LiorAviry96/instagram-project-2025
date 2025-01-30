@@ -19,11 +19,6 @@ export function storyReducer(state = initialState, action) {
     case SET_STORY:
       newState = { ...state, story: action.story };
       break;
-    //case REMOVE_POST:
-    //  const lastRemovedPost = state.posts.find(post => post._id === action.postId)
-    //posts = state.posts.filter(post => post._id !== action.postId)
-    //newState = { ...state, posts, lastRemovedPost }
-    //break
     case ADD_STORY:
       newState = { ...state, storys: [...state.storys, action.story] };
       break;

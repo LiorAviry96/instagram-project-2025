@@ -116,7 +116,6 @@ export function Likes({ initialLikes, likedBy, storyId }) {
         savedStorys: updatedSavedStorys,
       };
 
-      // Update the user in storage
       await userService.update(updatedUser);
       alert(isSaved ? "Story removed from saved" : "Story saved successfully!");
     } catch (err) {

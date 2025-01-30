@@ -51,7 +51,7 @@ export function Profile() {
         <img className="profile-img" src={getImageSrc(watchedUser.imgUrl)} />
         <div className="profile-info">
           <div className="username-section">
-            <h3 className="fullname">{watchedUser.username}</h3>
+            <h3 className="username">{watchedUser.username}</h3>
 
             {!isOwnProfile && (
               <div className="action-buttons">
@@ -77,7 +77,7 @@ export function Profile() {
               <strong>{watchedUser.following?.length || 0}</strong> following
             </span>
           </div>
-          <p className="username">{watchedUser.fullname}</p>
+          <p className="fullname">{watchedUser.fullname}</p>
         </div>
       </header>
       <div className="divider"></div>

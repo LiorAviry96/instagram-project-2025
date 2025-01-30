@@ -66,7 +66,7 @@
 
   .emoji-picker {
     position: fixed;
-    top: var(--emoji-picker-top); /* Dynamic positioning */
+    top: var(--emoji-picker-top);
     left: var(--emoji-picker-left);
     z-index: 1000;
     background-color: white;

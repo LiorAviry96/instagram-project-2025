@@ -28,15 +28,15 @@ export function StoryPreview({ story }) {
     const now = new Date();
     const seconds = differenceInSeconds(now, date);
 
-    if (seconds < 60) return `${seconds}s`; // Less than a minute
+    if (seconds < 60) return `${seconds}s`;
     const minutes = differenceInMinutes(now, date);
-    if (minutes < 60) return `${minutes}m`; // Less than an hour
+    if (minutes < 60) return `${minutes}m`;
     const hours = differenceInHours(now, date);
-    if (hours < 24) return `${hours}h`; // Less than a day
+    if (hours < 24) return `${hours}h`;
     const days = differenceInDays(now, date);
-    if (days < 7) return `${days}d`; // Less than a week
+    if (days < 7) return `${days}d`;
     const weeks = differenceInWeeks(now, date);
-    return `${weeks}w`; // More than a week
+    return `${weeks}w`;
   };
 
   const timeAgo = formatTimeAgo(new Date(createdAt));
