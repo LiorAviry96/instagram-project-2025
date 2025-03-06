@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateStoryDetails } from "../store/actions/story.actions";
-import { userService } from "../services/user.service";
-import { storyService } from "../services/story.service";
+import { userService } from "../services/users/user.service";
+import { storyService } from "../services/storys/story.service";
 import { updateUser } from "../store/actions/user.actions";
 import { ImageModal } from "./ImageModal";
 import { SvgIcon } from "./SvgIcon";

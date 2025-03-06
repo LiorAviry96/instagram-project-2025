@@ -3,7 +3,7 @@ import { ImgUploader } from "./ImgUploader";
 import { updateUserImage } from "../store/actions/user.actions";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
-import { userService } from "../services/user.service";
+import { userService } from "../services/users/user.service";
 import { createStory } from "../store/actions/story.actions";
 import { useSelector } from "react-redux";
 import { PostContext } from "./contexts/PostContext";

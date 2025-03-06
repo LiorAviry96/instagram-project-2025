@@ -9,17 +9,26 @@
       margin-bottom: 20px;
       display: flex;
 
+      .comment-time {
+        font-size: 0.8rem !important;
+        display: block !important;
+        color: $secondary-color;
+        margin-left: 10px;
+      }
       .comment-img {
         width: 32px;
         height: 32px;
         object-fit: cover;
         border-radius: 50%;
         margin-right: 18px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
       }
 
       strong {
         color: $text-color;
-        font-size: $font-size-primary;
+        font-size: 0.9rem;
         display: flex;
         justify-content: center;
         align-items: center;

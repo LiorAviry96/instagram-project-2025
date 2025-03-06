@@ -12,6 +12,7 @@ export function Explore() {
   useEffect(() => {
     loadStorys();
   }, [dispatch]);
+
   return (
     <div className="profile-page">
       <section className="profile-gallery">

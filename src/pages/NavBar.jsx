@@ -69,12 +69,13 @@ export function NavBar() {
           className={`navbar-item ${activeItem === "explore" ? "active" : ""}`}
           onClick={() => setActiveItem("explore")}
         >
-          <SvgIcon
-            iconName={`${
-              activeItem === "explore" ? "explore-bold" : "explore"
-            }`}
-          />
-          <Link to="/explore">
+          <Link to="/explore" className="home-link">
+            <SvgIcon
+              iconName={`${
+                activeItem === "explore" ? "explore-bold" : "explore"
+              }`}
+            />
+
             <span>Explore</span>
           </Link>
         </li>
@@ -84,7 +85,7 @@ export function NavBar() {
         >
           <SvgIcon iconName="messenger" />
 
-          <Link to="/home">
+          <Link to="/inbox">
             <span>Messages</span>
           </Link>
         </li>

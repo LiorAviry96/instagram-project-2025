@@ -1,5 +1,5 @@
 import { store } from "../store";
-import { storyService } from "../../services/story.service";
+import { storyService } from "../../services/storys/story.service";
 import {
   SET_STORY,
   SET_STORYS,

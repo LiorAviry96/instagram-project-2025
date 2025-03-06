@@ -1,4 +1,4 @@
-import { userService } from "../../services/user.service";
+import { userService } from "../../services/users/user.service";
 
 export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";

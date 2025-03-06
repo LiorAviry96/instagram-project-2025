@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { userService } from "../services/user.service";
+import { userService } from "../services/users/user.service";
 import { useSelector } from "react-redux";
 
 export function Search({ onClose }) {

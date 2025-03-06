@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import io from "socket.io-client";
-import { userService } from "./user.service";
+import { userService } from "./users/user.service";
 
 export const SOCKET_EVENT_ADD_MSG = "chat-add-msg";
 export const SOCKET_EMIT_SEND_MSG = "chat-send-msg";

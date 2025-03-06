@@ -8,6 +8,7 @@ import { Search } from "./pages/Search";
 import { CreateStory } from "./cmps/CreateStory";
 import { PostProvider } from "./cmps/contexts/PostContext";
 import { Routes, Route } from "react-router";
+import { Chat } from "./pages/Chat";
 
 export function RootCmp() {
   return (
@@ -21,6 +22,7 @@ export function RootCmp() {
             <Route path="/user/:userId" element={<Profile />} />
             <Route path="/user/:userId/search" element={<Search />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/inbox" element={<Chat />} />
             <Route path="/user/:userId/upload" element={<CreateStory />} />
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />

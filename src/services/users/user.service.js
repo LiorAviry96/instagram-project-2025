@@ -1,5 +1,5 @@
-import { storageService } from "./async-storage.service";
-import { saveToStorage, loadFromStorage } from "./util.service";
+import { storageService } from "../async-storage.service";
+import { saveToStorage, loadFromStorage } from "../util.service";
 const STORAGE_KEY_LOGGEDIN_USER = "user";
 
 export const userService = {

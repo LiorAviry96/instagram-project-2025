@@ -1,6 +1,6 @@
-import { storageService } from "./async-storage.service";
-import { userService } from "./user.service";
-import { makeId, saveToStorage, loadFromStorage } from "./util.service";
+import { storageService } from "../async-storage.service";
+import { userService } from "../users/user.service";
+import { makeId, saveToStorage, loadFromStorage } from "../util.service";
 
 const STORAGE_KEY = "storys";
 
@@ -113,6 +113,7 @@ async function _createStorys() {
               imgUrl: "user3",
             },
             txt: "Wow, looks amazing!",
+            createdAt: "2025-02-01T10:00:00Z",
           },
         ],
         likedBy: [
@@ -147,6 +148,7 @@ async function _createStorys() {
               imgUrl: "user3",
             },
             txt: "Wow, looks amazing!",
+            createdAt: "2025-02-01T10:00:00Z",
           },
         ],
         likedBy: [
@@ -186,6 +188,7 @@ async function _createStorys() {
               imgUrl: "user4",
             },
             txt: "Love it!",
+            createdAt: "2025-02-01T10:00:00Z",
           },
         ],
         likedBy: [
@@ -220,6 +223,7 @@ async function _createStorys() {
               imgUrl: "user1",
             },
             txt: "Sounds like fun!",
+            createdAt: "2025-02-01T10:00:00Z",
           },
           {
             id: makeId(),
@@ -229,6 +233,7 @@ async function _createStorys() {
               imgUrl: "user2",
             },
             txt: "Wish I was there!",
+            createdAt: "2025-02-02T10:00:00Z",
           },
         ],
         likedBy: [
@@ -263,6 +268,7 @@ async function _createStorys() {
               imgUrl: "user2",
             },
             txt: "Amazing journey!",
+            createdAt: "2025-02-01T10:00:00Z",
           },
         ],
         likedBy: [
@@ -292,6 +298,7 @@ async function _createStorys() {
               imgUrl: "user4",
             },
             txt: "Looks relaxing!",
+            createdAt: "2025-02-03T10:00:00Z",
           },
         ],
         likedBy: [
