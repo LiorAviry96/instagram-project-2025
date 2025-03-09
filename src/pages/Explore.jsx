@@ -7,7 +7,6 @@ export function Explore() {
   const dispatch = useDispatch();
 
   const storys = useSelector((storeState) => storeState.storyModule.storys);
-  console.log("storys", storys);
 
   useEffect(() => {
     loadStorys();

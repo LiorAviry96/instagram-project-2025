@@ -10,7 +10,6 @@ const axios = Axios.create({ withCredentials: true });
 
 export const httpService = {
   get(endpoint, data) {
-    console.log(BASE_URL);
     return ajax(endpoint, "GET", data);
   },
   post(endpoint, data) {
@@ -31,12 +30,9 @@ async function ajax(endpoint, method = "GET", data = null) {
   const options = { url, method, data, params };
 
   try {
-    console.log("options", options);
     const res = await axios(options);
-    console.log("res", res);
     return res.data;
   } catch (err) {
-    console.log(BASE_URL);
     console.log(
       `Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: `,
       data

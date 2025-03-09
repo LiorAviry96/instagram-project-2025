@@ -40,7 +40,7 @@ export function NavBar() {
     <div className={`navbar ${isSearchModalOpen ? "small-nav" : ""}`}>
       <img
         className="logo"
-        src="/src/assets/images/Instagram_logo.png"
+        src="/assets/images/Instagram_logo.png"
         alt="Logo"
       />
       <ul className="navbar-menu">

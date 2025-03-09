@@ -31,12 +31,12 @@ export function Likes({ initialLikes, likedBy, storyId }) {
   useEffect(() => {
     if (story) {
       setIsLiked(
-        story.likedBy?.some(
+        (story.likedBy || []).some(
           (user) => user._id === userService.getLoggedinUser()?._id
         )
       );
-      setLikes(story.likedBy.length);
-      setLikedUsers(story.likedBy);
+      setLikes((story.likedBy || []).length);
+      setLikedUsers(story.likedBy || []);
       const loggedInUser = userService.getLoggedinUser();
 
       if (loggedInUser) {
@@ -52,7 +52,6 @@ export function Likes({ initialLikes, likedBy, storyId }) {
 
   const handleLike = async () => {
     const loggedInUser = userService.getLoggedinUser();
-    console.log("loggedInUser likes", loggedInUser);
     if (!loggedInUser) {
       alert("Please log in to like stories");
       return;
@@ -90,12 +89,12 @@ export function Likes({ initialLikes, likedBy, storyId }) {
     try {
       const fullStory = await storyService.getById(storyId);
 
-      const existingSavedStory = loggedInUser.savedStorys.find(
+      const existingSavedStory = loggedInUser.savedStorys?.find(
         (savedStory) =>
           savedStory.userId === fullStory.owner._id &&
           savedStory.imgUrl === fullStory.imgUrl
       );
-
+      console.log("existingSavedStory", existingSavedStory);
       let updatedSavedStorys;
       if (existingSavedStory) {
         updatedSavedStorys = loggedInUser.savedStorys.filter(
@@ -103,6 +102,8 @@ export function Likes({ initialLikes, likedBy, storyId }) {
             savedStory.userId !== fullStory.owner._id ||
             savedStory.imgUrl !== fullStory.imgUrl
         );
+        console.log("existingSavedStory", existingSavedStory);
+
         setIsSaved(false);
       } else {
         const savedStory = {
@@ -111,6 +112,8 @@ export function Likes({ initialLikes, likedBy, storyId }) {
           imgUrl: fullStory.imgUrl,
         };
         updatedSavedStorys = [...loggedInUser.savedStorys, savedStory];
+        console.log("updatedSavedStorys", updatedSavedStorys);
+
         setIsSaved(true);
       }
 
@@ -176,7 +179,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
             isModalOpen={isModalOpen}
             updateComments={(updatedComments) => {
               const updatedStory = { ...story, comments: updatedComments };
-              dispatch(updateStoryDetails(updatedStory));
+              updateStoryDetails(updatedStory);
             }}
           />
         </div>

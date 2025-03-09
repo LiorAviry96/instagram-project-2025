@@ -13,15 +13,13 @@ export function PostProvider({ children }) {
     }
 
     if (typeof image === "string") {
-      return image.startsWith("http")
-        ? image
-        : `/src/assets/images/${image}.jpeg`;
+      return image.startsWith("http") ? image : `/assets/images/${image}.jpeg`;
     }
 
     if (typeof image === "object" && image.imgUrl) {
       return image.imgUrl.startsWith("http")
         ? image.imgUrl
-        : `/src/assets/images/${image.imgUrl}.jpeg`;
+        : `/assets/images/${image.imgUrl}.jpeg`;
     }
 
     console.error("Invalid image format");

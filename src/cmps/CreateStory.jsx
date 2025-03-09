@@ -33,7 +33,7 @@ export function CreateStory({ onClose }) {
           fullname: userService.getLoggedinUser().fullname,
           imgUrl: userService.getLoggedinUser().imgUrl,
         },
-        comment: [],
+        comments: [],
         likedBy: [],
         createdAt: new Date().toISOString(),
       };

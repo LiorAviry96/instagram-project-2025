@@ -35,15 +35,14 @@ function remove(userId) {
 async function update(updatedUser) {
   console.log("updatedUser service", updatedUser);
   const user = await storageService.get("user", updatedUser._id);
-  console.log(
-    "Object.assign(user, updatedUser)",
-    Object.assign(user, updatedUser)
-  );
+  console.log("user update first", user);
 
-  Object.assign(user, updatedUser); // Merge the updated fields into the user object
+  Object.assign(user, updatedUser);
   await storageService.put("user", user);
 
   const loggedInUser = getLoggedinUser();
+  console.log("update loggedInUser", loggedInUser);
+  console.log("update user", user);
   if (loggedInUser._id === user._id) saveLoggedinUser(user);
   return user;
 }

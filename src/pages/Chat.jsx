@@ -113,7 +113,7 @@ export function Chat() {
               onClick={() => handleChatClick(user)}
             >
               <img
-                src={`/src/assets/images/${user.imgUrl}.jpeg`} // Replace with your image path
+                src={`/assets/images/${user.imgUrl}.jpeg`} // Replace with your image path
                 alt={user.fullname}
                 className="chat-user-avatar"
               />
@@ -135,7 +135,7 @@ export function Chat() {
             >
               <Link className="owner-story" to={`/user/${selectedChat._id}`}>
                 <img
-                  src={`/src/assets/images/${selectedChat.imgUrl}.jpeg`} // Replace with your image path
+                  src={`/assets/images/${selectedChat.imgUrl}.jpeg`} // Replace with your image path
                   alt={selectedChat.fullname}
                   className="chat-header-avatar"
                 />

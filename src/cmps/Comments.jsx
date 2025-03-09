@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AddComment } from "./AddComment";
 import { ImageModal } from "./ImageModal";
 import { updateStoryDetails } from "../store/actions/story.actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export function Comments({ comments, storyId, updateStory }) {
   const [isModalOpen, setIsModalOpen] = useState(false);

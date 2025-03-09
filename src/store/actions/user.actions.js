@@ -124,7 +124,9 @@ export async function updateUserImage(imgUrl) {
     console.log("newImage", newImage);
     const updatedUser = { ...loggedInUser };
     console.log("updatedUser start", updatedUser);
-    updatedUser.images = [...updatedUser.images, newImage];
+    updatedUser.images = Array.isArray(updatedUser.images)
+      ? [...updatedUser.images, newImage]
+      : [newImage];
     console.log("updatedUser end", updatedUser);
     const user = await userService.update(updatedUser);
 

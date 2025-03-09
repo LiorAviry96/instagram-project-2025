@@ -27,10 +27,13 @@ function remove(userId) {
   return httpService.delete(`user/${userId}`);
 }
 
-async function update({ _id }) {
-  const user = await httpService.put(`user/${_id}`, { _id });
+async function update(updatedUser) {
+  if (!updatedUser || !updatedUser._id) {
+    console.error("updateUser: Invalid user object", updatedUser);
+    return;
+  }
+  const user = await httpService.put(`user/${updatedUser._id}`, updatedUser);
 
-  // When admin updates other user's details, do not update loggedinUser
   const loggedinUser = getLoggedinUser();
   console.log("loggedinUser test", loggedinUser);
   if (loggedinUser._id === user._id) _saveLocalUser(user);

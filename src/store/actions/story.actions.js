@@ -30,6 +30,7 @@ export async function loadStory(storyId) {
 }
 export async function updateStoryDetails(updatedStory) {
   try {
+    console.log("Updating Story:", updatedStory); // Debugging log
     const savedStory = await storyService.save(updatedStory);
     console.log("savedStory", savedStory);
     store.dispatch({

@@ -70,7 +70,7 @@ export function Search({ onClose }) {
               <li key={user._id} className="search-item">
                 <Link to={`/user/${user._id}`}>
                   <img
-                    src={`/src/assets/images/${user.imgUrl}.jpeg`}
+                    src={`/assets/images/${user.imgUrl}.jpeg`}
                     alt={user.fullname}
                     className="user-avatar"
                   />

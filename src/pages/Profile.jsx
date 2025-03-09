@@ -21,8 +21,6 @@ export function Profile() {
   const dispatch = useDispatch();
 
   const { userId } = useParams();
-  console.log("watchedUser", watchedUser);
-  console.log("loggedInUser", loggedInUser);
 
   useEffect(() => {
     if (!watchedUser || watchedUser._id !== userId) {
@@ -43,7 +41,6 @@ export function Profile() {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-  console.log("activeTab", activeTab);
   if (!watchedUser) return <div>Loading...</div>;
   return (
     <div className="profile-page">
