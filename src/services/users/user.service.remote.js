@@ -14,6 +14,7 @@ export const userService = {
 };
 
 function getUsers() {
+  console.log("users", httpService.get(`user`));
   return httpService.get(`user`);
 }
 
@@ -30,14 +31,17 @@ async function update({ _id }) {
   const user = await httpService.put(`user/${_id}`, { _id });
 
   // When admin updates other user's details, do not update loggedinUser
-  const loggedinUser = getLoggedinUser(); // Might not work because its defined in the main service???
+  const loggedinUser = getLoggedinUser();
+  console.log("loggedinUser test", loggedinUser);
   if (loggedinUser._id === user._id) _saveLocalUser(user);
+  console.log("loggedinUser test2", user);
 
   return user;
 }
 
 async function login(userCred) {
-  const user = await httpService.post("auth/login", userCred);
+  const user = await httpService.post("auth/", userCred);
+  console.log("user", user);
   if (user) return _saveLocalUser(user);
 }
 
@@ -45,7 +49,6 @@ async function signup(userCred) {
   if (!userCred.imgUrl)
     userCred.imgUrl =
       "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png";
-  userCred.score = 10000;
 
   const user = await httpService.post("auth/signup", userCred);
   return _saveLocalUser(user);

@@ -1,4 +1,4 @@
-import { userService } from "../../services/users/user.service";
+import { userService } from "../../services/users";
 import { socketService } from "../../services/socket.service";
 import { store } from "../store";
 
@@ -39,7 +39,8 @@ export async function login(credentials) {
       type: SET_USER,
       user,
     });
-    socketService.login(user._id);
+    console.log("user login", user);
+    //socketService.login(user._id);
     return user;
   } catch (err) {
     console.log("Cannot login", err);
@@ -122,8 +123,9 @@ export async function updateUserImage(imgUrl) {
     };
     console.log("newImage", newImage);
     const updatedUser = { ...loggedInUser };
+    console.log("updatedUser start", updatedUser);
     updatedUser.images = [...updatedUser.images, newImage];
-    console.log("updatedUser", updatedUser);
+    console.log("updatedUser end", updatedUser);
     const user = await userService.update(updatedUser);
 
     store.dispatch({

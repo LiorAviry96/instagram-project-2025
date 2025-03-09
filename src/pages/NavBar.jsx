@@ -33,7 +33,7 @@ export function NavBar() {
   }
 
   if (!user) {
-    return <Link to={"/"} />;
+    return <Link to={"/login"} />;
   }
 
   return (

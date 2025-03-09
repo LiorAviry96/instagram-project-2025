@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { userService } from "../services/users/user.service";
-import { storyService } from "../services/storys/story.service";
+import { userService } from "../services/users";
+import { storyService } from "../services/storys";
 import EmojiPicker from "emoji-picker-react";
 import { SvgIcon } from "./SvgIcon";
 

@@ -1,5 +1,5 @@
 import { store } from "../store";
-import { storyService } from "../../services/storys/story.service";
+import { storyService } from "../../services/storys";
 import {
   SET_STORY,
   SET_STORYS,
@@ -31,7 +31,7 @@ export async function loadStory(storyId) {
 export async function updateStoryDetails(updatedStory) {
   try {
     const savedStory = await storyService.save(updatedStory);
-
+    console.log("savedStory", savedStory);
     store.dispatch({
       type: UPDATE_STORY,
       story: savedStory,

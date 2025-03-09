@@ -1,5 +1,5 @@
 import { storageService } from "../async-storage.service";
-import { userService } from "../users/user.service";
+import { userService } from "../users";
 import { makeId, saveToStorage, loadFromStorage } from "../util.service";
 
 const STORAGE_KEY = "storys";

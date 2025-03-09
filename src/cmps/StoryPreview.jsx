@@ -21,8 +21,9 @@ export function StoryPreview({ story }) {
   const { imgUrl, comments, owner, createdAt, txt } = story;
 
   const updateComments = (updatedComments) => {
+    const updatedStory = { ...story, comments: updatedComments };
     setStoryComments(updatedComments);
-    updateStoryDetails(updatedComments);
+    updateStoryDetails(updatedStory);
   };
   const formatTimeAgo = (date) => {
     const now = new Date();

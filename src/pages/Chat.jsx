@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { userService } from "../services/users/user.service"; // Ensure this imports the user service correctly
+import { userService } from "../services/users";
 import {
   socketService,
   SOCKET_EMIT_SEND_MSG,

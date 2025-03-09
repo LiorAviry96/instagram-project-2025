@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import React from "react";
+
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateStoryDetails } from "../store/actions/story.actions";
-import { userService } from "../services/users/user.service";
-import { storyService } from "../services/storys/story.service";
+import { userService } from "../services/users";
+import { storyService } from "../services/storys";
 import { updateUser } from "../store/actions/user.actions";
 import { ImageModal } from "./ImageModal";
 import { SvgIcon } from "./SvgIcon";
@@ -29,7 +31,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
   useEffect(() => {
     if (story) {
       setIsLiked(
-        story.likedBy.some(
+        story.likedBy?.some(
           (user) => user._id === userService.getLoggedinUser()?._id
         )
       );
@@ -38,7 +40,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
       const loggedInUser = userService.getLoggedinUser();
 
       if (loggedInUser) {
-        const isStorySaved = loggedInUser.savedStorys.some(
+        const isStorySaved = loggedInUser.savedStorys?.some(
           (savedStory) =>
             savedStory.userId === story.owner._id &&
             savedStory.imgUrl === story.imgUrl
@@ -50,6 +52,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
 
   const handleLike = async () => {
     const loggedInUser = userService.getLoggedinUser();
+    console.log("loggedInUser likes", loggedInUser);
     if (!loggedInUser) {
       alert("Please log in to like stories");
       return;

@@ -3,7 +3,7 @@
 import { login } from "../store/actions/user.actions";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { userService } from "../services/users/user.service";
+import { userService } from "../services/users";
 
 export function Login() {
   const [credentials, setCredentials] = useState({
@@ -25,7 +25,9 @@ export function Login() {
     if (ev) ev.preventDefault();
 
     if (!credentials.username) return;
+    console.log("credentials", credentials);
     await login(credentials);
+
     navigate("/home");
   }
 
