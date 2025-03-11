@@ -13,9 +13,9 @@ export function Profile() {
   const [activeTab, setActiveTab] = useState("posts");
   const watchedUser = useSelector((state) => state.userModule.watchedUser);
   const loggedInUser = useSelector((state) => state.userModule.user);
-  const isFollowing = loggedInUser?.following?.some(
-    (follow) => follow._id === watchedUser?._id
-  );
+  const isFollowing =
+    Array.isArray(loggedInUser?.following) &&
+    loggedInUser.following.some((follow) => follow._id === watchedUser?._id);
 
   const { getImageSrc } = useContext(PostContext);
   const dispatch = useDispatch();

@@ -40,7 +40,7 @@ export async function login(credentials) {
       user,
     });
     console.log("user login", user);
-    //socketService.login(user._id);
+    socketService.login(user._id);
     return user;
   } catch (err) {
     console.log("Cannot login", err);
@@ -143,11 +143,16 @@ export async function updateUserImage(imgUrl) {
 }
 
 export async function followUser(userIdToFollow) {
+  console.log("loggedIn", userService.getLoggedinUser());
   try {
     const loggedInUser = userService.getLoggedinUser();
     if (!loggedInUser) throw new Error("You must be logged in to follow users");
 
     const targetUser = await userService.getById(userIdToFollow);
+
+    // Ensure `following` and `followers` are arrays
+    if (!Array.isArray(loggedInUser.following)) loggedInUser.following = [];
+    if (!Array.isArray(targetUser.followers)) targetUser.followers = [];
 
     // Avoid duplicates
     if (!loggedInUser.following.some((user) => user._id === userIdToFollow)) {

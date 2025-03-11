@@ -83,9 +83,9 @@ export function NavBar() {
           className={`navbar-item ${activeItem === "messages" ? "active" : ""}`}
           onClick={() => setActiveItem("messages")}
         >
-          <SvgIcon iconName="messenger" />
+          <Link to="/inbox" className="home-link">
+            <SvgIcon iconName="messenger" />
 
-          <Link to="/inbox">
             <span>Messages</span>
           </Link>
         </li>

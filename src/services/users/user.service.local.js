@@ -1,5 +1,5 @@
 import { storageService } from "../async-storage.service";
-import { saveToStorage, loadFromStorage } from "../util.service";
+import { saveToStorage, loadFromStorage, makeId } from "../util.service";
 const STORAGE_KEY_LOGGEDIN_USER = "user";
 
 export const userService = {
@@ -12,6 +12,7 @@ export const userService = {
   update,
   getLoggedinUser,
   saveLoggedinUser,
+  addUserMsg,
 };
 
 _createUsers();
@@ -89,6 +90,20 @@ function saveLoggedinUser(user) {
   return user;
 }
 
+async function addUserMsg(userId, txt) {
+  // Later, this is all done by the backend
+  const user = await getById(userId);
+
+  const msg = {
+    id: makeId(),
+    by: userService.getLoggedinUser(),
+    txt,
+  };
+  user.msgs.push(msg);
+  await storageService.put(STORAGE_KEY_LOGGEDIN_USER, user);
+  return msg;
+}
+
 async function _createUsers() {
   let users = loadFromStorage(STORAGE_KEY_LOGGEDIN_USER);
 
@@ -143,6 +158,7 @@ async function _createUsers() {
             imgUrl: "postImage5",
           },
         ],
+        notifications: [],
       },
       {
         _id: "u138",
@@ -177,6 +193,7 @@ async function _createUsers() {
           },
         ],
         savedStorys: [],
+        notifications: [],
       },
       {
         _id: "u196",
@@ -227,6 +244,7 @@ async function _createUsers() {
             imgUrl: "post9",
           },
         ],
+        notifications: [],
       },
       {
         _id: "u409",
@@ -261,6 +279,7 @@ async function _createUsers() {
             imgUrl: "post9",
           },
         ],
+        notifications: [],
       },
       {
         _id: "u129",
@@ -295,6 +314,7 @@ async function _createUsers() {
             imgUrl: "post9",
           },
         ],
+        notifications: [],
       },
       {
         _id: "u119",
@@ -312,6 +332,7 @@ async function _createUsers() {
             imgUrl: "post8",
           },
         ],
+        msgs: [],
       },
       {
         _id: "u140",
@@ -358,6 +379,7 @@ async function _createUsers() {
             imgUrl: "postImage5",
           },
         ],
+        notifications: [],
       },
     ];
     saveToStorage(STORAGE_KEY_LOGGEDIN_USER, users);

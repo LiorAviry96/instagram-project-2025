@@ -1,6 +1,7 @@
 import { signup } from "../store/actions/user.actions";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { ImgUploaderUser } from "../cmps/ImgUploaderUser";
 
 export function SignUp() {
   const [credentials, setCredentials] = useState({
@@ -34,6 +35,9 @@ export function SignUp() {
     const { name, value } = ev.target;
     setCredentials({ ...credentials, [name]: value });
   }
+  function onUploaded(imgUrl) {
+    setCredentials((credentials) => ({ ...credentials, imgUrl }));
+  }
   return (
     <div className="signup">
       <i
@@ -65,13 +69,8 @@ export function SignUp() {
           value={credentials.password}
           onChange={handleChange}
         />
-        <input
-          type="text"
-          name="imgUrl"
-          placeholder="Image URL (optional)"
-          value={credentials.imgUrl}
-          onChange={handleChange}
-        />
+        <ImgUploaderUser onUploaded={onUploaded} />
+
         <button type="submit">Sign Up</button>
       </form>
       <p className="signup-switch">

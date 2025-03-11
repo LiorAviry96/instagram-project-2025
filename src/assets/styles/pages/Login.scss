@@ -8,6 +8,9 @@
   overflow: auto;
   border: 1px solid $grey-bg-color;
 
+  .signup-img {
+    width: 290px;
+  }
   .signup-switch {
     display: flex;
     flex-direction: column;

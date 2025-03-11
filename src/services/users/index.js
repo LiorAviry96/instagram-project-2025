@@ -4,7 +4,6 @@ import { userService as local } from "./user.service.local";
 //import { userService as remote } from "./user.service.local";
 
 import { userService as remote } from "./user.service.remote";
-console.log("service", VITE_LOCAL);
 
 function getEmptyUser() {
   return {

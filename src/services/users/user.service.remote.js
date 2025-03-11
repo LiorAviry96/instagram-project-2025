@@ -11,6 +11,7 @@ export const userService = {
   remove,
   update,
   getLoggedinUser,
+  addUserMsg,
 };
 
 function getUsers() {
@@ -64,6 +65,11 @@ async function logout() {
 
 function getLoggedinUser() {
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER));
+}
+
+async function addUserMsg(userId, txt) {
+  const savedMsg = await httpService.post(`user/${userId}/msg`, { txt });
+  return savedMsg;
 }
 
 function _saveLocalUser(user) {

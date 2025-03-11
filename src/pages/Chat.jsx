@@ -23,22 +23,31 @@ export function Chat() {
   const [msgs, setMsgs] = useState([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const loggedInUser = useSelector((state) => state.userModule.user);
-
+  console.log("loggedInUser", loggedInUser);
   useEffect(() => {
     loadUsers();
   }, []);
 
-  /*useEffect(() => {
+  useEffect(() => {
     socketService.on(SOCKET_EVENT_ADD_MSG, addMsg);
+    console.log("msg", msg);
+
     return () => {
       socketService.off(SOCKET_EVENT_ADD_MSG, addMsg);
     };
-  }, []);*/
+  }, []);
 
-  // Fetch all users from the userService, similar to what you did in the search page
+  useEffect(() => {
+    socketService.emit(SOCKET_EMIT_SET_TOPIC, topic);
+  }, [topic]);
+
   async function loadUsers() {
-    const users = await userService.getUsers(); // Replace with the actual function that gets all users
-    setUsers(users);
+    try {
+      const users = await userService.getUsers();
+      setUsers(users);
+    } catch (err) {
+      console.error("Failed to load users", err);
+    }
   }
 
   useEffect(() => {
@@ -65,23 +74,32 @@ export function Chat() {
     setMsg((prevMsg) => ({ ...prevMsg, [name]: value }));
   }
 
-  function sendMsg(ev) {
+  async function sendMsg(ev) {
     ev.preventDefault();
     const from = loggedInUser?.fullname || "Me";
-    const newMsg = { from, txt: msg.txt };
+    const imgUrl = loggedInUser?.imgUrl || "Me";
+    const newMsg = { from, txt: msg.txt, imgUrl };
+
     socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg);
+
+    try {
+      await userService.addUserMsg(loggedInUser._id, msg.txt);
+    } catch (err) {
+      console.error("Message sending failed", err);
+    }
+
     setMsg({ txt: "" });
   }
 
   const handleEmojiClick = (emojiObject) => {
     setMsg((prev) => ({ ...prev, txt: prev.txt + emojiObject.emoji }));
-    setShowEmojiPicker(false); // Close the emoji picker after selecting an emoji
+    setShowEmojiPicker(false);
   };
 
   const handleEmojiButtonClick = (e) => {
     setShowEmojiPicker((prev) => !prev);
     const buttonRect = e.currentTarget.getBoundingClientRect();
-    const topPosition = buttonRect.top + window.scrollY - 250; // Adjust height
+    const topPosition = buttonRect.top + window.scrollY - 250;
     document.documentElement.style.setProperty(
       "--emoji-picker-top",
       `${topPosition}px`
@@ -94,9 +112,11 @@ export function Chat() {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      sendMsg();
+      e.preventDefault();
+      sendMsg(e);
     }
   };
+
   return (
     <div className="chat-container">
       {/* Chat Sidebar */}
@@ -113,7 +133,11 @@ export function Chat() {
               onClick={() => handleChatClick(user)}
             >
               <img
-                src={`/assets/images/${user.imgUrl}.jpeg`} // Replace with your image path
+                src={
+                  user.imgUrl
+                    ? `/assets/images/${user.imgUrl}.jpeg`
+                    : "/default-avatar.jpeg"
+                }
                 alt={user.fullname}
                 className="chat-user-avatar"
               />
@@ -129,9 +153,7 @@ export function Chat() {
           <>
             <div
               className="chat-header"
-              name="topic"
-              value={`${selectedChat._id}`}
-              onClick={({ target }) => setRoom(target.value)}
+              onClick={() => setRoom(selectedChat._id)}
             >
               <Link className="owner-story" to={`/user/${selectedChat._id}`}>
                 <img
@@ -150,7 +172,12 @@ export function Chat() {
               <ul className="chat-message-list">
                 {msgs.map((msg, idx) => (
                   <li key={idx} className="chat-message">
-                    <strong>{msg.from}:</strong> {msg.txt}
+                    <img
+                      src={`/assets/images/${msg.imgUrl}.jpeg`}
+                      alt={msg.from}
+                      className="chat-small-avatar"
+                    />
+                    <div className="chat-text">{msg.txt}</div>
                   </li>
                 ))}
               </ul>
