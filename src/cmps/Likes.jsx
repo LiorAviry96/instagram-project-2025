@@ -111,11 +111,12 @@ export function Likes({ initialLikes, likedBy, storyId }) {
           fullname: fullStory.owner.fullname,
           imgUrl: fullStory.imgUrl,
         };
-        updatedSavedStorys = [...loggedInUser.savedStorys, savedStory];
+        updatedSavedStorys = [savedStory];
         console.log("updatedSavedStorys", updatedSavedStorys);
 
         setIsSaved(true);
       }
+      console.log();
 
       const updatedUser = {
         ...loggedInUser,

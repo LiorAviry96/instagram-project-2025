@@ -37,6 +37,7 @@ export function AddComment({ storyId, updateStory }) {
           id: Date.now(),
           by: loggedInUser,
           txt: newComment,
+          createdAt: new Date().toISOString(),
         },
       ];
 
@@ -57,14 +58,14 @@ export function AddComment({ storyId, updateStory }) {
 
   const handleEmojiClick = (emojiObject) => {
     setNewComment((prev) => prev + emojiObject.emoji);
-    setShowEmojiPicker(false); // Close the emoji picker after selecting an emoji
+    setShowEmojiPicker(false);
   };
   const handleEmojiButtonClick = (e) => {
     setShowEmojiPicker((prev) => !prev);
 
     if (!showEmojiPicker) {
       const buttonRect = e.currentTarget.getBoundingClientRect();
-      const topPosition = buttonRect.top + window.scrollY - 250; // Adjust height
+      const topPosition = buttonRect.top + window.scrollY - 250;
 
       document.documentElement.style.setProperty(
         "--emoji-picker-top",

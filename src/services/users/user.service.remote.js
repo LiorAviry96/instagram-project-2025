@@ -33,19 +33,19 @@ async function update(updatedUser) {
     console.error("updateUser: Invalid user object", updatedUser);
     return;
   }
+  //console.log("updatedUser service remote", updatedUser);
   const user = await httpService.put(`user/${updatedUser._id}`, updatedUser);
+  //console.log("user service remote", user);
 
   const loggedinUser = getLoggedinUser();
-  console.log("loggedinUser test", loggedinUser);
   if (loggedinUser._id === user._id) _saveLocalUser(user);
-  console.log("loggedinUser test2", user);
 
   return user;
 }
 
 async function login(userCred) {
   const user = await httpService.post("auth/", userCred);
-  console.log("user", user);
+  //console.log("user", user);
   if (user) return _saveLocalUser(user);
 }
 
@@ -83,6 +83,7 @@ function _saveLocalUser(user) {
     followers: user.followers,
     images: user.images,
     savedStorys: user.savedStorys,
+    notifications: user.notifications,
   };
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user));
   return user;

@@ -9,6 +9,9 @@ import { CreateStory } from "./cmps/CreateStory";
 import { PostProvider } from "./cmps/contexts/PostContext";
 import { Routes, Route } from "react-router";
 import { Chat } from "./pages/Chat";
+import { Notifications } from "./pages/Notification";
+//import { socketService } from "./services/socket.service";
+//import { SOCKET_EVENT_USER_FOLLOWED } from "./services/socket.service";
 
 export function RootCmp() {
   return (
@@ -24,6 +27,10 @@ export function RootCmp() {
             <Route path="/explore" element={<Explore />} />
             <Route path="/inbox" element={<Chat />} />
             <Route path="/user/:userId/upload" element={<CreateStory />} />
+            <Route
+              path="/user/:userId/notifications"
+              element={<Notifications />}
+            />
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>

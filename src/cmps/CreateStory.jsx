@@ -47,7 +47,7 @@ export function CreateStory({ onClose }) {
   }
   const handleEmojiClick = (emojiObject) => {
     setStoryText((prev) => prev + emojiObject.emoji);
-    setShowEmojiPicker(false); // Close the emoji picker after selecting an emoji
+    setShowEmojiPicker(false);
   };
 
   function onUploaded(imgUrl) {

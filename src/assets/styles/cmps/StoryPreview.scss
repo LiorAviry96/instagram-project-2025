@@ -20,6 +20,11 @@
       height: 40px;
       margin-right: 13px;
     }
+    .three-dots-icon {
+      cursor: pointer;
+      margin-left: auto; /* Pushes the icon to the right */
+      font-size: 20px;
+    }
   }
   .timeAgo {
     font-size: $font-size-primary !important;

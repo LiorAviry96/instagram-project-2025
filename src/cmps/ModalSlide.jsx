@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-export function ModalSearch({ show, onClose, children }) {
+export function ModalSlide({ show, onClose, children }) {
   if (!show) return null;
 
   return (

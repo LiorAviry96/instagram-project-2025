@@ -11,7 +11,6 @@ export function Comments({ comments, storyId, updateStory }) {
   const story = useSelector((state) =>
     state.storyModule.storys.find((story) => story._id === storyId)
   );
-  //const dispatch = useDispatch();
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 

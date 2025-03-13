@@ -8,19 +8,24 @@ import { CreateStory } from "../cmps/CreateStory";
 import { Modal } from "../cmps/Modal";
 import { Search } from "./Search";
 import { PostContext } from "../cmps/contexts/PostContext";
-import { ModalSearch } from "../cmps/ModalSearch";
+import { ModalSlide } from "../cmps/ModalSlide";
 import { SvgIcon } from "../cmps/SvgIcon";
+import { Notifications } from "./Notification";
 
 export function NavBar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isNotificationsModalOpen, setIsNotificationsModalOpen] =
+    useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("home"); // State to track active navbar item
+  const [activeItem, setActiveItem] = useState("home");
   const user = useSelector((storeState) => storeState.userModule.user);
   const { getImageSrc } = useContext(PostContext);
   const navigate = useNavigate();
   const toggleSearchModal = () => setIsSearchModalOpen(!isSearchModalOpen);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleNotificationsModal = () =>
+    setIsNotificationsModalOpen(!isNotificationsModalOpen);
 
   async function onLogout() {
     try {
@@ -37,7 +42,11 @@ export function NavBar() {
   }
 
   return (
-    <div className={`navbar ${isSearchModalOpen ? "small-nav" : ""}`}>
+    <div
+      className={`navbar ${
+        isSearchModalOpen || isNotificationsModalOpen ? "small-nav" : ""
+      }`}
+    >
       <img
         className="logo"
         src="/assets/images/Instagram_logo.png"
@@ -57,7 +66,10 @@ export function NavBar() {
         </li>
         <li
           className={`navbar-item ${activeItem === "search" ? "active" : ""}`}
-          onClick={() => setActiveItem("search")}
+          onClick={() => {
+            setActiveItem("search");
+            toggleSearchModal();
+          }}
         >
           <SvgIcon
             iconName={`${activeItem === "search" ? "searchBold" : "search"}`}
@@ -93,17 +105,18 @@ export function NavBar() {
           className={`navbar-item ${
             activeItem === "notifications" ? "active" : ""
           }`}
-          onClick={() => setActiveItem("notifications")}
+          onClick={() => {
+            setActiveItem("notifications");
+            toggleNotificationsModal();
+          }}
         >
           <SvgIcon
             iconName={`${
               activeItem === "notifications" ? "heartBlack" : "heart"
             }`}
+            onClick={toggleNotificationsModal}
           />
-
-          <Link className="notification-btn" to="/home">
-            <span>Notifications</span>
-          </Link>
+          <span>Notifications</span>
         </li>
         <li
           className={`navbar-item ${
@@ -114,7 +127,6 @@ export function NavBar() {
             setIsModalOpen(true);
           }}
         >
-          {" "}
           <SvgIcon iconName="addFeed" />
           <span>Create</span>
         </li>
@@ -153,13 +165,22 @@ export function NavBar() {
 
       {/* Search Modal */}
       {isSearchModalOpen && (
-        <ModalSearch
+        <ModalSlide
           show={isSearchModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          className=""
+          onClose={() => setIsSearchModalOpen(false)}
         >
           <Search onClose={() => setIsSearchModalOpen(false)} />
-        </ModalSearch>
+        </ModalSlide>
+      )}
+
+      {/* Notifications Modal */}
+      {isNotificationsModalOpen && (
+        <ModalSlide
+          show={isNotificationsModalOpen}
+          onClose={() => setIsNotificationsModalOpen(false)}
+        >
+          <Notifications onClose={() => setIsNotificationsModalOpen(false)} />
+        </ModalSlide>
       )}
     </div>
   );

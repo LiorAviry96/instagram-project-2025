@@ -4,11 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { ImageDetails } from "../cmps/ImageDetails";
 import { PostContext } from "../cmps/contexts/PostContext";
 import { SvgIcon } from "../cmps/SvgIcon";
+import { Link } from "react-router-dom";
 import {
   loadUser,
   unfollowUser,
   followUser,
 } from "../store/actions/user.actions";
+import { loadStorys } from "../store/actions/story.actions";
+
 export function Profile() {
   const [activeTab, setActiveTab] = useState("posts");
   const watchedUser = useSelector((state) => state.userModule.watchedUser);
@@ -25,7 +28,9 @@ export function Profile() {
   useEffect(() => {
     if (!watchedUser || watchedUser._id !== userId) {
       loadUser(userId);
+      loadStorys();
     }
+    //console.log("watchedUser", watchedUser);
   }, [userId, watchedUser, dispatch]);
 
   const isOwnProfile = loggedInUser?._id === watchedUser?._id;
@@ -58,7 +63,9 @@ export function Profile() {
                 >
                   {isFollowing ? "Following" : "Follow"}
                 </button>
-                <button className="message-btn">Message</button>
+                <Link to={`/inbox`}>
+                  <button className="message-btn">Message</button>
+                </Link>
               </div>
             )}
           </div>

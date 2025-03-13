@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { userService } from "../services/users";
@@ -12,7 +12,7 @@ import {
 } from "../services/socket.service";
 import EmojiPicker from "emoji-picker-react";
 import { SvgIcon } from "../cmps/SvgIcon";
-
+import { PostContext } from "../cmps/contexts/PostContext";
 export function Chat() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -23,7 +23,8 @@ export function Chat() {
   const [msgs, setMsgs] = useState([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const loggedInUser = useSelector((state) => state.userModule.user);
-  console.log("loggedInUser", loggedInUser);
+  const { getImageSrc } = useContext(PostContext);
+
   useEffect(() => {
     loadUsers();
   }, []);
@@ -119,7 +120,6 @@ export function Chat() {
 
   return (
     <div className="chat-container">
-      {/* Chat Sidebar */}
       <div className="chat-sidebar">
         <div className="username-chat">
           <h3>{selectedChat?.fullname}</h3>
@@ -135,7 +135,7 @@ export function Chat() {
               <img
                 src={
                   user.imgUrl
-                    ? `/assets/images/${user.imgUrl}.jpeg`
+                    ? getImageSrc(user.imgUrl)
                     : "/default-avatar.jpeg"
                 }
                 alt={user.fullname}
@@ -147,7 +147,6 @@ export function Chat() {
         </div>
       </div>
 
-      {/* Selected Chat */}
       <div className="selected-chat">
         {selectedChat ? (
           <>
@@ -157,7 +156,7 @@ export function Chat() {
             >
               <Link className="owner-story" to={`/user/${selectedChat._id}`}>
                 <img
-                  src={`/assets/images/${selectedChat.imgUrl}.jpeg`} // Replace with your image path
+                  src={getImageSrc(selectedChat.imgUrl)}
                   alt={selectedChat.fullname}
                   className="chat-header-avatar"
                 />
@@ -167,8 +166,6 @@ export function Chat() {
             <div className="divider--modal"></div>
 
             <div className="chat-messages">
-              {/* This will be your message history (if any) */}
-
               <ul className="chat-message-list">
                 {msgs.map((msg, idx) => (
                   <li key={idx} className="chat-message">

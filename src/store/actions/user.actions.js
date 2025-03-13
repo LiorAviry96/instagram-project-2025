@@ -10,7 +10,7 @@ import {
   SET_USERS,
   SET_WATCHED_USER,
 } from "../reducer/user.reducer";
-
+import { SOCKET_EMIT_USER_FOLLOWED } from "../../services/socket.service";
 export async function loadUsers() {
   try {
     store.dispatch({ type: LOADING_START });
@@ -150,10 +150,10 @@ export async function followUser(userIdToFollow) {
 
     const targetUser = await userService.getById(userIdToFollow);
 
-    // Ensure `following` and `followers` are arrays
     if (!Array.isArray(loggedInUser.following)) loggedInUser.following = [];
     if (!Array.isArray(targetUser.followers)) targetUser.followers = [];
-
+    console.log("targetUser", targetUser);
+    console.log("loggedInUser", loggedInUser);
     // Avoid duplicates
     if (!loggedInUser.following.some((user) => user._id === userIdToFollow)) {
       loggedInUser.following.push({
@@ -170,11 +170,32 @@ export async function followUser(userIdToFollow) {
           imgUrl: loggedInUser.imgUrl,
         });
       }
+      // Create the notification object
 
-      // Update users in the backend
+      const notification = {
+        type: "follow",
+        fromUser: {
+          userId: loggedInUser._id,
+          fullname: loggedInUser.fullname,
+          imgUrl: loggedInUser.imgUrl,
+        },
+        timestamp: new Date().toISOString(),
+      };
+
+      if (!Array.isArray(targetUser.notifications))
+        targetUser.notifications = [];
+
+      console.log("targetUser", targetUser);
+      console.log("notification", notification);
+
+      targetUser.notifications.push(notification);
+
       await userService.update(loggedInUser);
       await userService.update(targetUser);
-
+      socketService.emit(SOCKET_EMIT_USER_FOLLOWED, {
+        loggedInUser: loggedInUser,
+        targetUserId: targetUser._id,
+      });
       // Update in Redux store
       store.dispatch({ type: SET_USER, user: loggedInUser });
       store.dispatch({ type: SET_WATCHED_USER, user: targetUser }); // Update watchedUser here

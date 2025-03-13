@@ -1,16 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { userService } from "../services/users";
 import { useSelector } from "react-redux";
-
+import { PostContext } from "../cmps/contexts/PostContext";
 export function Search({ onClose }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
+  const { getImageSrc } = useContext(PostContext);
 
   useEffect(() => {
     loadUsers();
@@ -70,7 +71,7 @@ export function Search({ onClose }) {
               <li key={user._id} className="search-item">
                 <Link to={`/user/${user._id}`}>
                   <img
-                    src={`/assets/images/${user.imgUrl}.jpeg`}
+                    src={getImageSrc(user.imgUrl)}
                     alt={user.fullname}
                     className="user-avatar"
                   />

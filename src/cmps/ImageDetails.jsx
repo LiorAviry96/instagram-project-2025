@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { ImageModal } from "./ImageModal";
@@ -15,7 +15,12 @@ export function ImageDetails({ image }) {
   const [storyComments, setStoryComments] = useState(story?.comments || []);
   const { getImageSrc } = useContext(PostContext);
 
-  //const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("ImageDetails props:", image);
+  }, [image]);
+
+  console.log("storys", storys);
+  console.log("story", story);
 
   if (!story) {
     return <div>Story not found for this image.</div>;

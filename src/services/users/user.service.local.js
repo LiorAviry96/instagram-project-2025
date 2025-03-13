@@ -36,7 +36,6 @@ function remove(userId) {
 async function update(updatedUser) {
   console.log("updatedUser service", updatedUser);
   const user = await storageService.get("user", updatedUser._id);
-  console.log("user update first", user);
 
   Object.assign(user, updatedUser);
   await storageService.put("user", user);
@@ -85,6 +84,7 @@ function saveLoggedinUser(user) {
     followers: user.followers || [],
     images: user.images || [],
     savedStorys: user.savedStorys || [],
+    notifications: user.notifications || [],
   };
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user));
   return user;
@@ -332,7 +332,7 @@ async function _createUsers() {
             imgUrl: "post8",
           },
         ],
-        msgs: [],
+        notifications: [],
       },
       {
         _id: "u140",
