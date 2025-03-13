@@ -12,6 +12,7 @@ export const userService = {
   update,
   getLoggedinUser,
   addUserMsg,
+  getChatMessages,
 };
 
 function getUsers() {
@@ -67,12 +68,16 @@ function getLoggedinUser() {
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER));
 }
 
-async function addUserMsg(userId, targetUser, txt) {
-  const savedMsg = await httpService.post(`user/${userId}/inbox`, {
+async function addUserMsg(user, targetUser, txt) {
+  const savedMsg = await httpService.post(`user/${user._Id}/inbox/`, {
     targetUser,
     txt,
   });
   return savedMsg;
+}
+
+async function getChatMessages(user, targetUserId) {
+  return await httpService.get(`user/${user._id}/inbox/${targetUserId}`);
 }
 
 function _saveLocalUser(user) {

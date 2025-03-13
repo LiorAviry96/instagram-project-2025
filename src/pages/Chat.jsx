@@ -13,6 +13,7 @@ import {
 import EmojiPicker from "emoji-picker-react";
 import { SvgIcon } from "../cmps/SvgIcon";
 import { PostContext } from "../cmps/contexts/PostContext";
+
 export function Chat() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -42,14 +43,11 @@ export function Chat() {
     socketService.emit(SOCKET_EMIT_SET_TOPIC, topic);
   }, [topic]);
 
-  async function loadUsers() {
-    try {
-      const users = await userService.getUsers();
-      setUsers(users);
-    } catch (err) {
-      console.error("Failed to load users", err);
+  useEffect(() => {
+    if (selectedChat) {
+      loadChatMessages();
     }
-  }
+  }, [selectedChat]);
 
   useEffect(() => {
     if (searchTerm === "") {
@@ -61,6 +59,29 @@ export function Chat() {
       setSearchResults(results);
     }
   }, [searchTerm, users]);
+
+  async function loadUsers() {
+    try {
+      const users = await userService.getUsers();
+      setUsers(users);
+    } catch (err) {
+      console.error("Failed to load users", err);
+    }
+  }
+
+  async function loadChatMessages() {
+    if (!loggedInUser || !selectedChat) return;
+    try {
+      const chatMessages = await userService.getChatMessages(
+        loggedInUser._id,
+        selectedChat._id
+      );
+      console.log("Chat messages:", chatMessages);
+      setMsgs(chatMessages);
+    } catch (err) {
+      console.error("Failed to load chat messages", err);
+    }
+  }
 
   const handleChatClick = (user) => {
     setSelectedChat(user);
@@ -167,16 +188,23 @@ export function Chat() {
 
             <div className="chat-messages">
               <ul className="chat-message-list">
-                {msgs.map((msg, idx) => (
-                  <li key={idx} className="chat-message">
-                    <img
-                      src={`/assets/images/${msg.imgUrl}.jpeg`}
-                      alt={msg.from}
-                      className="chat-small-avatar"
-                    />
-                    <div className="chat-text">{msg.txt}</div>
-                  </li>
-                ))}
+                {msgs.map((msg, idx) => {
+                  const user = users.find((u) => u._id === msg.by._id);
+                  const userImgUrl = user
+                    ? getImageSrc(user.imgUrl)
+                    : "/default-avatar.jpeg";
+
+                  return (
+                    <li key={idx} className="chat-message">
+                      <img
+                        src={userImgUrl}
+                        alt={msg.from}
+                        className="chat-small-avatar"
+                      />
+                      <div className="chat-text">{msg.message}</div>
+                    </li>
+                  );
+                })}
               </ul>
               <form onSubmit={sendMsg} className="chat-input-form">
                 <SvgIcon

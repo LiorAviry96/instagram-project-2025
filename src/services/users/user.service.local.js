@@ -13,6 +13,7 @@ export const userService = {
   getLoggedinUser,
   saveLoggedinUser,
   addUserMsg,
+  getChatMessages,
 };
 
 _createUsers();
@@ -90,13 +91,13 @@ function saveLoggedinUser(user) {
   return user;
 }
 
-async function addUserMsg(userId, targetUser, txt) {
+async function addUserMsg(loginUser, targetUser, txt) {
   // Later, this is all done by the backend
-  const user = await getById(userId);
+  const user = await getById(loginUser._Id);
 
   const msg = {
     id: makeId(),
-    by: userService.getLoggedinUser(),
+    by: user,
     to: targetUser,
     txt,
   };
@@ -104,6 +105,7 @@ async function addUserMsg(userId, targetUser, txt) {
   await storageService.put(STORAGE_KEY_LOGGEDIN_USER, user);
   return msg;
 }
+async function getChatMessages(userId, targetUserId) {}
 
 async function _createUsers() {
   let users = loadFromStorage(STORAGE_KEY_LOGGEDIN_USER);
