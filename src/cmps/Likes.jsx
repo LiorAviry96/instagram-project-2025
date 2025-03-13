@@ -94,7 +94,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
           savedStory.userId === fullStory.owner._id &&
           savedStory.imgUrl === fullStory.imgUrl
       );
-      console.log("existingSavedStory", existingSavedStory);
+      //console.log("existingSavedStory", existingSavedStory);
       let updatedSavedStorys;
       if (existingSavedStory) {
         updatedSavedStorys = loggedInUser.savedStorys.filter(
@@ -102,7 +102,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
             savedStory.userId !== fullStory.owner._id ||
             savedStory.imgUrl !== fullStory.imgUrl
         );
-        console.log("existingSavedStory", existingSavedStory);
+        // console.log("existingSavedStory", existingSavedStory);
 
         setIsSaved(false);
       } else {

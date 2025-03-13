@@ -15,13 +15,6 @@ export function ImageDetails({ image }) {
   const [storyComments, setStoryComments] = useState(story?.comments || []);
   const { getImageSrc } = useContext(PostContext);
 
-  useEffect(() => {
-    console.log("ImageDetails props:", image);
-  }, [image]);
-
-  console.log("storys", storys);
-  console.log("story", story);
-
   if (!story) {
     return <div>Story not found for this image.</div>;
   }

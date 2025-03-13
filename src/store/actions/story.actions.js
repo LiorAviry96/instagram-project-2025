@@ -6,7 +6,6 @@ import {
   ADD_STORY,
   UPDATE_STORY,
 } from "../reducer/story.reducer";
-import { showErrorMsg } from "../../services/event-bus.service";
 
 export async function loadStorys() {
   try {
@@ -59,7 +58,6 @@ export async function createStory(newStory) {
     return savedStory;
   } catch (err) {
     console.error("Error creating story:", err);
-    showErrorMsg("Failed to create story");
     throw err;
   }
 }

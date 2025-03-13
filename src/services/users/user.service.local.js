@@ -41,8 +41,8 @@ async function update(updatedUser) {
   await storageService.put("user", user);
 
   const loggedInUser = getLoggedinUser();
-  console.log("update loggedInUser", loggedInUser);
-  console.log("update user", user);
+  //console.log("update loggedInUser", loggedInUser);
+  //console.log("update user", user);
   if (loggedInUser._id === user._id) saveLoggedinUser(user);
   return user;
 }
@@ -90,16 +90,17 @@ function saveLoggedinUser(user) {
   return user;
 }
 
-async function addUserMsg(userId, txt) {
+async function addUserMsg(userId, targetUser, txt) {
   // Later, this is all done by the backend
   const user = await getById(userId);
 
   const msg = {
     id: makeId(),
     by: userService.getLoggedinUser(),
+    to: targetUser,
     txt,
   };
-  user.msgs.push(msg);
+  //user.msgs.push(msg);
   await storageService.put(STORAGE_KEY_LOGGEDIN_USER, user);
   return msg;
 }

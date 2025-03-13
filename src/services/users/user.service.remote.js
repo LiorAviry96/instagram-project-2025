@@ -67,8 +67,11 @@ function getLoggedinUser() {
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER));
 }
 
-async function addUserMsg(userId, txt) {
-  const savedMsg = await httpService.post(`user/${userId}/msg`, { txt });
+async function addUserMsg(userId, targetUser, txt) {
+  const savedMsg = await httpService.post(`user/${userId}/inbox`, {
+    targetUser,
+    txt,
+  });
   return savedMsg;
 }
 

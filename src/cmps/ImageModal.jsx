@@ -17,8 +17,7 @@ export function ImageModal({
   toggleModal,
 }) {
   const { getImageSrc } = useContext(PostContext);
-  console.log("image", image);
-  console.log("story", story);
+
   return (
     <div className="modal-overlay" onClick={toggleModal}>
       <div

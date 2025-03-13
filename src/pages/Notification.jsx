@@ -34,7 +34,7 @@ export function Notifications() {
     console.log("Socket Service: ", socketService);
     socketService.on(SOCKET_EVENT_USER_FOLLOWED, (data) => {
       console.log("Follow event received:", data);
-      //handleFollowed(data);
+      handleFollowed(data);
     });
     return () => {
       console.log("Cleaning up socket event listener");

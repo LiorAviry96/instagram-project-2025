@@ -2,7 +2,6 @@ import { userService } from "../../services/users";
 import { socketService } from "../../services/socket.service";
 import { store } from "../store";
 
-import { showErrorMsg } from "../../services/event-bus.service";
 import { LOADING_DONE, LOADING_START } from "../reducer/system.reducer";
 import {
   REMOVE_USER,
@@ -88,7 +87,6 @@ export async function loadUser(userId) {
     const user = await userService.getById(userId);
     store.dispatch({ type: SET_WATCHED_USER, user });
   } catch (err) {
-    showErrorMsg("Cannot load user");
     console.log("Cannot load user", err);
   }
 }
@@ -202,7 +200,6 @@ export async function followUser(userIdToFollow) {
     }
   } catch (err) {
     console.error("UserActions: error in followUser", err);
-    showErrorMsg("Failed to follow the user");
   }
 }
 
@@ -231,6 +228,5 @@ export async function unfollowUser(userIdToUnfollow) {
     store.dispatch({ type: SET_WATCHED_USER, user: targetUser }); // Update watchedUser here
   } catch (err) {
     console.error("UserActions: error in unfollowUser", err);
-    showErrorMsg("Failed to unfollow the user");
   }
 }

@@ -42,7 +42,7 @@ async function remove(storyId) {
 }
 
 async function save(story) {
-  console.log("save story service page", story);
+  // console.log("save story service page", story);
   let savedStory;
   if (story._id) {
     const storyToSave = {

@@ -84,7 +84,7 @@ export function Chat() {
     socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg);
 
     try {
-      await userService.addUserMsg(loggedInUser._id, msg.txt);
+      await userService.addUserMsg(loggedInUser._id, selectedChat, msg.txt);
     } catch (err) {
       console.error("Message sending failed", err);
     }

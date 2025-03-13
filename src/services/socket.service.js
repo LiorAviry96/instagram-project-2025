@@ -16,7 +16,7 @@ const SOCKET_EMIT_LOGOUT = "unset-user-socket";
 //export const SOCKET_EVENT_REVIEW_REMOVED = "review-removed";
 //export const SOCKET_EVENT_REVIEW_ABOUT_YOU = "review-about-you";
 
-const baseUrl = process.env.NODE_ENV === "production" ? "" : "//localhost:5173";
+const baseUrl = process.env.NODE_ENV === "production" ? "" : "//localhost:4000";
 export const socketService = createSocketService();
 // export const socketService = createDummySocketService()
 

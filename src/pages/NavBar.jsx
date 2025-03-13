@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { useNavigate } from "react-router";
 import { logout } from "../store/actions/user.actions";
 import { useState, useContext } from "react";
@@ -31,9 +30,9 @@ export function NavBar() {
     try {
       await logout();
       navigate("/");
-      showSuccessMsg("Bye now");
+      console.log("Bye now");
     } catch (err) {
-      showErrorMsg("Cannot logout", err);
+      console.log("Cannot logout", err);
     }
   }
 
@@ -61,7 +60,7 @@ export function NavBar() {
             <SvgIcon
               iconName={`${activeItem === "home" ? "home-bold" : "home"}`}
             />
-            <span>Home</span>
+            <span className="navbar-text">Home</span>
           </Link>
         </li>
         <li
@@ -75,7 +74,9 @@ export function NavBar() {
             iconName={`${activeItem === "search" ? "searchBold" : "search"}`}
             onClick={toggleSearchModal}
           />
-          <span onClick={toggleSearchModal}>Search</span>
+          <span className="navbar-text" onClick={toggleSearchModal}>
+            Search
+          </span>
         </li>
         <li
           className={`navbar-item ${activeItem === "explore" ? "active" : ""}`}
@@ -88,7 +89,7 @@ export function NavBar() {
               }`}
             />
 
-            <span>Explore</span>
+            <span className="navbar-text">Explore</span>
           </Link>
         </li>
         <li
@@ -98,7 +99,7 @@ export function NavBar() {
           <Link to="/inbox" className="home-link">
             <SvgIcon iconName="messenger" />
 
-            <span>Messages</span>
+            <span className="navbar-text">Messages</span>
           </Link>
         </li>
         <li
@@ -116,7 +117,7 @@ export function NavBar() {
             }`}
             onClick={toggleNotificationsModal}
           />
-          <span>Notifications</span>
+          <span className="navbar-text">Notifications</span>
         </li>
         <li
           className={`navbar-item ${
@@ -128,7 +129,7 @@ export function NavBar() {
           }}
         >
           <SvgIcon iconName="addFeed" />
-          <span>Create</span>
+          <span className="navbar-text">Create</span>
         </li>
         <li
           className={`navbar-item ${activeItem === "profile" ? "active" : ""}`}
@@ -140,7 +141,7 @@ export function NavBar() {
               src={getImageSrc(user.imgUrl)}
               alt="Profile"
             />
-            <span>Profile</span>
+            <span className="navbar-text">Profile</span>
           </Link>
         </li>
 
