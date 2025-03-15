@@ -15,8 +15,8 @@ import { userService } from "../../services/users";
 export async function loadStorys() {
   try {
     const storys = await storyService.query();
-    console.log(storys);
     store.dispatch(getCmdSetStorys(storys));
+    console.log("Load storys successfully", storys);
   } catch (err) {
     console.log("Cannot load storys", err);
     throw err;
@@ -27,6 +27,7 @@ export async function loadStory(storyId) {
   try {
     const story = await storyService.getById(storyId);
     store.dispatch(getCmdSetStory(story));
+    console.log("Load story successfully", story);
   } catch (err) {
     console.log("Cannot load story", err);
     throw err;
@@ -38,10 +39,8 @@ export async function updateStoryDetails(
   typeChange
 ) {
   try {
-    console.log("Updating Story:", updatedStory); // Debugging log
-    console.log("loggedInUser test test", loggedInUser);
     const savedStory = await storyService.save(updatedStory);
-    console.log("savedStory", savedStory);
+
     store.dispatch({
       type: UPDATE_STORY,
       story: savedStory,
@@ -80,15 +79,14 @@ export async function updateStoryDetails(
 
 export async function createStory(newStory) {
   try {
-    console.log("newStory actions page", newStory);
     const savedStory = await storyService.save(newStory);
 
     store.dispatch({
       type: ADD_STORY,
       story: savedStory,
     });
+    console.log("Create story successfully", savedStory);
 
-    console.log("Story created successfully:", savedStory);
     return savedStory;
   } catch (err) {
     console.error("Error creating story:", err);

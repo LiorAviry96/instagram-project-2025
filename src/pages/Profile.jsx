@@ -30,7 +30,6 @@ export function Profile() {
       loadUser(userId);
       loadStorys();
     }
-    //console.log("watchedUser", watchedUser);
   }, [userId, watchedUser, dispatch]);
 
   const isOwnProfile = loggedInUser?._id === watchedUser?._id;

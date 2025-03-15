@@ -17,9 +17,7 @@ const SOCKET_EMIT_LOGOUT = "unset-user-socket";
 
 const baseUrl = process.env.NODE_ENV === "production" ? "" : "//localhost:4000";
 export const socketService = createSocketService();
-// export const socketService = createDummySocketService()
 
-// for debugging from console
 window.socketService = socketService;
 
 socketService.setup();
@@ -41,13 +39,9 @@ function createSocketService() {
       else socket.off(eventName, cb);
     },
     emit(eventName, data) {
-      //console.log("eventName", eventName);
-      //console.log("data", data);
-
       socket.emit(eventName, data);
     },
     login(userId) {
-      console.log("login:", userId);
       socket.emit(SOCKET_EMIT_LOGIN, userId);
     },
     logout() {

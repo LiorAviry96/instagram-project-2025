@@ -17,7 +17,6 @@ export const userService = {
 };
 
 function getUsers() {
-  console.log("users", httpService.get(`user`));
   return httpService.get(`user`);
 }
 
@@ -35,9 +34,7 @@ async function update(updatedUser) {
     console.error("updateUser: Invalid user object", updatedUser);
     return;
   }
-  //console.log("updatedUser service remote", updatedUser);
   const user = await httpService.put(`user/${updatedUser._id}`, updatedUser);
-  //console.log("user service remote", user);
 
   const loggedinUser = getLoggedinUser();
   if (loggedinUser._id === user._id) _saveLocalUser(user);
@@ -47,7 +44,7 @@ async function update(updatedUser) {
 
 async function login(userCred) {
   const user = await httpService.post("auth/", userCred);
-  //console.log("user", user);
+
   if (user) return _saveLocalUser(user);
 }
 

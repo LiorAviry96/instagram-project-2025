@@ -15,6 +15,7 @@ export async function loadUsers() {
     store.dispatch({ type: LOADING_START });
     const users = await userService.getUsers();
     store.dispatch({ type: SET_USERS, users });
+    console.log("Load users successfully:", users);
   } catch (err) {
     console.log("UserActions: err in loadUsers", err);
   } finally {
@@ -26,6 +27,7 @@ export async function removeUser(userId) {
   try {
     await userService.remove(userId);
     store.dispatch({ type: REMOVE_USER, userId });
+    console.log("Remove user successfully");
   } catch (err) {
     console.log("UserActions: err in removeUser", err);
   }
@@ -38,8 +40,8 @@ export async function login(credentials) {
       type: SET_USER,
       user,
     });
-    console.log("user login", user);
     socketService.login(user._id);
+    console.log("Login successfully");
     return user;
   } catch (err) {
     console.log("Cannot login", err);
@@ -55,6 +57,7 @@ export async function signup(credentials) {
       user,
     });
     socketService.login(user._id);
+    console.log("Signup successfully");
     return user;
   } catch (err) {
     console.log("Cannot signup", err);
@@ -86,13 +89,13 @@ export async function loadUser(userId) {
     }
     const user = await userService.getById(userId);
     store.dispatch({ type: SET_WATCHED_USER, user });
+    console.log("Load user successfully:", user);
   } catch (err) {
     console.log("Cannot load user", err);
   }
 }
 
 export async function updateUser(updatedUser) {
-  console.log("updatedUser actions", updatedUser);
   try {
     const savedUser = await userService.update(updatedUser);
 
@@ -101,7 +104,7 @@ export async function updateUser(updatedUser) {
       story: savedUser,
     });
 
-    console.log("User updated  successfully:", savedUser);
+    console.log("User updated successfully:", savedUser);
   } catch (err) {
     console.error("Error updating user", err);
     throw err;
@@ -119,19 +122,18 @@ export async function updateUserImage(imgUrl) {
       fullname: loggedInUser.fullname,
       imgUrl,
     };
-    console.log("newImage", newImage);
+
     const updatedUser = { ...loggedInUser };
-    console.log("updatedUser start", updatedUser);
     updatedUser.images = Array.isArray(updatedUser.images)
       ? [...updatedUser.images, newImage]
       : [newImage];
-    console.log("updatedUser end", updatedUser);
     const user = await userService.update(updatedUser);
 
     store.dispatch({
       type: SET_USER,
       user,
     });
+    console.log("Update User Image successfully");
 
     return user;
   } catch (err) {
@@ -150,9 +152,7 @@ export async function followUser(userIdToFollow) {
 
     if (!Array.isArray(loggedInUser.following)) loggedInUser.following = [];
     if (!Array.isArray(targetUser.followers)) targetUser.followers = [];
-    // console.log("targetUser", targetUser);
-    //console.log("loggedInUser", loggedInUser);
-    // Avoid duplicates
+
     if (!loggedInUser.following.some((user) => user._id === userIdToFollow)) {
       loggedInUser.following.push({
         _id: targetUser._id,
@@ -160,7 +160,6 @@ export async function followUser(userIdToFollow) {
         imgUrl: targetUser.imgUrl,
       });
 
-      // Add the logged-in user to the target user's followers list
       if (!targetUser.followers.some((user) => user._id === loggedInUser._id)) {
         targetUser.followers.push({
           _id: loggedInUser._id,
@@ -168,7 +167,6 @@ export async function followUser(userIdToFollow) {
           imgUrl: loggedInUser.imgUrl,
         });
       }
-      // Create the notification object
 
       const notification = {
         type: "follow",
@@ -183,9 +181,6 @@ export async function followUser(userIdToFollow) {
       if (!Array.isArray(targetUser.notifications))
         targetUser.notifications = [];
 
-      //console.log("targetUser", targetUser);
-      //console.log("loggedInUser", loggedInUser);
-
       targetUser.notifications.push(notification);
 
       await userService.update(loggedInUser);
@@ -195,12 +190,10 @@ export async function followUser(userIdToFollow) {
         loggedInUser: loggedInUser,
         targetUserId: targetUser._id,
       });
-      // Update in Redux store
       store.dispatch({ type: SET_USER, user: loggedInUser });
       store.dispatch({ type: SET_WATCHED_USER, user: targetUser }); // Update watchedUser here
 
-      //console.log("targetUser", targetUser);
-      //console.log("loggedInUser", loggedInUser);
+      console.log("Update follow user successfully");
     }
   } catch (err) {
     console.error("UserActions: error in followUser", err);
@@ -215,7 +208,6 @@ export async function unfollowUser(userIdToUnfollow) {
 
     const targetUser = await userService.getById(userIdToUnfollow);
 
-    // Remove from following and followers lists
     loggedInUser.following = loggedInUser.following.filter(
       (user) => user._id !== userIdToUnfollow
     );
@@ -223,13 +215,13 @@ export async function unfollowUser(userIdToUnfollow) {
       (user) => user._id !== loggedInUser._id
     );
 
-    // Update users in the backend
     await userService.update(loggedInUser);
     await userService.update(targetUser);
 
-    // Update in Redux store
     store.dispatch({ type: SET_USER, user: loggedInUser });
-    store.dispatch({ type: SET_WATCHED_USER, user: targetUser }); // Update watchedUser here
+    store.dispatch({ type: SET_WATCHED_USER, user: targetUser });
+
+    console.log("Update unfollow user successfully");
   } catch (err) {
     console.error("UserActions: error in unfollowUser", err);
   }

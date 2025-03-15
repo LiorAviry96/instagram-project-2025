@@ -35,15 +35,13 @@ function remove(userId) {
 }
 
 async function update(updatedUser) {
-  console.log("updatedUser service", updatedUser);
   const user = await storageService.get("user", updatedUser._id);
 
   Object.assign(user, updatedUser);
   await storageService.put("user", user);
 
   const loggedInUser = getLoggedinUser();
-  //console.log("update loggedInUser", loggedInUser);
-  //console.log("update user", user);
+
   if (loggedInUser._id === user._id) saveLoggedinUser(user);
   return user;
 }
@@ -92,7 +90,6 @@ function saveLoggedinUser(user) {
 }
 
 async function addUserMsg(loginUser, targetUser, txt) {
-  // Later, this is all done by the backend
   const user = await getById(loginUser._Id);
 
   const msg = {
@@ -101,11 +98,10 @@ async function addUserMsg(loginUser, targetUser, txt) {
     to: targetUser,
     txt,
   };
-  //user.msgs.push(msg);
   await storageService.put(STORAGE_KEY_LOGGEDIN_USER, user);
   return msg;
 }
-async function getChatMessages(userId, targetUserId) {}
+async function getChatMessages() {}
 
 async function _createUsers() {
   let users = loadFromStorage(STORAGE_KEY_LOGGEDIN_USER);
