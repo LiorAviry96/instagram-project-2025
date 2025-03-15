@@ -5,7 +5,10 @@ export function StoryList({ storys }) {
   return (
     <div className="feed-list">
       {storys.length > 0 ? (
-        storys.map((story) => <StoryPreview key={story._id} story={story} />)
+        storys
+          .slice()
+          .reverse()
+          .map((story) => <StoryPreview key={story._id} story={story} />)
       ) : (
         <p>No storys to display</p>
       )}

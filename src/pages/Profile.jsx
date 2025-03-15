@@ -104,11 +104,14 @@ export function Profile() {
       </div>
       <section className="profile-gallery">
         {activeTab === "posts"
-          ? watchedUser.images?.map((imgUrl, idx) => (
-              <div key={idx} className="gallery-item">
-                <ImageDetails image={imgUrl} alt={`User story ${idx + 1}`} />
-              </div>
-            ))
+          ? watchedUser.images
+              ?.slice()
+              .reverse()
+              .map((imgUrl, idx) => (
+                <div key={idx} className="gallery-item">
+                  <ImageDetails image={imgUrl} alt={`User story ${idx + 1}`} />
+                </div>
+              ))
           : watchedUser.savedStorys?.map((imgUrl, idx) => (
               <div key={idx} className="gallery-item">
                 <ImageDetails image={imgUrl} alt={`Saved story ${idx + 1}`} />

@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { userService } from "../services/users";
-import {
-  socketService,
-  SOCKET_EVENT_USER_FOLLOWED,
-  SOCKET_EVENT_USER_LIKED,
-} from "../services/socket.service";
-//import { makeId } from "../services/util.service";
+
 import {
   differenceInSeconds,
   differenceInMinutes,
@@ -15,42 +10,25 @@ import {
 } from "date-fns";
 
 export function Notifications() {
-  const [notifications, setNotifications] = useState([]);
   const loggedInUser = userService.getLoggedinUser();
-  const [isNotificationsFetched, setIsNotificationsFetched] = useState(false);
-
-  //const testNotifications = userService.fetchAllNotifications(loggedInUser._id);
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    if (!loggedInUser || isNotificationsFetched) return;
-    const fetchNotifications = async () => {
-      try {
-        const notificationsData = await userService.fetchAllNotifications(
-          loggedInUser._id
-        );
-        console.log("Fetched Notifications:", notificationsData);
+    if (!loggedInUser) return;
 
-        setNotifications(notificationsData); // Set the notifications in state
-        setIsNotificationsFetched(true);
-      } catch (err) {
-        console.error("Error fetching notifications:", err);
-      }
-    };
-
-    fetchNotifications(); // Call the function to fetch notifications
-    const followHandler = (data) => {
-      console.log("Follow event received:", data);
-      handleFollowed(data);
-    };
-
-    socketService.on(SOCKET_EVENT_USER_FOLLOWED, followHandler);
-    socketService.on(SOCKET_EVENT_USER_LIKED, likeStoryHandler);
-
-    return () => {
-      socketService.off(SOCKET_EVENT_USER_FOLLOWED, followHandler);
-      socketService.off(SOCKET_EVENT_USER_LIKED, likeStoryHandler);
-    };
+    fetchNotifications();
   }, [loggedInUser]);
+
+  const fetchNotifications = async () => {
+    try {
+      const notificationsData = await userService.fetchAllNotifications(
+        loggedInUser._id
+      );
+      setNotifications(notificationsData); // Update state
+    } catch (err) {
+      console.error("Error fetching notifications:", err);
+    }
+  };
 
   const formatTimeAgo = (date) => {
     const now = new Date();
@@ -66,7 +44,8 @@ export function Notifications() {
     return `${weeks}w`;
   };
 
-  function likeStoryHandler(data) {
+  /*function likeStoryHandler(data) {
+    console.log("function is working");
     const newNotification = {
       type: "like",
       userId: data.fromUser.userId,
@@ -86,7 +65,7 @@ export function Notifications() {
     };
 
     setNotifications((prev) => [newNotification, ...prev]);
-  }
+  }*/
 
   const getNotificationText = (type) => {
     if (type === "follow") return "started to follow you";
@@ -104,24 +83,29 @@ export function Notifications() {
 
       {notifications.length > 0 ? (
         <div className="notif-list">
-          {notifications.map((notif) => (
-            <div key={notif.timestamp} className="notif-item">
-              <img
-                src={
-                  notif.fromUser.imgUrl
-                    ? `/assets/images/${notif.fromUser.imgUrl}.jpeg`
-                    : "/default-avatar.jpeg"
-                }
-                alt={notif.user}
-                className="notif-user-avatar"
-              />
-              <p className="notif">
-                <strong>{notif.fromUser.fullname}</strong>{" "}
-                {getNotificationText(notif.type)}
-              </p>
-              <p className="timeAgo-notif">{formatTimeAgo(notif.timestamp)}</p>
-            </div>
-          ))}
+          {notifications
+            .slice()
+            .reverse()
+            .map((notif) => (
+              <div key={notif.timestamp} className="notif-item">
+                <img
+                  src={
+                    notif.fromUser.imgUrl
+                      ? `/assets/images/${notif.fromUser.imgUrl}.jpeg`
+                      : "/default-avatar.jpeg"
+                  }
+                  alt={notif.user}
+                  className="notif-user-avatar"
+                />
+                <p className="notif">
+                  <strong>{notif.fromUser.fullname}</strong>{" "}
+                  {getNotificationText(notif.type)}
+                </p>
+                <p className="timeAgo-notif">
+                  {formatTimeAgo(notif.timestamp)}
+                </p>
+              </div>
+            ))}
         </div>
       ) : (
         <div className="no-notifications">No new notifications</div>

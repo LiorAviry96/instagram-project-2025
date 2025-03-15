@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { logout } from "../store/actions/user.actions";
@@ -10,22 +12,75 @@ import { PostContext } from "../cmps/contexts/PostContext";
 import { ModalSlide } from "../cmps/ModalSlide";
 import { SvgIcon } from "../cmps/SvgIcon";
 import { Notifications } from "./Notification";
+import {
+  socketService,
+  SOCKET_EVENT_USER_FOLLOWED,
+  SOCKET_EVENT_USER_LIKED,
+  SOCKET_EVENT_USER_COMMENT,
+} from "../services/socket.service";
+import { userService } from "../services/users";
 
 export function NavBar() {
+  const navigate = useNavigate();
+  const user = useSelector((storeState) => storeState.userModule.user);
+  const loggedInUser = userService.getLoggedinUser();
+  const { getImageSrc } = useContext(PostContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isNotificationsModalOpen, setIsNotificationsModalOpen] =
     useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
-  const user = useSelector((storeState) => storeState.userModule.user);
-  const { getImageSrc } = useContext(PostContext);
-  const navigate = useNavigate();
+  const [notifications, setNotifications] = useState(() => {
+    return JSON.parse(localStorage.getItem("notifications")) || [];
+  });
   const toggleSearchModal = () => setIsSearchModalOpen(!isSearchModalOpen);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleNotificationsModal = () =>
     setIsNotificationsModalOpen(!isNotificationsModalOpen);
 
+  useEffect(() => {
+    if (!loggedInUser) return;
+    // Listen for new notifications from the socket
+
+    socketService.on(SOCKET_EVENT_USER_FOLLOWED, () => {
+      notifHandler("follow");
+    });
+    socketService.on(SOCKET_EVENT_USER_LIKED, () => {
+      notifHandler("like");
+    });
+    socketService.on(SOCKET_EVENT_USER_COMMENT, () => {
+      notifHandler("like");
+    });
+    return () => {
+      socketService.off(SOCKET_EVENT_USER_FOLLOWED, notifHandler);
+      socketService.off(SOCKET_EVENT_USER_LIKED, notifHandler);
+      socketService.off(SOCKET_EVENT_USER_COMMENT, notifHandler);
+    };
+  }, []);
+
+  const notifHandler = (data, typeNotif) => {
+    console.log("data", data);
+
+    const newNotification = {
+      type: typeNotif,
+      fromUser: {
+        userId: data._id,
+        fullname: data.fullname,
+        imgUrl: data.imgUrl,
+      },
+      timestamp: Date.now(),
+    };
+
+    setNotifications((prev) => {
+      const updatedNotifications = [newNotification, ...prev];
+      localStorage.setItem(
+        "notifications",
+        JSON.stringify(updatedNotifications)
+      );
+      return updatedNotifications;
+    });
+  };
   async function onLogout() {
     try {
       await logout();

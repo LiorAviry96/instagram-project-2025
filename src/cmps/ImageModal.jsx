@@ -24,6 +24,7 @@ export function ImageModal({
   useEffect(() => {
     loadStory(story._id);
   }, [dispatch]);
+
   return (
     <div className="modal-overlay" onClick={toggleModal}>
       <div

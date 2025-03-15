@@ -9,6 +9,7 @@ import {
 import {
   socketService,
   SOCKET_EMIT_USER_LIKED,
+  SOCKET_EMIT_USER_COMMENT,
 } from "../../services/socket.service";
 import { userService } from "../../services/users";
 
@@ -62,14 +63,18 @@ export async function updateStoryDetails(
     targetUser.notifications.push(notification);
     await userService.update(targetUser);
 
-    console.log(
-      `User ${typeChange} Notification updated successfully:`,
-      targetUser
-    );
     socketService.emit(SOCKET_EMIT_USER_LIKED, {
       loggedInUser: loggedInUser,
       targetUserId: targetUser._id,
     });
+    socketService.emit(SOCKET_EMIT_USER_COMMENT, {
+      loggedInUser: loggedInUser,
+      targetUserId: targetUser._id,
+    });
+    console.log(
+      `User ${typeChange} Notification updated successfully:`,
+      targetUser
+    );
     console.log("Story updated successfully:", savedStory);
   } catch (err) {
     console.error("Error updating story:", err);

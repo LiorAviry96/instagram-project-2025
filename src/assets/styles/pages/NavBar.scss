@@ -30,6 +30,16 @@
     width: 40px;
   }
 }
+.notification-dot {
+  position: absolute;
+  top: 10;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  border: 2px solid white;
+}
 .is-messages polygon {
   fill: black !important;
 }
@@ -56,6 +66,7 @@
   border-radius: 8px;
   font-size: 1.1rem;
   cursor: pointer;
+  position: relative;
 }
 .svg-icon {
   display: flex;

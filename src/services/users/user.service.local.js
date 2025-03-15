@@ -1,7 +1,7 @@
 import { storageService } from "../async-storage.service";
 import { saveToStorage, loadFromStorage, makeId } from "../util.service";
 const STORAGE_KEY_LOGGEDIN_USER = "user";
-
+const NOTIFICATIONS = "notifications";
 export const userService = {
   login,
   logout,
@@ -14,6 +14,7 @@ export const userService = {
   saveLoggedinUser,
   addUserMsg,
   getChatMessages,
+  fetchAllNotifications,
 };
 
 _createUsers();
@@ -103,6 +104,9 @@ async function addUserMsg(loginUser, targetUser, txt) {
 }
 async function getChatMessages() {}
 
+async function fetchAllNotifications() {
+  return JSON.parse(sessionStorage.getItem(NOTIFICATIONS));
+}
 async function _createUsers() {
   let users = loadFromStorage(STORAGE_KEY_LOGGEDIN_USER);
 

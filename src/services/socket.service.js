@@ -12,6 +12,8 @@ export const SOCKET_EMIT_USER_FOLLOWED = "user-emit-followed";
 export const SOCKET_EVENT_USER_FOLLOWED = "user-event-followed";
 export const SOCKET_EMIT_USER_LIKED = "user-emit-liked";
 export const SOCKET_EVENT_USER_LIKED = "user-event-liked";
+export const SOCKET_EMIT_USER_COMMENT = "user-emit-comment";
+export const SOCKET_EVENT_USER_COMMENT = "user-event-comment";
 const SOCKET_EMIT_LOGIN = "set-user-socket";
 const SOCKET_EMIT_LOGOUT = "unset-user-socket";
 
