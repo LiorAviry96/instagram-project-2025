@@ -4,9 +4,11 @@ import { AddComment } from "./AddComment";
 import { ImageModal } from "./ImageModal";
 import { updateStoryDetails } from "../store/actions/story.actions";
 import { useSelector } from "react-redux";
+import { userService } from "../services/users";
 
 export function Comments({ comments, storyId, updateStory }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const loggedInUser = userService.getLoggedinUser();
 
   const story = useSelector((state) =>
     state.storyModule.storys.find((story) => story._id === storyId)
@@ -24,7 +26,7 @@ export function Comments({ comments, storyId, updateStory }) {
           story={story}
           updateComments={(updatedComments) => {
             const updatedStory = { ...story, comments: updatedComments };
-            updateStoryDetails(updatedStory);
+            updateStoryDetails(updatedStory, loggedInUser, "comment");
           }}
           toggleModal={toggleModal}
         />

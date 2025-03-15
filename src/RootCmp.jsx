@@ -10,8 +10,6 @@ import { PostProvider } from "./cmps/contexts/PostContext";
 import { Routes, Route } from "react-router";
 import { Chat } from "./pages/Chat";
 import { Notifications } from "./pages/Notification";
-//import { socketService } from "./services/socket.service";
-//import { SOCKET_EVENT_USER_FOLLOWED } from "./services/socket.service";
 
 export function RootCmp() {
   return (

@@ -13,6 +13,7 @@ export const userService = {
   getLoggedinUser,
   addUserMsg,
   getChatMessages,
+  fetchAllNotifications,
 };
 
 function getUsers() {
@@ -78,6 +79,9 @@ async function addUserMsg(user, targetUser, txt) {
 
 async function getChatMessages(user, targetUserId) {
   return await httpService.get(`user/${user._id}/inbox/${targetUserId}`);
+}
+async function fetchAllNotifications(userId) {
+  return await httpService.get(`user/${userId}/notifications`);
 }
 
 function _saveLocalUser(user) {

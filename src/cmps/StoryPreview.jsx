@@ -12,18 +12,18 @@ import {
 import { Link } from "react-router";
 import { useContext, useState } from "react";
 import { updateStoryDetails } from "../store/actions/story.actions";
-
+import { userService } from "../services/users";
 export function StoryPreview({ story }) {
   const [storyComments, setStoryComments] = useState(story.comments || []);
 
   const { getImageSrc } = useContext(PostContext);
-
+  const loggedInUser = userService.getLoggedinUser();
   const { imgUrl, comments, owner, createdAt, txt } = story;
 
   const updateComments = (updatedComments) => {
     const updatedStory = { ...story, comments: updatedComments };
     setStoryComments(updatedComments);
-    updateStoryDetails(updatedStory);
+    updateStoryDetails(updatedStory, loggedInUser, "comment");
   };
   const formatTimeAgo = (date) => {
     const now = new Date();

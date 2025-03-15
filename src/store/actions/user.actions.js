@@ -150,8 +150,8 @@ export async function followUser(userIdToFollow) {
 
     if (!Array.isArray(loggedInUser.following)) loggedInUser.following = [];
     if (!Array.isArray(targetUser.followers)) targetUser.followers = [];
-    console.log("targetUser", targetUser);
-    console.log("loggedInUser", loggedInUser);
+    // console.log("targetUser", targetUser);
+    //console.log("loggedInUser", loggedInUser);
     // Avoid duplicates
     if (!loggedInUser.following.some((user) => user._id === userIdToFollow)) {
       loggedInUser.following.push({
@@ -183,13 +183,14 @@ export async function followUser(userIdToFollow) {
       if (!Array.isArray(targetUser.notifications))
         targetUser.notifications = [];
 
-      console.log("targetUser", targetUser);
-      console.log("notification", notification);
+      //console.log("targetUser", targetUser);
+      //console.log("loggedInUser", loggedInUser);
 
       targetUser.notifications.push(notification);
 
       await userService.update(loggedInUser);
       await userService.update(targetUser);
+
       socketService.emit(SOCKET_EMIT_USER_FOLLOWED, {
         loggedInUser: loggedInUser,
         targetUserId: targetUser._id,
@@ -197,6 +198,9 @@ export async function followUser(userIdToFollow) {
       // Update in Redux store
       store.dispatch({ type: SET_USER, user: loggedInUser });
       store.dispatch({ type: SET_WATCHED_USER, user: targetUser }); // Update watchedUser here
+
+      //console.log("targetUser", targetUser);
+      //console.log("loggedInUser", loggedInUser);
     }
   } catch (err) {
     console.error("UserActions: error in followUser", err);

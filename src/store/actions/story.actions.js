@@ -6,6 +6,11 @@ import {
   ADD_STORY,
   UPDATE_STORY,
 } from "../reducer/story.reducer";
+import {
+  socketService,
+  SOCKET_EMIT_USER_LIKED,
+} from "../../services/socket.service";
+import { userService } from "../../services/users";
 
 export async function loadStorys() {
   try {
@@ -27,9 +32,14 @@ export async function loadStory(storyId) {
     throw err;
   }
 }
-export async function updateStoryDetails(updatedStory) {
+export async function updateStoryDetails(
+  updatedStory,
+  loggedInUser,
+  typeChange
+) {
   try {
     console.log("Updating Story:", updatedStory); // Debugging log
+    console.log("loggedInUser test test", loggedInUser);
     const savedStory = await storyService.save(updatedStory);
     console.log("savedStory", savedStory);
     store.dispatch({
@@ -37,6 +47,30 @@ export async function updateStoryDetails(updatedStory) {
       story: savedStory,
     });
 
+    const notification = {
+      type: typeChange,
+      fromUser: {
+        userId: loggedInUser._id,
+        fullname: loggedInUser.fullname,
+        imgUrl: loggedInUser.imgUrl,
+      },
+      timestamp: new Date().toISOString(),
+    };
+
+    const targetUser = await userService.getById(updatedStory.owner._id);
+
+    if (!Array.isArray(targetUser.notifications)) targetUser.notifications = [];
+    targetUser.notifications.push(notification);
+    await userService.update(targetUser);
+
+    console.log(
+      `User ${typeChange} Notification updated successfully:`,
+      targetUser
+    );
+    socketService.emit(SOCKET_EMIT_USER_LIKED, {
+      loggedInUser: loggedInUser,
+      targetUserId: targetUser._id,
+    });
     console.log("Story updated successfully:", savedStory);
   } catch (err) {
     console.error("Error updating story:", err);

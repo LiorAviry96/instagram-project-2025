@@ -10,11 +10,10 @@ export const SOCKET_EMIT_USER_WATCH = "user-watch";
 export const SOCKET_EVENT_USER_UPDATED = "user-updated";
 export const SOCKET_EMIT_USER_FOLLOWED = "user-emit-followed";
 export const SOCKET_EVENT_USER_FOLLOWED = "user-event-followed";
+export const SOCKET_EMIT_USER_LIKED = "user-emit-liked";
+export const SOCKET_EVENT_USER_LIKED = "user-event-liked";
 const SOCKET_EMIT_LOGIN = "set-user-socket";
 const SOCKET_EMIT_LOGOUT = "unset-user-socket";
-//export const SOCKET_EVENT_REVIEW_ADDED = "review-added";
-//export const SOCKET_EVENT_REVIEW_REMOVED = "review-removed";
-//export const SOCKET_EVENT_REVIEW_ABOUT_YOU = "review-about-you";
 
 const baseUrl = process.env.NODE_ENV === "production" ? "" : "//localhost:4000";
 export const socketService = createSocketService();
@@ -42,9 +41,13 @@ function createSocketService() {
       else socket.off(eventName, cb);
     },
     emit(eventName, data) {
+      //console.log("eventName", eventName);
+      //console.log("data", data);
+
       socket.emit(eventName, data);
     },
     login(userId) {
+      console.log("login:", userId);
       socket.emit(SOCKET_EMIT_LOGIN, userId);
     },
     logout() {

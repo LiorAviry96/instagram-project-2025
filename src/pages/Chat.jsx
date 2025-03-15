@@ -32,7 +32,7 @@ export function Chat() {
 
   useEffect(() => {
     socketService.on(SOCKET_EVENT_ADD_MSG, addMsg);
-    console.log("msg", msg);
+    //console.log("msg", msg);
 
     return () => {
       socketService.off(SOCKET_EVENT_ADD_MSG, addMsg);
@@ -88,6 +88,7 @@ export function Chat() {
   };
 
   function addMsg(newMsg) {
+    console.log("added message");
     setMsgs((prevMsgs) => [...prevMsgs, newMsg]);
   }
 

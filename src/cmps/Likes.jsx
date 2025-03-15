@@ -68,7 +68,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
         likedBy: updatedLikedBy,
       };
 
-      updateStoryDetails(updatedStory);
+      updateStoryDetails(updatedStory, loggedInUser, "like");
 
       setLikes(updatedLikedBy.length);
       setLikedUsers(updatedLikedBy);
@@ -180,7 +180,7 @@ export function Likes({ initialLikes, likedBy, storyId }) {
             isModalOpen={isModalOpen}
             updateComments={(updatedComments) => {
               const updatedStory = { ...story, comments: updatedComments };
-              updateStoryDetails(updatedStory);
+              updateStoryDetails(updatedStory, loggedInUser, "comment");
             }}
           />
         </div>
