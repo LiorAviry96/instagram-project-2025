@@ -1,4 +1,5 @@
-const "post" = {
+//need to DELETE
+"post" = {
     "_id": "s101",
     "txt": "Best trip ever",
     "imgUrl": "http://some-img", 
