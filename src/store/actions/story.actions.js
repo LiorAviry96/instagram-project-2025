@@ -5,6 +5,7 @@ import {
   SET_STORYS,
   ADD_STORY,
   UPDATE_STORY,
+  REMOVE_STORY,
 } from "../reducer/story.reducer";
 import {
   socketService,
@@ -78,6 +79,23 @@ export async function updateStoryDetails(
     console.log("Story updated successfully:", savedStory);
   } catch (err) {
     console.error("Error updating story:", err);
+    throw err;
+  }
+}
+
+export async function deleteStory(storyId) {
+  console.log("storyId", storyId);
+  try {
+    await storyService.remove(storyId);
+
+    store.dispatch({
+      type: REMOVE_STORY,
+      storyId,
+    });
+
+    console.log("Story deleted successfully", storyId);
+  } catch (err) {
+    console.error("Error deleting story:", err);
     throw err;
   }
 }

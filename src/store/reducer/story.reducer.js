@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 export const SET_STORYS = "SET_STORYS";
 export const SET_STORY = "SET_STORY";
 export const REMOVE_STORY = "REMOVE_STORY";
@@ -27,6 +28,15 @@ export function storyReducer(state = initialState, action) {
         story._id === action.story._id ? action.story : story
       );
       newState = { ...state, storys };
+      break;
+    case REMOVE_STORY:
+      const removedStory = state.storys.find(
+        (story) => story._id === action.storyId
+      );
+      storys = state.storys.filter((story) => story._id !== action.storyId);
+      newState = { ...state, storys, removedStory };
+      //storys = state.storys.filter((story) => story?._id !== action.story._id);
+      //newState = { ...state, storys };
       break;
 
     default:

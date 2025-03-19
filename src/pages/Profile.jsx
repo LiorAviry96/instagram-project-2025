@@ -31,7 +31,7 @@ export function Profile() {
       loadStorys();
     }
   }, [userId, watchedUser, dispatch]);
-
+  console.log("loggedInUser", loggedInUser);
   const isOwnProfile = loggedInUser?._id === watchedUser?._id;
 
   const handleFollowToggle = () => {
